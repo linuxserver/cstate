@@ -1,0 +1,40 @@
+name: Deploy to Github Pages
+
+on:
+  push:
+    # In case we want it to build only on changes on certain files
+    # paths:
+    #   - "site/**"
+    #   - ".github/workflows/deploy-page.yml"
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Clones the repository. We also want the submodules, thats where the theme lies.
+      - uses: actions/checkout@v2.3.4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # Download, and sets up HUGO, ready for use in GHActions
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.4.13
+        with:
+          hugo-version: "0.65.3" # Version taken from https://github.com/cstate/cstate/blob/v4.4/exampleSite/.gitlab-ci.yml#L10
+          extended: true
+
+      # Builds the ./public, and minifies CSS/JS
+      - name: Build
+        run: hugo --minify
+
+      # Takes the result of ./public, and pushes it to the `gh-pages` branch, and include the CNAME file with the content of `info.linuxserver.io`
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          cname: info.linuxserver.io
