@@ -1,0 +1,160 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://cstate.mnts.lt"/><title>Pages on Eggsample Status</title><link>https://cstate.mnts.lt/pages/</link><description>Incident history</description><generator>github.com/cstate</generator><language>en</language><atom:link href="https://cstate.mnts.lt/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Example Page</title><link>https://cstate.mnts.lt/pages/example-page/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cstate.mnts.lt/pages/example-page/</guid><category/><description>Title here! This is an example page that demonstrates the capabilities of a Markdown page in cState.
+You can use HTML if the file extension is .html, but this one is .md.
+Let us dive in.
+Paragraphs are separated by a blank line.
+2nd paragraph. Italic, bold, and monospace. Itemized lists look like:
+this one that one the other one Note that &amp;mdash; not considering the asterisk &amp;mdash; the actual text content starts at 4-columns in.</description><content type="html">&lt;h1 id="title-here">Title here!&lt;/h1>
+&lt;p>This is an example page that demonstrates the capabilities of a Markdown page in cState.&lt;/p>
+&lt;p>You can use HTML if the file extension is &lt;code>.html&lt;/code>, but this one is &lt;code>.md&lt;/code>.&lt;/p>
+&lt;p>Let us dive in.&lt;/p>
+&lt;p>Paragraphs are separated by a blank line.&lt;/p>
+&lt;p>2nd paragraph. &lt;em>Italic&lt;/em>, &lt;strong>bold&lt;/strong>, and &lt;code>monospace&lt;/code>. Itemized lists
+look like:&lt;/p>
+&lt;ul>
+&lt;li>this one&lt;/li>
+&lt;li>that one&lt;/li>
+&lt;li>the other one&lt;/li>
+&lt;/ul>
+&lt;p>Note that &amp;mdash; not considering the asterisk &amp;mdash; the actual text
+content starts at 4-columns in.&lt;/p>
+&lt;blockquote>
+&lt;p>Block quotes are
+written like so.&lt;/p>
+&lt;p>They can span multiple paragraphs,
+if you like.&lt;/p>
+&lt;/blockquote>
+&lt;p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., &amp;ldquo;it&amp;rsquo;s all
+in chapters 12&amp;ndash;14&amp;rdquo;). Three dots &amp;hellip; will be converted to an ellipsis.
+Unicode is supported. ☺&lt;/p>
+&lt;h2 id="an-h2-header">An h2 header&lt;/h2>
+&lt;p>Here&amp;rsquo;s a numbered list:&lt;/p>
+&lt;ol>
+&lt;li>first item&lt;/li>
+&lt;li>second item&lt;/li>
+&lt;li>third item&lt;/li>
+&lt;/ol>
+&lt;p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here&amp;rsquo;s a code sample:&lt;/p>
+&lt;pre>&lt;code># Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+&lt;/code>&lt;/pre>
+&lt;p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:&lt;/p>
+&lt;pre>&lt;code>define foobar() {
+print &amp;quot;Welcome to flavor country!&amp;quot;;
+}
+&lt;/code>&lt;/pre>&lt;p>(which makes copying &amp;amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">import&lt;/span> time
+&lt;span style="color:#75715e"># Quick, count to ten!&lt;/span>
+&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
+&lt;span style="color:#75715e"># (but not *too* quick)&lt;/span>
+time&lt;span style="color:#f92672">.&lt;/span>sleep(&lt;span style="color:#ae81ff">0.5&lt;/span>)
+&lt;span style="color:#66d9ef">print&lt;/span>(i)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="an-h3-header-">An h3 header&lt;/h3>
+&lt;p>Now a nested list:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>First, get these ingredients:&lt;/p>
+&lt;ul>
+&lt;li>carrots&lt;/li>
+&lt;li>celery&lt;/li>
+&lt;li>lentils&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Boil some water.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Dump everything in the pot and follow
+this algorithm:&lt;/p>
+&lt;pre>&lt;code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously on pot handle
+wait 10 minutes
+goto first step (or shut off burner when done)
+&lt;/code>&lt;/pre>
+&lt;p>Do not bump wooden spoon or it will fall.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).&lt;/p>
+&lt;p>Here&amp;rsquo;s a link to &lt;a href="http://foo.bar">a website&lt;/a>, to a &lt;a href="local-doc.html">local
+doc&lt;/a>, and to a &lt;a href="#an-h2-header">section heading in the current
+doc&lt;/a>. Here&amp;rsquo;s a footnote &lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>.&lt;/p>
+&lt;p>Tables can look like this:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name Size Material Color&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>All Business 9 leather brown&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Roundabout 10 hemp canvas natural&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Cinderella 11 glass transparent&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Table: Shoes sizes, materials, and colors.&lt;/p>
+&lt;p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:&lt;/p>
+&lt;hr>
+&lt;p>Keyword Text&lt;/p>
+&lt;hr>
+&lt;p>red Sunsets, apples, and
+other red or reddish
+things.&lt;/p>
+&lt;p>green Leaves, grass, frogs
+and other things it&amp;rsquo;s
+not easy being.&lt;/p>
+&lt;hr>
+&lt;p>A horizontal rule follows.&lt;/p>
+&lt;hr>
+&lt;p>Here&amp;rsquo;s a definition list:&lt;/p>
+&lt;p>apples&lt;br>
+: Good for making applesauce.&lt;/p>
+&lt;p>oranges&lt;br>
+: Citrus!&lt;/p>
+&lt;p>tomatoes&lt;br>
+: There&amp;rsquo;s no &amp;ldquo;e&amp;rdquo; in tomatoe.&lt;/p>
+&lt;p>Again, text is indented 4 spaces. (Put a blank line between each
+term and its definition to spread things out more.)&lt;/p>
+&lt;p>Here&amp;rsquo;s a &amp;ldquo;line block&amp;rdquo; (note how whitespace is honored):&lt;/p>
+&lt;p>| Line one
+| Line too
+| Line tree&lt;/p>
+&lt;p>and images can be specified like so:&lt;/p>
+&lt;p>&lt;img src="https://via.placeholder.com/350x150" alt="example image" title="An exemplary image">&lt;/p>
+&lt;p>Inline math equation: $\omega = d\phi / dt$. Display
+math should get its own line like so:&lt;/p>
+&lt;p>$$I = \int \rho R^{2} dV$$&lt;/p>
+&lt;p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>Some footnote text. &lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></content></item></channel></rss>
