@@ -43,7 +43,9 @@
 
 # What is your status page called?
 # Shows up in the browser bar and meta tags
-title: Eggsample Status
+title: "Info :: LinuxServer.io"
+
+enableCustomHTML: true
 
 # Should posts, which have a publish date
 # from the future, be built? Useful for
@@ -90,7 +92,7 @@ defaultContentLanguage: en
 # localhost should automatically work.
 #
 # Example: https://status.example.com/
-baseURL: https://cstate.mnts.lt
+baseURL: https://info.linuxserver.io
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -99,6 +101,8 @@ baseURL: https://cstate.mnts.lt
 ############################################################
 
 params:
+  enableCustomHTML: true
+
   # Before setting up your systems, you need
   # to first define at least one category.
   #
@@ -121,12 +125,9 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   categories:
-    - name: North Coast
-      description: The main servers are located here.
-      closed: true
-    - name: East Coast      
-    - name: Uncategorized
-      untitled: true
+    - name: Images
+      description: Information regarding our images
+    - name: Security
 
   # These are your systems. Change them to
   # change the amount of components.
@@ -134,16 +135,10 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   systems:
-    - name: Gateway
-      category: North Coast
-    - name: Backup Gateway
-      category: East Coast
-    - name: API
-      description: The guts of the application.
-      category: Uncategorized
-    - name: Media Proxy
-      description: This is the service responsible for serving images, audio, and video. It is reliant on our CDN.
-      category: Uncategorized
+    - name: Deprecations
+      category: Images
+    - name: Vulnerabilities
+      category: Security
 
   # What date format to use?
   #
@@ -161,7 +156,7 @@ params:
   #
   # Default: true
   # BOOLEAN; `true`, `false`
-  useLargeHeaderDesign: false
+  useLargeHeaderDesign: true
 
   # Should incident history be separated
   # like in an archive view?
@@ -277,7 +272,7 @@ params:
   # Default: `true`
   # BOOLEAN; `true`, `false`
   alwaysKeepBrandColor: true
-  
+
   # Introduced in v4.0.1 for consistent
   # site title text color.
   #
