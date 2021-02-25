@@ -1,0 +1,4 @@
+- id: thisIsOk
+  translation: OK
+- id: thisIsNotice
+  translation: Notice
