@@ -5,6 +5,7 @@ informational: true
 affected:
   - Deprecations
   - mariadb
+section: issue
 ---
 
 We have created a new alpine based version of our mariadb container.
