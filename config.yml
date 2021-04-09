@@ -137,6 +137,8 @@ params:
   systems:
     - name: Deprecations
       category: Images
+    - name: New Containers
+      category: Images
     - name: Vulnerabilities
       category: Security
 
