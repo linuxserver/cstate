@@ -2,3 +2,7 @@
   translation: OK
 - id: thisIsNotice
   translation: Notice
+
+# Incidents
+- id: incidentHistory
+  translation: History
