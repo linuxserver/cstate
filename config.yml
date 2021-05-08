@@ -93,7 +93,7 @@ defaultContentLanguage: en
 #
 # Example: https://status.example.com/
 baseURL: https://info.linuxserver.io
-
+enableGitInfo: true
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Preferences                        | #
@@ -153,6 +153,10 @@ params:
   # shortDateFormat Default: "15:04 — Jan 2"
   dateFormat: January 2, 2006 at 3:04 PM
   shortDateFormat: 15:04 — Jan 2
+
+  useRelativeTime: true
+  skipSeconds: false
+  enableLastMod: true
 
   # What header design should we use?
   #
@@ -327,6 +331,10 @@ outputs:
     - json
     - rss
     - svg
+  term:
+    - html
+    - json
+    - rss
 
 outputFormats:
   svg:

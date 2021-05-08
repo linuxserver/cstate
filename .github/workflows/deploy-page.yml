@@ -23,7 +23,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2.4.13
         with:
-          hugo-version: "0.65.3" # Version taken from https://github.com/cstate/cstate/blob/v4.4/exampleSite/.gitlab-ci.yml#L10
+          hugo-version: "0.83.1" # Version taken from https://github.com/cstate/cstate/blob/v4.4/exampleSite/.gitlab-ci.yml#L10
           extended: true
 
       # Builds the ./public, and minifies CSS/JS
