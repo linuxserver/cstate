@@ -51,7 +51,7 @@ delimited block for Pandoc to syntax highlight it:&lt;/p>
 &lt;span style="color:#75715e"># (but not *too* quick)&lt;/span>
 time&lt;span style="color:#f92672">.&lt;/span>sleep(&lt;span style="color:#ae81ff">0.5&lt;/span>)
 &lt;span style="color:#66d9ef">print&lt;/span>(i)
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="an-h3-header-">An h3 header&lt;/h3>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="an-h3-header">An h3 header&lt;/h3>
 &lt;p>Now a nested list:&lt;/p>
 &lt;ol>
 &lt;li>
@@ -154,7 +154,7 @@ which you wish to be displayed literally, ex.: `foo`, *bar*, etc.&lt;/p>
 &lt;hr>
 &lt;ol>
 &lt;li id="fn:1" role="doc-endnote">
-&lt;p>Some footnote text. &lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;p>Some footnote text.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;/section></content></item></channel></rss>
