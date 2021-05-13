@@ -141,6 +141,8 @@ params:
       category: Images
     - name: Vulnerabilities
       category: Security
+    - name: Known Issues
+      category: Images
 
   # What date format to use?
   #
