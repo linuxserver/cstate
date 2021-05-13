@@ -2,6 +2,7 @@
 title: 'Known Issue: Unifi Controller v6.2.23'
 date: '2021-05-08'
 severity: notice
+resolved: false
 affected:
   - 'Known Issues'
   - 'unifi-controller'
