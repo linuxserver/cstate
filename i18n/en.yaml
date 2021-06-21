@@ -7,5 +7,11 @@
 - id: incidentHistory
   translation: History
 
+- id: isDown
+  translation: There are known major issues
+- id: isDisrupted
+  translation: There are known issues
+- id: isNotice
+  translation: Please read announcements
 - id: isOk
   translation: No known issues
