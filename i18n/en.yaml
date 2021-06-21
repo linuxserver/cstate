@@ -6,3 +6,6 @@
 # Incidents
 - id: incidentHistory
   translation: History
+
+- id: isOk
+  translation: No known issues
