@@ -12,6 +12,6 @@
 - id: isDisrupted
   translation: There are known issues
 - id: isNotice
-  translation: Please read announcements
+  translation: Please read the announcements
 - id: isOk
   translation: No known issues
