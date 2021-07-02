@@ -1,0 +1,29 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io"/><title>cops on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/cops/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2016-08-12T00:00:00+00:00</lastBuildDate><updated>2016-08-12T00:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/cops/index.xml" rel="self" type="application/rss+xml"/><item><title>New Container: Cops</title><link>https://info.linuxserver.io/issues/2016-08-12-cops/</link><pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2016-08-12-cops/</guid><category/><description>We have released a new container for Cops!
+Cops by Sébastien Lucas, stands for Calibre OPDS (and HTML) Php Server.
+COPS links to your Calibre library database and allows downloading and emailing of books directly from a web browser and provides a OPDS feed to connect to your devices.
+Changes in your Calibre library are reflected immediately in your COPS pages.
+See : COPS&amp;rsquo;s home for more details.
+Don&amp;rsquo;t forget to check the Wiki.</description><content type="html">&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-cops">Cops&lt;/a>!&lt;/p>
+&lt;p>&lt;a href="http://blog.slucas.fr/en/oss/calibre-opds-php-server">Cops&lt;/a> by Sébastien Lucas, stands for Calibre OPDS (and HTML) Php Server.&lt;/p>
+&lt;p>COPS links to your Calibre library database and allows downloading and emailing of books directly from a web browser and provides a OPDS feed to connect to your devices.&lt;/p>
+&lt;p>Changes in your Calibre library are reflected immediately in your COPS pages.&lt;/p>
+&lt;p>See : &lt;a href="http://blog.slucas.fr/en/oss/calibre-opds-php-server">COPS&amp;rsquo;s home&lt;/a> for more details.&lt;/p>
+&lt;p>Don&amp;rsquo;t forget to check the &lt;a href="https://github.com/seblucas/cops/wiki">Wiki&lt;/a>.&lt;/p>
+&lt;h2 id="why-taken-from-the-authors-site">Why? (taken from the author&amp;rsquo;s site)&lt;/h2>
+&lt;p>In my opinion Calibre is a marvelous tool but is too big and has too much
+dependencies to be used for its content server.&lt;/p>
+&lt;p>That&amp;rsquo;s the main reason why I coded this OPDS server. I needed a simple
+tool to be installed on a small server (Seagate Dockstar in my case).&lt;/p>
+&lt;p>I initially thought of Calibre2OPDS but as it generate static file no
+search was possible.&lt;/p>
+&lt;p>Later I added an simple HTML catalog that should be usable on my Kobo.&lt;/p>
+&lt;p>So COPS&amp;rsquo;s main advantages are :&lt;/p>
+&lt;ul>
+&lt;li>No need for many dependencies.&lt;/li>
+&lt;li>No need for a lot of CPU or RAM.&lt;/li>
+&lt;li>Not much code.&lt;/li>
+&lt;li>Search is available.&lt;/li>
+&lt;li>With Dropbox / owncloud it&amp;rsquo;s very easy to have an up to date OPDS server.&lt;/li>
+&lt;li>It was fun to code.&lt;/li>
+&lt;/ul>
+&lt;p>If you want to use the OPDS feed don&amp;rsquo;t forget to specify feed.php at the end of your URL.&lt;/p></content></item></channel></rss>
