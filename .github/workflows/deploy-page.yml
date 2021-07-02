@@ -21,7 +21,7 @@ jobs:
 
       # Download, and sets up HUGO, ready for use in GHActions
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2.4.13
+        uses: peaceiris/actions-hugo@v2.5.0
         with:
           hugo-version: "0.83.1" # Version taken from https://github.com/cstate/cstate/blob/v4.4/exampleSite/.gitlab-ci.yml#L10
           extended: true
