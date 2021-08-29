@@ -2,7 +2,7 @@
 title: 'Known Issue: Paperless-ng'
 date: '2021-07-26'
 severity: notice
-resolved: false
+resolved: true
 resolvedWhen:
 affected:
   - 'Known Issues'
