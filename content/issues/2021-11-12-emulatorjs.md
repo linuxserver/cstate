@@ -9,4 +9,4 @@ section: 'issue'
 ---
 We have released a new container for [EmulatorJS](https://github.com/linuxserver/docker-emulatorjs)!
 
-[EmulatorJS](https://github.com/linuxserver/emulatorjs) is an application for managing and playing retro games in your web browser.
+[EmulatorJS](https://github.com/linuxserver/emulatorjs) is an application for managing and playing retro games in your web browser. Read more [here](https://www.linuxserver.io/blog/self-hosted-web-based-emulation).
