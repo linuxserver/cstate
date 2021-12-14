@@ -3,7 +3,7 @@
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-unifi-controller">Unifi Controller&lt;/a> (Workaround applied + upstream fix)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-booksonic-air/">Booksonic Air&lt;/a> (Upstream fix)&lt;/li>
-&lt;li>&lt;a href="https://github.com/linuxserver/docker-fleet">Fleet&lt;/a> (Workaround applied)&lt;/li>
+&lt;li>&lt;a href="https://github.com/linuxserver/docker-fleet">Fleet&lt;/a> (Workaround applied + upstream fix)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-airsonic">Airsonic&lt;/a> (No log4j-core in use)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-habridge">HABridge&lt;/a> (No log4j-core in use)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-nzbhydra2">nzbhydra2&lt;/a> (Upstream fix)&lt;/li>
