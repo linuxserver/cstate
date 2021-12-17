@@ -11,6 +11,7 @@ Please note these lists apply to the stated version tags and later only. If you 
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-habridge">HABridge&lt;/a> (No log4j-core in use)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-unifi-controller">Unifi Controller&lt;/a> - &lt;code>version-6.5.55&lt;/code> and later (Workaround applied + upstream fix)&lt;/li>
 &lt;li>&lt;a href="https://github.com/linuxserver/docker-davos">Davos&lt;/a> &lt;code>version-2.2.2&lt;/code> and later (Upstream fix)&lt;/li>
+&lt;li>&lt;a href="https://github.com/linuxserver/docker-booksonic-air/">Booksonic Air&lt;/a> - &lt;code>version-v2112.2.0&lt;/code> and later (Upstream fix)&lt;/li>
 &lt;/ul>
 &lt;p>The following Linuxserver containers have been confirmed not to be affected by CVE-2021-44228 due to existing mitigations, upstream patches, or workarounds applied to the container images, but may still be vulnerable to CVE-2021-45046.&lt;/p>
 &lt;ul>
