@@ -7,6 +7,6 @@ affected:
   - 'airsonic-advanced'
 section: 'issue'
 ---
-We have released a new container for [Airsonic-Advanced](https://github.com/airsonic-advanced/airsonic-advanced)!
+We have released a new container for [Airsonic-Advanced](https://github.com/linuxserver/docker-airsonic-advanced)!
 
 [Airsonic-Advanced](https://github.com/airsonic-advanced/airsonic-advanced) is a more modern implementation of the Airsonic fork with several key performance and feature enhancements. It adds and supersedes several features in Airsonic.
