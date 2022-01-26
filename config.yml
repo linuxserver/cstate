@@ -143,6 +143,8 @@ params:
       category: Security
     - name: Known Issues
       category: Images
+    - name: Notifications
+      category: Images
 
   # What date format to use?
   #
