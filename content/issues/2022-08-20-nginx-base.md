@@ -28,7 +28,7 @@ affected:
   - 'xbackbone'
 section: 'issue'
 ---
-Most images using our alpine-nginx base image have been updated to alpine 3.15 with php8 and some significant changes to the nginx configs.
+Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.
 
 Changes you will likely notice:
 
