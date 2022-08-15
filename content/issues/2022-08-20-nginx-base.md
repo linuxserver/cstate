@@ -26,7 +26,7 @@ affected:
   - 'snipe-it'
   - 'swag'
   - 'xbackbone'
-section: 'issue'
+section: 'Notifications'
 ---
 Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.
 
