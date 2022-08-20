@@ -1,6 +1,6 @@
 ---
 title: 'Notification: Significant changes to nginx based images'
-date: '2022-20-05 18:00:00Z'
+date: '2022-08-20 18:00:00Z'
 informational: true
 affected:
   - 'Notifications'
