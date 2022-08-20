@@ -79,27 +79,27 @@ Status of affected images:
 
 | Image | Branch | PR | Notes |
 |---|---|---|---|
-| baseimage-alpine-nginx | master | <https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84> |  |
+| baseimage-alpine-nginx | master | <https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
 | bookstack | master | <https://github.com/linuxserver/docker-bookstack/pull/113> |  |
-| cops | master | <https://github.com/linuxserver/docker-cops/pull/34> | composer dependencies not compatible with php8 |
+| cops | master | <https://github.com/linuxserver/docker-cops/pull/34> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf`, composer dependencies not compatible with php8 |
 | diskover | master | <https://github.com/linuxserver/docker-diskover/pull/43> |  |
-| dokuwiki | master | <https://github.com/linuxserver/docker-dokuwiki/pull/43> |  |
-| freshrss | master | <https://github.com/linuxserver/docker-freshrss/pull/40> |  |
-| grav | main | <https://github.com/linuxserver/docker-grav/pull/9> |  |
-| grocy | master | <https://github.com/linuxserver/docker-grocy/pull/52> |  |
-| heimdall | main | <https://github.com/linuxserver/docker-heimdall/pull/79> |  |
-| librespeed | master | <https://github.com/linuxserver/docker-librespeed/pull/15> |  |
-| lychee | master | <https://github.com/linuxserver/docker-lychee/pull/51> | composer dependencies not compatible with php8 |
+| dokuwiki | master | <https://github.com/linuxserver/docker-dokuwiki/pull/43> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| freshrss | master | <https://github.com/linuxserver/docker-freshrss/pull/40> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| grav | main | <https://github.com/linuxserver/docker-grav/pull/9> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| grocy | master | <https://github.com/linuxserver/docker-grocy/pull/52> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| heimdall | main | <https://github.com/linuxserver/docker-heimdall/pull/79> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| librespeed | master | <https://github.com/linuxserver/docker-librespeed/pull/15> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| lychee | master | <https://github.com/linuxserver/docker-lychee/pull/51> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf`, composer dependencies not compatible with php8 |
 | muximux | master | <https://github.com/linuxserver/docker-muximux/pull/26> |  |
 | nextcloud | master | <https://github.com/linuxserver/docker-nextcloud/pull/219> |  |
 | nginx | master | <https://github.com/linuxserver/docker-nginx/pull/79> |  |
 | photoshow | master | <https://github.com/linuxserver/docker-photoshow/pull/28> | uses deprecated function [get_magic_quotes_gpc](https://www.php.net/manual/en/function.get-magic-quotes-gpc.php), not compatible with php8 |
-| phpmyadmin | main | <https://github.com/linuxserver/docker-phpmyadmin/pull/12> |  |
+| phpmyadmin | main | <https://github.com/linuxserver/docker-phpmyadmin/pull/12> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
 | piwigo | master | <https://github.com/linuxserver/docker-piwigo/pull/49> |  |
-| pixapop | master | <https://github.com/linuxserver/docker-pixapop/pull/11> | composer dependencies not compatible with php8 |
-| projectsend | master | <https://github.com/linuxserver/docker-projectsend/pull/22> |  |
-| snapdrop | master | <https://github.com/linuxserver/docker-snapdrop/pull/6> |  |
-| snipe-it | master | <https://github.com/linuxserver/docker-snipe-it/pull/28> |  |
+| pixapop | master | <https://github.com/linuxserver/docker-pixapop/pull/11> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf`, composer dependencies not compatible with php8 |
+| projectsend | master | <https://github.com/linuxserver/docker-projectsend/pull/22> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| snapdrop | master | <https://github.com/linuxserver/docker-snapdrop/pull/6> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
+| snipe-it | master | <https://github.com/linuxserver/docker-snipe-it/pull/28> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
 | swag | master | <https://github.com/linuxserver/docker-swag/pull/169> |  |
 | xbackbone | main | <https://github.com/linuxserver/docker-xbackbone/pull/5> |  |
 
