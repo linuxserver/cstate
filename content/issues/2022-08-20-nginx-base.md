@@ -80,7 +80,7 @@ Status of affected images:
 | Image | Branch | PR | Notes |
 |---|---|---|---|
 | baseimage-alpine-nginx | master | <https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
-| bookstack | master | <https://github.com/linuxserver/docker-bookstack/pull/113> |  |
+| bookstack | master | <https://github.com/linuxserver/docker-bookstack/pull/113> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
 | cops | master | <https://github.com/linuxserver/docker-cops/pull/34> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf`, composer dependencies not compatible with php8 |
 | diskover | master | <https://github.com/linuxserver/docker-diskover/pull/43> |  |
 | dokuwiki | master | <https://github.com/linuxserver/docker-dokuwiki/pull/43> | Requires users to update `/config/nginx/nginx.conf` and `/config/nginx/site-confs/default.conf` |
