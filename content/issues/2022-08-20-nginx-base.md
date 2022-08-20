@@ -94,7 +94,7 @@ Status of affected images:
 | nextcloud | master | <https://github.com/linuxserver/docker-nextcloud/pull/219> |  |
 | nginx | master | <https://github.com/linuxserver/docker-nginx/pull/79> |  |
 | photoshow | master | <https://github.com/linuxserver/docker-photoshow/pull/28> | uses deprecated function [get_magic_quotes_gpc](https://www.php.net/manual/en/function.get-magic-quotes-gpc.php), not compatible with php8 |
-| phpmyadmin | main | <https://github.com/linuxserver/docker-phpmyadmin/pull/3> |  |
+| phpmyadmin | main | <https://github.com/linuxserver/docker-phpmyadmin/pull/12> |  |
 | piwigo | master | <https://github.com/linuxserver/docker-piwigo/pull/49> |  |
 | pixapop | master | <https://github.com/linuxserver/docker-pixapop/pull/11> | composer dependencies not compatible with php8 |
 | projectsend | master | <https://github.com/linuxserver/docker-projectsend/pull/22> |  |
