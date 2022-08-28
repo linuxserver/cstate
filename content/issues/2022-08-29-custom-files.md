@@ -16,6 +16,6 @@ These now reside in `/custom-cont-init.d` instead of under `/config/custom-cont-
 
 ### Custom Services
 
-Similar to custom files, these now reside in `/custom-services.d` instead of under `/config/custom-services.d` and need to be owned by root. However, there are more substantial additional changes for services as they now need to be compliant with s6 v3. For a summary please refer to the docker mods [README.MD](https://github.com/linuxserver/docker-mods/blob/master/README.md#new-v3-mods) and for more detail please refer to the s6-overlay [README.MD](https://github.com/just-containers/s6-overlay#writing-a-service-script).
+Similar to custom files, these now reside in `/custom-services.d` instead of under `/config/custom-services.d`. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, and the service files need to be chmod `+x.
 
 The old custom locations will continue to work for a while to provide time for users to migrate but will generate warnings in the logs, as well as writing files to the old locations to notify users of the changes. We will post another notice before we remove the legacy locations entirely.
