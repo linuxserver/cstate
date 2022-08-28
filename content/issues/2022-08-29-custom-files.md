@@ -8,7 +8,7 @@ affected:
   - 'custom-services'
 section: issue
 ---
-We have long supported [customizing our containers](https://www.linuxserver.io/blog/2019-09-14-customizing-our-containers) via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that [mods work](https://info.linuxserver.io/issues/2022-08-27-mods/), we are also making changes to custom files and services.
+We have long supported [customizing our containers](https://www.linuxserver.io/blog/2019-09-14-customizing-our-containers) via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that [mods work](https://info.linuxserver.io/issues/2022-08-27-mods/), we are also making changes to custom files and services. **Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images**.
 
 ### Custom Files
 
