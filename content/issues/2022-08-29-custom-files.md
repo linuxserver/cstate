@@ -19,3 +19,17 @@ These now reside in `/custom-cont-init.d` instead of under `/config/custom-cont-
 Similar to custom files, these now reside in `/custom-services.d` instead of under `/config/custom-services.d`. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, and the service files need to be chmod `+x.
 
 The old custom locations will continue to work for a while to provide time for users to migrate but will generate warnings in the logs, as well as writing files to the old locations to notify users of the changes. We will post another notice before we remove the legacy locations entirely.
+
+### Mounting Paths
+
+Because these new locations are outside of `/config` you will need to mount them like any other volume if you wish to make use of them. e.g. `-v /home/foo/appdata/my-custom-files:/custom-cont-init.d` if using the Docker CLI or
+
+```yaml
+services:
+  bar:
+    volumes:
+      - /home/foo/appdata/bar:/config
+      - /home/foo/appdata/my-custom-files:/custom-cont-init.d
+```
+
+if using compose. Where possible, to improve security, we recommend mounting them read-only (`:ro`) so that container processes cannot write to the location.
