@@ -8,6 +8,6 @@ affected:
 section: issue
 ---
 
-Due to the upstream project no longer having development, we are deprecating our [Paperless-ng container](https://github.com/linuxserver/docker-paperless-ng/).
+Due to the upstream project no longer being in development, we are deprecating our [Paperless-ng container](https://github.com/linuxserver/docker-paperless-ng/).
 
 We recommend switching to the new forks official container [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
