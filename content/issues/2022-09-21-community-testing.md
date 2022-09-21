@@ -1,5 +1,5 @@
 ---
-title: 'Notification: Changes For Custom Scripts & Services'
+title: 'Notification: Community Testing Program'
 date: '2022-09-21 18:00:00Z'
 informational: true
 affected:
