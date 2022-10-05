@@ -138,7 +138,7 @@ Bring our default shipped configs as close as possible to alpine upstream defaul
 &lt;td>cops&lt;/td>
 &lt;td>master&lt;/td>
 &lt;td>&lt;a href="https://github.com/linuxserver/docker-cops/pull/34">https://github.com/linuxserver/docker-cops/pull/34&lt;/a>&lt;/td>
-&lt;td>composer dependencies not compatible with php8&lt;/td>
+&lt;td>composer downgraded to v1 for compatibility&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>diskover&lt;/td>
@@ -186,7 +186,7 @@ Bring our default shipped configs as close as possible to alpine upstream defaul
 &lt;td>lychee&lt;/td>
 &lt;td>master&lt;/td>
 &lt;td>&lt;a href="https://github.com/linuxserver/docker-lychee/pull/51">https://github.com/linuxserver/docker-lychee/pull/51&lt;/a>&lt;/td>
-&lt;td>composer dependencies not compatible with php8&lt;/td>
+&lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>muximux&lt;/td>
