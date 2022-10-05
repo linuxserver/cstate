@@ -81,7 +81,7 @@ Status of affected images:
 |---|---|---|---|
 | baseimage-alpine-nginx | master | <https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84> |  |
 | bookstack | master | <https://github.com/linuxserver/docker-bookstack/pull/113> |  |
-| cops | master | <https://github.com/linuxserver/docker-cops/pull/34> | composer dependencies not compatible with php8 |
+| cops | master | <https://github.com/linuxserver/docker-cops/pull/34> | composer downgraded to v1 for compatibility |
 | diskover | master | <https://github.com/linuxserver/docker-diskover/pull/43> |  |
 | dokuwiki | master | <https://github.com/linuxserver/docker-dokuwiki/pull/43> |  |
 | freshrss | master | <https://github.com/linuxserver/docker-freshrss/pull/40> |  |
@@ -89,7 +89,7 @@ Status of affected images:
 | grocy | master | <https://github.com/linuxserver/docker-grocy/pull/52> |  |
 | heimdall | main | <https://github.com/linuxserver/docker-heimdall/pull/79> |  |
 | librespeed | master | <https://github.com/linuxserver/docker-librespeed/pull/15> |  |
-| lychee | master | <https://github.com/linuxserver/docker-lychee/pull/51> | composer dependencies not compatible with php8 |
+| lychee | master | <https://github.com/linuxserver/docker-lychee/pull/51> |  |
 | muximux | master | <https://github.com/linuxserver/docker-muximux/pull/26> |  |
 | nextcloud | master | <https://github.com/linuxserver/docker-nextcloud/pull/219> |  |
 | nginx | master | <https://github.com/linuxserver/docker-nginx/pull/79> |  |
