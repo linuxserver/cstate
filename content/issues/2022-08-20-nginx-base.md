@@ -93,10 +93,10 @@ Status of affected images:
 | muximux | master | <https://github.com/linuxserver/docker-muximux/pull/26> |  |
 | nextcloud | master | <https://github.com/linuxserver/docker-nextcloud/pull/219> |  |
 | nginx | master | <https://github.com/linuxserver/docker-nginx/pull/79> |  |
-| photoshow | master | <https://github.com/linuxserver/docker-photoshow/pull/28> | uses deprecated function [get_magic_quotes_gpc](https://www.php.net/manual/en/function.get-magic-quotes-gpc.php), not compatible with php8 |
+| photoshow | master | <https://github.com/linuxserver/docker-photoshow/pull/28> | [Deprecated](https://info.linuxserver.io/issues/2022-10-14-photoshow/) |
 | phpmyadmin | main | <https://github.com/linuxserver/docker-phpmyadmin/pull/12> |  |
 | piwigo | master | <https://github.com/linuxserver/docker-piwigo/pull/49> |  |
-| pixapop | master | <https://github.com/linuxserver/docker-pixapop/pull/11> | composer dependencies not compatible with php8 |
+| pixapop | master | <https://github.com/linuxserver/docker-pixapop/pull/11> | [Deprecated](https://info.linuxserver.io/issues/2022-10-14-pixapop) |
 | projectsend | master | <https://github.com/linuxserver/docker-projectsend/pull/22> |  |
 | snapdrop | master | <https://github.com/linuxserver/docker-snapdrop/pull/6> |  |
 | snipe-it | master | <https://github.com/linuxserver/docker-snipe-it/pull/28> |  |
