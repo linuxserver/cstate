@@ -172,7 +172,7 @@ Bring our default shipped configs as close as possible to alpine upstream defaul
 &lt;td>photoshow&lt;/td>
 &lt;td>master&lt;/td>
 &lt;td>&lt;a href="https://github.com/linuxserver/docker-photoshow/pull/28">https://github.com/linuxserver/docker-photoshow/pull/28&lt;/a>&lt;/td>
-&lt;td>uses deprecated function &lt;a href="https://www.php.net/manual/en/function.get-magic-quotes-gpc.php">get_magic_quotes_gpc&lt;/a>, not compatible with php8&lt;/td>
+&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-photoshow/">Deprecated&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>phpmyadmin&lt;/td>
@@ -190,7 +190,7 @@ Bring our default shipped configs as close as possible to alpine upstream defaul
 &lt;td>pixapop&lt;/td>
 &lt;td>master&lt;/td>
 &lt;td>&lt;a href="https://github.com/linuxserver/docker-pixapop/pull/11">https://github.com/linuxserver/docker-pixapop/pull/11&lt;/a>&lt;/td>
-&lt;td>composer dependencies not compatible with php8&lt;/td>
+&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-pixapop">Deprecated&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>projectsend&lt;/td>
