@@ -1,6 +1,6 @@
 ---
 title: Nextcloud php8 Tag Deprecation Notice
-date: '2022-10-24 00:00:00Z'
+date: '2022-10-24 18:00:00Z'
 informational: true
 affected:
   - Deprecations
