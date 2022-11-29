@@ -1,6 +1,6 @@
 ---
 title: 'Notification: Deprecation of Legacy Custom Scripts & Services Locations'
-date: '2022-11-29 12:00:00Z'
+date: '2022-11-29 18:00:00Z'
 informational: true
 affected:
   - 'Notifications'
