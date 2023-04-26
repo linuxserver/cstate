@@ -11,7 +11,7 @@ We will shortly be making changes to the tags available for our [Wireguard](http
 
 Currently we offer two tags: `latest` and `alpine`. The former uses our Ubuntu base image and contains all of the tools and dependencies required to compile the Wireguard kernel modules from scratch if your host kernel is too old to have it built-in. The latter uses our Alpine base image and does *not* contain the build tools and dependencies, which means it will only work on hosts that already have the Wireguard kernel modules installed and running.
 
-Almost all kernel builds since 5.6 come with Wireguard included, along with some older ones that have had it backported, which means that shipping an extra 800Mb of image to support those running old kernels is increasingly unnecessary.
+Almost all kernel builds since 5.6 come with Wireguard included, along with some older ones that have had it backported, which means that shipping an extra 800Mb of image by default to support those running old kernels is increasingly unnecessary.
 
 As a result, we're going to switch our tags around to make the Alpine-based image the default.
 
