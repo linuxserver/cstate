@@ -1,6 +1,6 @@
 ---
 title: 'Notification: Changes to Wireguard image tags'
-date: '2023-04-27 18:00:00Z'
+date: '2023-04-27 12:00:00Z'
 informational: true
 affected:
   - 'Notifications'
