@@ -1,6 +1,6 @@
 ---
 title: 'Notification: Changes to our Nextcloud image'
-date: '2023-06-16 22:00:00Z'
+date: '2023-06-19 22:00:00Z'
 informational: true
 affected:
   - 'Notifications'
