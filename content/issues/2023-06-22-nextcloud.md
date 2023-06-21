@@ -1,6 +1,6 @@
 ---
 title: 'Notification: Changes to our Nextcloud image'
-date: '2023-06-19 22:00:00Z'
+date: '2023-06-22 22:00:00Z'
 informational: true
 affected:
   - 'Notifications'
@@ -49,7 +49,7 @@ The version of Nextcloud that you have installed in your persistent `/config` vo
 - Check your files again to determine the version you have installed
   - If your installed version is below 26, repeat the steps above until you get to version 26
   - If your installed version is 26 or 27, continue with the instructions below
-- Switch your image to `lscr.io/linuxserver/nextcloud:27.0.0-ls250` and start the container. Note the `updater.phar` is no longer available, or needed
+- Switch your image to `lscr.io/linuxserver/nextcloud:27.0.0-ls252` and start the container. Note the `updater.phar` is no longer available, or needed
 - Execute `docker logs nextcloud` and check for any issues (report [issues on GitHub](https://github.com/linuxserver/docker-nextcloud/issues))
 - As of posting this information, Nextclouod 27 is the latest current version. If you are reading this after a new major version of Nextcloud beyond 27 is released, check [releases on GitHub](https://github.com/linuxserver/docker-nextcloud/releases) and proceed to switch to the next major version tag one by one until you are current. Updating more than one major version at a time is not supported
 - You should now be able to switch your image to `lscr.io/linuxserver/nextcloud` (no tag) if you prefer to run the latest image (although we do recommend pinning a specific version)
