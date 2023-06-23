@@ -35,21 +35,21 @@ The version of Nextcloud that you have installed in your persistent `/config` vo
 
 | Image/Tag | PHP | Notes |
 | - | - | - |
-| `lscr.io/linuxserver/nextcloud:26.0.2-ls248` | 8.2 | Use this tag if your major version is 26 |
+| `lscr.io/linuxserver/nextcloud:version-26.0.2` | 8.2 | Use this tag if your major version is 26 |
 | `lscr.io/linuxserver/nextcloud:26.0.2-ls245` | 8.1 | Included for reference as the last tag released with PHP 8.1 |
-| `lscr.io/linuxserver/nextcloud:25.0.4-ls229` | 8.1 | |
-| `lscr.io/linuxserver/nextcloud:24.0.12-ls239` | 8.1 | Use this tag if your major version is 24 |
+| `lscr.io/linuxserver/nextcloud:version-25.0.4` | 8.1 | |
+| `lscr.io/linuxserver/nextcloud:version-24.0.12` | 8.1 | Use this tag if your major version is 24 |
 | `lscr.io/linuxserver/nextcloud:24.0.6-ls204` | 7.4 | Included for reference as the last tag released with PHP 7.4 |
-| `lscr.io/linuxserver/nextcloud:23.0.4-ls184` | 7.4 | |
-| `lscr.io/linuxserver/nextcloud:22.2.3-ls165` | 7.4 | |
+| `lscr.io/linuxserver/nextcloud:version-23.0.4` | 7.4 | |
+| `lscr.io/linuxserver/nextcloud:version-22.2.3` | 7.4 | |
 
 - Check your `/config/www/nextcloud/config/config.php` file or `/config/www/nextcloud/version.php` file to determine the version you have installed
-- Switch your image to the corresponding major version from the table above (ex: your files indicate `24.x.x`, use `lscr.io/linuxserver/nextcloud:24.0.12-ls239`) and start the container
+- Switch your image to the corresponding major version from the table above (ex: your files indicate `24.x.x`, use `lscr.io/linuxserver/nextcloud:version-24.0.12`) and start the container
 - Execute `docker exec -it nextcloud updater.phar` ***repeatedly*** until there are no more updates, or the updater says `This version of Nextcloud is not compatible with > PHP x.x`
 - Check your files again to determine the version you have installed
   - If your installed version is below 26, repeat the steps above until you get to version 26
   - If your installed version is 26 or 27, continue with the instructions below
-- Switch your image to `lscr.io/linuxserver/nextcloud:27.0.0-ls252` and start the container. Note the `updater.phar` is no longer available, or needed
+- Switch your image to `lscr.io/linuxserver/nextcloud:version-27.0.0` and start the container. Note the `updater.phar` is no longer available, or needed
 - Execute `docker logs nextcloud` and check for any issues (report [issues on GitHub](https://github.com/linuxserver/docker-nextcloud/issues))
 - As of posting this information, Nextclouod 27 is the latest current version. If you are reading this after a new major version of Nextcloud beyond 27 is released, check [releases on GitHub](https://github.com/linuxserver/docker-nextcloud/releases) and proceed to switch to the next major version tag one by one until you are current. Updating more than one major version at a time is not supported
 - You should now be able to switch your image to `lscr.io/linuxserver/nextcloud` (no tag) if you prefer to run the latest image (although we do recommend pinning a specific version)
