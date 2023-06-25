@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Info :: LinuxServer.io</title><link>https://info.linuxserver.io/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>Tue, 06 Jun 2023 18:00:00 +0000</lastBuildDate><atom:link href="https://info.linuxserver.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Reminder: 32-bit Arm Deprecation Notice</title><link>https://info.linuxserver.io/issues/2023-06-06-armhf/</link><pubDate>Tue, 06 Jun 2023 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-06-06-armhf/</guid><category/><description>&lt;p>Due to the ever-decreasing support for modern apps and packages on 32-bit Arm platforms, we will be deprecating &lt;em>all&lt;/em> 32-bit Arm (armhf) versions of our images effective 2023-07-01.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Info :: LinuxServer.io</title><link>https://info.linuxserver.io/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>Sun, 25 Jun 2023 22:00:00 +0000</lastBuildDate><atom:link href="https://info.linuxserver.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Notification: Changes to our Nextcloud image</title><link>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</link><pubDate>Sun, 25 Jun 2023 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</guid><category/><description>&lt;p>We are releasing a new version of our &lt;a href="https://github.com/linuxserver/docker-nextcloud/">Nextcloud image&lt;/a> that is built with the Nextcloud application inside the image, rather than in the user &lt;code>/config&lt;/code> volume. This means manually updating Nextcloud via command line will no longer be necessary or supported. The &lt;code>updater.phar&lt;/code> command is completely removed. Installations for existing users will be migrated automatically when updating the container image. All future updates to your Nextcloud instance will happen via container image updates.&lt;/p>
+&lt;p>&lt;strong>Updating via the admin web UI is no longer supported.&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Downgrading is not supported.&lt;/strong>&lt;/p>
+&lt;p>An important thing to keep in mind is that systems that automatically update your container will result in irreversible changes to your Nextcloud instance. We recommend pinning a specific tagged version like &lt;code>lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code> and manually changing your image version when you are ready to upgrade.&lt;/p>
+&lt;p>Excerpts from the updated README:&lt;/p>
+&lt;h3 id="updating-nextcloud">Updating Nextcloud&lt;/h3>
+&lt;p>Updating Nextcloud is done by pulling the new image, and recreating the container with it.&lt;/p>
+&lt;p>It is only possible to upgrade one major version at a time. For example, if you want to upgrade from version 14 to 16, you will have to upgrade from version 14 to 15, then from 15 to 16.&lt;/p>
+&lt;p>Since all data is stored in the &lt;code>/config&lt;/code> and &lt;code>/data&lt;/code> volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process.&lt;/p>
+&lt;h3 id="cant-start-nextcloud">Can&amp;rsquo;t start Nextcloud&lt;/h3>
+&lt;p>If after updating your container image you receive a message along these lines:&lt;/p>
+&lt;blockquote>
+&lt;p>Can&amp;rsquo;t start Nextcloud because the version of the data (&lt;code>#.#.#.#&lt;/code>) is more than one major version behind the docker image version (&lt;code>#.#.#.#&lt;/code>) and upgrading more than one major version is not supported. Please run an image tagged for the major version &lt;code>##&lt;/code> first.&amp;quot;&lt;/p>
+&lt;/blockquote>
+&lt;p>The version of Nextcloud that you have installed in your persistent &lt;code>/config&lt;/code> volume will need to be updated using an older image before you can use the new image.&lt;/p>
+&lt;p>Major version images, to be used for upgrading:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Image/Tag&lt;/th>
+&lt;th>PHP&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-26.0.2&lt;/code>&lt;/td>
+&lt;td>8.2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-25.0.4&lt;/code>&lt;/td>
+&lt;td>8.1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code>&lt;/td>
+&lt;td>8.1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-23.0.4&lt;/code>&lt;/td>
+&lt;td>7.4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-22.2.3&lt;/code>&lt;/td>
+&lt;td>7.4&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Package locked tags, listed for LSIO team reference:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Image/Tag&lt;/th>
+&lt;th>PHP&lt;/th>
+&lt;th>Notes&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:26.0.2-ls245&lt;/code>&lt;/td>
+&lt;td>8.1&lt;/td>
+&lt;td>Last tag with PHP 8.1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:24.0.6-ls204&lt;/code>&lt;/td>
+&lt;td>7.4&lt;/td>
+&lt;td>Last tag with PHP 7.4&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>Check your &lt;code>/config/www/nextcloud/config/config.php&lt;/code> file or &lt;code>/config/www/nextcloud/version.php&lt;/code> file to determine the version you have installed&lt;/li>
+&lt;li>Switch your image to the corresponding major version from the table above (ex: your files indicate &lt;code>24.x.x&lt;/code>, use &lt;code>lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code>) and start the container&lt;/li>
+&lt;li>Run &lt;code>docker exec -it nextcloud updater.phar&lt;/code> &lt;strong>&lt;em>repeatedly&lt;/em>&lt;/strong> until you have updated to Nextcloud &lt;code>27.x.x&lt;/code>, or the updater says &lt;code>This version of Nextcloud is not compatible with &amp;gt; PHP x.x&lt;/code>&lt;/li>
+&lt;li>Check your files again to determine the version you have installed
+&lt;ul>
+&lt;li>If your installed version is below 26, repeat the steps above until you get to version 26&lt;/li>
+&lt;li>If your installed version is 26 or 27, continue with the instructions below&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Switch your image to &lt;code>lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code> and start the container. Note the &lt;code>updater.phar&lt;/code> is no longer available, or needed&lt;/li>
+&lt;li>Run &lt;code>docker logs nextcloud&lt;/code> and check for any issues (report &lt;a href="https://github.com/linuxserver/docker-nextcloud/issues">issues on GitHub&lt;/a>)&lt;/li>
+&lt;li>As of posting this information, Nextclouod 27 is the latest current version. If you are reading this after a new major version of Nextcloud beyond 27 is released, check &lt;a href="https://github.com/linuxserver/docker-nextcloud/releases">releases on GitHub&lt;/a> and proceed to switch to the next major version tag one by one until you are current. Updating more than one major version at a time is not supported&lt;/li>
+&lt;li>You should now be able to switch your image to &lt;code>lscr.io/linuxserver/nextcloud&lt;/code> (no tag) if you prefer to run the latest image (although we do recommend pinning a specific version)&lt;/li>
+&lt;li>Run &lt;code>docker exec -it nextcloud mv /config/nginx/site-confs/default.conf /config/nginx/site-confs/default.conf.bak&lt;/code>&lt;/li>
+&lt;li>Run &lt;code>docker exec -it nextcloud mv /config/nginx/nginx.conf /config/nginx/nginx.conf.bak&lt;/code>&lt;/li>
+&lt;li>Run &lt;code>docker restart nextcloud&lt;/code>&lt;/li>
+&lt;li>Nextcloud should now be in a working state&lt;/li>
+&lt;/ul>
+&lt;p>Optional:&lt;/p>
+&lt;ul>
+&lt;li>If you had customized any of the nginx configs that were renamed above, compare the &lt;code>.bak&lt;/code> file to the new live file and apply any customizations you require. Note the &lt;code>root&lt;/code> line in &lt;code>site-confs/default.conf&lt;/code> should be changed from &lt;code>/config/www/nextcloud/&lt;/code> to &lt;code>/app/www/public&lt;/code>&lt;/li>
+&lt;li>Remove the &lt;code>.bak&lt;/code> files&lt;/li>
+&lt;/ul></description></item><item><title>Reminder: 32-bit Arm Deprecation Notice</title><link>https://info.linuxserver.io/issues/2023-06-06-armhf/</link><pubDate>Tue, 06 Jun 2023 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-06-06-armhf/</guid><category/><description>&lt;p>Due to the ever-decreasing support for modern apps and packages on 32-bit Arm platforms, we will be deprecating &lt;em>all&lt;/em> 32-bit Arm (armhf) versions of our images effective 2023-07-01.&lt;/p>
 &lt;p>Please read our &lt;a href="https://www.linuxserver.io/blog/a-farewell-to-arm-hf">blog post on the matter&lt;/a> for more details.&lt;/p></description></item><item><title>Known Issue: MariaDB Check and Repair</title><link>https://info.linuxserver.io/issues/2023-05-29-mariadb/</link><pubDate>Mon, 29 May 2023 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-05-29-mariadb/</guid><category/><description>&lt;p>There is a known issue with MariaDB when updating the container image to a new version. If a database upgrade is required and user databases are not in a healthy state, then the MariaDB service may fail to start.&lt;/p>
 &lt;p>MariaDB version updates (ex: &lt;code>10.6.x&lt;/code> to &lt;code>10.11.x&lt;/code>) can happen when updating the container image. Upgrading user databases is done manually by running a command.&lt;/p>
 &lt;h3 id="recovery-procedure">Recovery Procedure&lt;/h3>
