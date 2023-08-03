@@ -43,6 +43,8 @@ Major version images, to be used for upgrading:
 | `lscr.io/linuxserver/nextcloud:version-24.0.12` | 8.1 |
 | `lscr.io/linuxserver/nextcloud:version-23.0.4`  | 7.4 |
 | `lscr.io/linuxserver/nextcloud:version-22.2.3`  | 7.4 |
+| `lscr.io/linuxserver/nextcloud:version-21.0.3`  | 7.4 |
+| `lscr.io/linuxserver/nextcloud:version-20.0.7`  | 7.4 |
 
 Package locked tags, listed for LSIO team reference:
 
