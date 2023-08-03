@@ -50,6 +50,14 @@ Old images will continue to work, but will not receive application or OS updates
 &lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-22.2.3&lt;/code>&lt;/td>
 &lt;td>7.4&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-21.0.3&lt;/code>&lt;/td>
+&lt;td>7.4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-20.0.7&lt;/code>&lt;/td>
+&lt;td>7.4&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;p>Package locked tags, listed for LSIO team reference:&lt;/p>
