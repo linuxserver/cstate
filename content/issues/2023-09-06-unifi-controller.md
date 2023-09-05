@@ -9,7 +9,7 @@ affected:
 section: issue
 ---
 
-Due to the way in which Unifi package and distribute their software our [Unifi Controller](https://github.com/linuxserver/docker-unifi-controller) container has reached a point where we cannot upgrade to newer supported packages without making breaking changes to the image.
+Due to the way in which Ubiquiti package and distribute their software our [Unifi Controller](https://github.com/linuxserver/docker-unifi-controller) container has reached a point where we cannot upgrade to newer supported packages without making breaking changes to the image.
 
 As a result we have decided to deprecate our Unifi Controller container and replace it with a new [Unifi Network Application](https://github.com/linuxserver/docker-unifi-network-application) container. This new container uses our current base images and a separate mongodb instance, which makes it substantially easier for us to maintain going forward.
 
