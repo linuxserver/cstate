@@ -15,6 +15,6 @@ As a result we have decided to deprecate our Unifi Controller container and repl
 
 We will continue to support our Unifi Controller image until **2024-01-01**, at which point you will need to have migrated to the Unifi Network Application container to continue to receive support.
 
-### The new container is not a drop-in replacement and it is crucial that you read the entire Application Setup section of the readme before attempting to migrate an existing install
+### The new container is not a drop-in replacement and it is crucial that you read the entire [Application Setup](https://github.com/linuxserver/docker-unifi-network-application#application-setup) section of the readme before attempting to migrate an existing install
 
 Those of you who have been using our `mongoless` tag for the Unifi Controller container can switch directly to the Unifi Network Application container without needing to perform any migration steps.
