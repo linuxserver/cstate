@@ -2,13 +2,20 @@
 title: 'Known Issue: Portainer & Synology Docker UI'
 date: '2023-05-22 12:00:00Z'
 severity: notice
-resolved: false
+resolved: true
+resolvedWhen: '2023-11-22 18:00:00Z'
 affected:
   - 'Known Issues'
   - 'portainer'
   - 'synology'
 section: 'issue'
 ---
+### Update
+
+The underlying issue still exists for both Portainer and the Synology container management UI, but the primary driver of issues has largely dissipated and so we are unpinning this notice.
+
+### Original Post
+
 There is a known issue with Portainer and the Synology Docker UI when updating (or otherwise recreating) containers, which causes them to overwrite settings in the new image with values from the old container. Creating a new container from scratch does not exhibit this behaviour.
 
 This non-standard behaviour causes containers to fail to start correctly in some cases, and may result in unexpected or unwanted configuration in others. For example, in our [SABnzbd image](https://github.com/linuxserver/docker-sabnzbd/issues/188) the `PATH` environment variable is overwritten, leaving the application unable to locate the necessary Python modules to enable it to start. This is likely to become more common in the future, and there is not a practical or scalable solution that we can apply from our end to avoid this issue.
