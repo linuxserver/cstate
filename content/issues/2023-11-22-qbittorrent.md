@@ -14,4 +14,4 @@ Due to an [upstream bug](https://github.com/qbittorrent/qBittorrent/issues/19984
 
 ### Workaround
 
-As a workaround until a fix can be released, start the container with the `:version-4.6.0-r0` image tag, login to the Web UI using the old default credentials, and change the admin account password. You will then be able to switch back to the `:version-4.6.1-r0` or `:latest` tags.
+As a workaround until a fix can be released, start the container with the `:version-4.6.0-r0` image tag, login to the Web UI using the old default credentials, and change the admin account password. You will then be able to switch back to the `:version-4.6.1-r0` or `:latest` tags. For Unraid users this will require you to edit the container and under the Advanced options change the Repository to append the required tag; you can find step-by-step instructions [here](https://github.com/linuxserver/docker-qbittorrent/issues/268#issuecomment-1821123416).
