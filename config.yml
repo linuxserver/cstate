@@ -225,7 +225,7 @@ params:
   # on the footer and meta tags.
   #
   # Default: We continuously monitor the status of our services and if there are any interruptions, a note will be posted here.
-  description:
+  description: LinuxServer.io Status page
 
   # Tabs on homepage
   # Uncomment to enable.

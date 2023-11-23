@@ -1,3 +1,6 @@
+{{ $url := .Site.BaseURL }}
+{{ $u := urls.Parse $url }}
+
 <style>
     .pre-header-links {
         background-color: #0a0c0f;
@@ -10,3 +13,18 @@
         color: #fff;
     }
 </style>
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}">
+<meta property="og:description" content="{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description | markdownify | plainify }}{{ end }}">
+<meta property="og:image" content="{{ absURL .Site.Params.logo }}">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="{{ $u.Hostname }}">
+<meta property="twitter:url" content="{{ .Permalink }}">
+<meta name="twitter:title" content="{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}">
+<meta name="twitter:description" content="{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description | markdownify | plainify }}{{ end }}">
+<meta name="twitter:image" content="{{ absURL .Site.Params.logo }}">
