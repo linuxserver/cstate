@@ -3,17 +3,17 @@
 {{ $status_text := "OK" -}}
 {{ $status_error := false -}}
 {{ if $isDown -}}
-  {{ $status_text := "Important message" -}}
-  {{ $status_error := true -}}
+  {{ $status_text = "Important message" -}}
+  {{ $status_error = true -}}
   {{ $status_color = .Site.Params.badge_down -}}
 {{ else if $isDisrupted -}}
-  {{ $status_text := "Notice" -}}
-  {{ $status_error := true -}}
-  {{ $status_color = .Site.Params.disrupted -}}
+  {{ $status_text = "Notice" -}}
+  {{ $status_error = true -}}
+  {{ $status_color = .Site.Params.badge_disrupted -}}
 {{ else if $isNotice -}}
-  {{ $status_text := "Notice" -}}
-  {{ $status_error := true -}}
-  {{ $status_color = .Site.Params.notice -}}
+  {{ $status_text = "Notice" -}}
+  {{ $status_error = true -}}
+  {{ $status_color = .Site.Params.badge_notice -}}
 {{ end -}}
 {
   "schemaVersion": 1,
