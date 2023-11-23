@@ -1,0 +1,25 @@
+{{ $incidents := .Pages }}{{ $active := where $incidents "Params.resolved" "=" false }}{{ $isNotice := where $active "Params.severity" "=" "notice" }}{{ $isDisrupted := where $active "Params.severity" "=" "disrupted" }}{{ $isDown := where $active "Params.severity" "=" "down" -}}
+{{ $status_color := .Site.Params.badge_ok -}}
+{{ $status_text := "OK" -}}
+{{ $status_error := false -}}
+{{ if $isDown -}}
+  {{ $status_text := "Important message" -}}
+  {{ $status_error := true -}}
+  {{ $status_color = .Site.Params.badge_down -}}
+{{ else if $isDisrupted -}}
+  {{ $status_text := "Notice" -}}
+  {{ $status_error := true -}}
+  {{ $status_color = .Site.Params.disrupted -}}
+{{ else if $isNotice -}}
+  {{ $status_text := "Notice" -}}
+  {{ $status_error := true -}}
+  {{ $status_color = .Site.Params.notice -}}
+{{ end -}}
+{
+  "schemaVersion": 1,
+  "label": "Info",
+  "message": "{{ $status_text }}",
+  "color": "{{ $status_color }}",
+  "labelColor": "#555555",
+  "isError": {{ $status_error }}
+}
