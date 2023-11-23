@@ -271,8 +271,10 @@ params:
   disrupted: "#cc4400"
   down: "#e60000"
   notice: "#24478f"
-  badge_ok: "#4c1"
+  badge_disrupted: "#24478f"
   badge_down: "#e05d44"
+  badge_notice: "#4c1"
+  badge_ok: "#0a0c0f"
 
   # If the status page shows that
   # there are disruptions or outages
@@ -342,6 +344,7 @@ outputs:
     - json
     - rss
     - badge
+    - svg
 
 mediaTypes:
   application/badge:
