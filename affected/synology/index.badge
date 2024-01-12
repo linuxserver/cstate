@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "label": "Info",
-  "message": "Notice",
-  "color": "#4c1",
+  "message": "OK",
+  "color": "#0a0c0f",
   "labelColor": "#555555",
-  "isError": true
+  "isError": false
 }
