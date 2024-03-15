@@ -40,18 +40,18 @@ for i in 1 .. 10 { do-something(i) }
 &lt;/code>&lt;/pre>
 &lt;p>As you probably guessed, indented 4 spaces. By the way, instead of
 indenting the block, you can use delimited blocks, if you like:&lt;/p>
-&lt;pre>&lt;code>define foobar() {
-print &amp;quot;Welcome to flavor country!&amp;quot;;
+&lt;pre tabindex="0">&lt;code>define foobar() {
+print &amp;#34;Welcome to flavor country!&amp;#34;;
 }
 &lt;/code>&lt;/pre>&lt;p>(which makes copying &amp;amp; pasting easier). You can optionally mark the
 delimited block for Pandoc to syntax highlight it:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">import&lt;/span> time
-&lt;span style="color:#75715e"># Quick, count to ten!&lt;/span>
-&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
-&lt;span style="color:#75715e"># (but not *too* quick)&lt;/span>
-time&lt;span style="color:#f92672">.&lt;/span>sleep(&lt;span style="color:#ae81ff">0.5&lt;/span>)
-&lt;span style="color:#66d9ef">print&lt;/span>(i)
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="an-h3-header">An h3 header&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> time
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Quick, count to ten!&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># (but not *too* quick)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> time&lt;span style="color:#f92672">.&lt;/span>sleep(&lt;span style="color:#ae81ff">0.5&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(i)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="an-h3-header">An h3 header&lt;/h3>
 &lt;p>Now a nested list:&lt;/p>
 &lt;ol>
 &lt;li>
@@ -150,11 +150,11 @@ math should get its own line like so:&lt;/p>
 &lt;p>$$I = \int \rho R^{2} dV$$&lt;/p>
 &lt;p>And note that you can backslash-escape any punctuation characters
 which you wish to be displayed literally, ex.: `foo`, *bar*, etc.&lt;/p>
-&lt;section class="footnotes" role="doc-endnotes">
+&lt;div class="footnotes" role="doc-endnotes">
 &lt;hr>
 &lt;ol>
-&lt;li id="fn:1" role="doc-endnote">
+&lt;li id="fn:1">
 &lt;p>Some footnote text.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;/section></content></item></channel></rss>
+&lt;/div></content></item></channel></rss>
