@@ -32,7 +32,7 @@ jobs:
 
       # Takes the result of ./public, and pushes it to the `gh-pages` branch, and include the CNAME file with the content of `info.linuxserver.io`
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.9.3
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
