@@ -1,6 +1,6 @@
 ---
 title: 'New Containers: FreeTube Librewolf Ardour KeePassXC'
-date: '2024-04-11 20:00:00Z'
+date: '2024-04-13 20:00:00Z'
 informational: true
 affected:
   - 'New Containers'
@@ -10,7 +10,7 @@ affected:
   - 'keepassxc'
 section: 'issue'
 ---
-We have released a new desktop application containers for:
+We have released new desktop application containers for:
 [Ardour](https://github.com/linuxserver/docker-ardour/)
 [Librewolf](https://github.com/linuxserver/docker-librewolf/)
 [FreeTube](https://github.com/linuxserver/docker-freetube/)
