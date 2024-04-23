@@ -1,6 +1,6 @@
 ---
 title: 'Plex Meta Manager Deprecation Notice'
-date: '2024-04-22 22:00:00Z'
+date: '2024-04-23 12:00:00Z'
 informational: true
 affected:
   - 'Deprecations'
