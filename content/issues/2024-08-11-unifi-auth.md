@@ -1,6 +1,6 @@
 ---
 title: 'PSA Regarding Potential Misconfiguration of Unifi-Network-Application and MongoDB'
-date: '2024-08-11 23:00:00Z'
+date: '2024-08-12 11:00:00Z'
 informational: true
 affected:
   - 'unifi-network-application'
