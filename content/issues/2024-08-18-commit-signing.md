@@ -1,5 +1,5 @@
 ---
-title: 'PSA Regarding Potential Misconfiguration of Unifi-Network-Application and MongoDB'
+title: 'Git Commit Signing For Linuxserver CI'
 date: '2024-08-18 23:00:00Z'
 informational: true
 affected:
