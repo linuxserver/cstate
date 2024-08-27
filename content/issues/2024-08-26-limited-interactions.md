@@ -7,8 +7,10 @@ affected:
 section: issue
 ---
 
-We have currently imposed Limited interactions on the Linuxserver Organization
+We have disabled limited interactions.
 
-This is to combat comment-based spam on all our issues.
+~~We have currently imposed Limited interactions on the Linuxserver Organization~~
 
-We are sorry for the inconvenience this brings. Our [forum](https://discourse.linuxserver.io/) and [Discord](https://discord.gg/YWrKVTn) are still operational.
+~~This is to combat comment-based spam on all our issues.~~
+
+~~We are sorry for the inconvenience this brings. Our [forum](https://discourse.linuxserver.io/) and [Discord](https://discord.gg/YWrKVTn) are still operational.~~
