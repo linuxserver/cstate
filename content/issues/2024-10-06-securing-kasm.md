@@ -9,7 +9,7 @@ section: 'issue'
 
 Due to a recent increase in reported issues with users exposing their KasmVNC-based containers to the internet without authentication, we have prepared the following PSA:
 
-By default containers using our KasmVNC baseimage have no authentication and the optional environment variables `CUSTOM_USER` and `PASSWORD` to enable basic http auth via the embedded NGINX server should only be used to secure the container from unwanted access on a local network. If you are exposing one of these containers to the Internet we recommend putting it behind a reverse proxy, such as [SWAG](https://github.com/linuxserver/docker-swag), and ensuring a secure authentication solution is in place. From the web interface a terminal can be launched and it is configured for passwordless sudo, so anyone with access to it can install and run whatever they want along with probing your local network.
+By default containers using our KasmVNC baseimage have no authentication and the optional environment variables `CUSTOM_USER` and `PASSWORD` to enable basic http auth via the embedded NGINX server should only be used to secure the container from unwanted access on a local network. From the web interface a terminal can be launched and it is configured for passwordless sudo, so anyone with access to it can install and run whatever they want along with probing your local network. If you are exposing one of these containers to the Internet we recommend putting it behind a reverse proxy, such as [SWAG](https://github.com/linuxserver/docker-swag), and ensuring a secure authentication solution is in place.
 
 At time of publication, the list of containers using a KasmVNC baseimage is:
 
