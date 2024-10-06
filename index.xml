@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Info :: LinuxServer.io</title><link>https://info.linuxserver.io/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>Tue, 24 Sep 2024 23:00:00 +0000</lastBuildDate><atom:link href="https://info.linuxserver.io/index.xml" rel="self" type="application/rss+xml"/><item><title>New Container: RawTherapee</title><link>https://info.linuxserver.io/issues/2024-09-24-rawtherapee/</link><pubDate>Tue, 24 Sep 2024 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-09-24-rawtherapee/</guid><category/><description>&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-rawtherapee/">RawTherapee&lt;/a>!&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Info :: LinuxServer.io</title><link>https://info.linuxserver.io/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>Sun, 06 Oct 2024 21:00:00 +0000</lastBuildDate><atom:link href="https://info.linuxserver.io/index.xml" rel="self" type="application/rss+xml"/><item><title>PSA: Securing KasmVNC-Based Containers</title><link>https://info.linuxserver.io/issues/2024-10-06-securing-kasm/</link><pubDate>Sun, 06 Oct 2024 21:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-10-06-securing-kasm/</guid><category/><description>&lt;p>Due to a recent increase in reported issues with users exposing their KasmVNC-based containers to the internet without authentication, we have prepared the following PSA:&lt;/p>
+&lt;p>By default containers using our KasmVNC baseimage have no authentication and the optional environment variables &lt;code>CUSTOM_USER&lt;/code> and &lt;code>PASSWORD&lt;/code> to enable basic http auth via the embedded NGINX server should only be used to secure the container from unwanted access on a local network. From the web interface a terminal can be launched and it is configured for passwordless sudo, so anyone with access to it can install and run whatever they want along with probing your local network. If you are exposing one of these containers to the Internet we recommend putting it behind a reverse proxy, such as &lt;a href="https://github.com/linuxserver/docker-swag">SWAG&lt;/a>, and ensuring a secure authentication solution is in place.&lt;/p>
+&lt;p>At time of publication, the list of containers using a KasmVNC baseimage is:&lt;/p>
+&lt;ul>
+&lt;li>altus&lt;/li>
+&lt;li>ardour&lt;/li>
+&lt;li>audacity&lt;/li>
+&lt;li>bambustudio&lt;/li>
+&lt;li>blender&lt;/li>
+&lt;li>boinc&lt;/li>
+&lt;li>calibre&lt;/li>
+&lt;li>calligra&lt;/li>
+&lt;li>chromium&lt;/li>
+&lt;li>cura&lt;/li>
+&lt;li>darktable&lt;/li>
+&lt;li>digikam&lt;/li>
+&lt;li>doublecommander&lt;/li>
+&lt;li>ferdium&lt;/li>
+&lt;li>filezilla&lt;/li>
+&lt;li>firefox&lt;/li>
+&lt;li>freecad&lt;/li>
+&lt;li>freetube&lt;/li>
+&lt;li>gimp&lt;/li>
+&lt;li>github-desktop&lt;/li>
+&lt;li>gitqlient&lt;/li>
+&lt;li>inkscape&lt;/li>
+&lt;li>kali-linux&lt;/li>
+&lt;li>kdenlive&lt;/li>
+&lt;li>keepassxc&lt;/li>
+&lt;li>kicad&lt;/li>
+&lt;li>krita&lt;/li>
+&lt;li>libreoffice&lt;/li>
+&lt;li>librewolf&lt;/li>
+&lt;li>lollypop&lt;/li>
+&lt;li>mediaelch&lt;/li>
+&lt;li>msedge&lt;/li>
+&lt;li>mullvad-browser&lt;/li>
+&lt;li>mysql-workbench&lt;/li>
+&lt;li>obsidian&lt;/li>
+&lt;li>opera&lt;/li>
+&lt;li>orcaslicer&lt;/li>
+&lt;li>pidgin&lt;/li>
+&lt;li>qdirstat&lt;/li>
+&lt;li>rawtherapee&lt;/li>
+&lt;li>remmina&lt;/li>
+&lt;li>rustdesk&lt;/li>
+&lt;li>series-troxide&lt;/li>
+&lt;li>shotcut&lt;/li>
+&lt;li>spotube&lt;/li>
+&lt;li>sqlitebrowser&lt;/li>
+&lt;li>steamos&lt;/li>
+&lt;li>ungoogled-chromium&lt;/li>
+&lt;li>vscodium&lt;/li>
+&lt;li>webcord&lt;/li>
+&lt;li>webtop&lt;/li>
+&lt;li>wireshark&lt;/li>
+&lt;li>wps-office&lt;/li>
+&lt;li>yaak&lt;/li>
+&lt;li>zotero&lt;/li>
+&lt;/ul></description></item><item><title>New Container: RawTherapee</title><link>https://info.linuxserver.io/issues/2024-09-24-rawtherapee/</link><pubDate>Tue, 24 Sep 2024 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-09-24-rawtherapee/</guid><category/><description>&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-rawtherapee/">RawTherapee&lt;/a>!&lt;/p>
 &lt;p>&lt;a href="https://rawtherapee.com/">RawTherapee&lt;/a> is a free, cross-platform raw image processing program!&lt;/p></description></item><item><title>New Container: Yaak</title><link>https://info.linuxserver.io/issues/2024-09-12-yaak/</link><pubDate>Thu, 12 Sep 2024 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-09-12-yaak/</guid><category/><description>&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-yaak/">Yaak&lt;/a>!&lt;/p>
 &lt;p>&lt;a href="https://yaak.app/">Yaak&lt;/a> is a desktop API client for organizing and executing REST, GraphQL, and gRPC requests. It&amp;rsquo;s built using &lt;a href="https://tauri.app/">Tauri&lt;/a>, &lt;a href="https://www.rust-lang.org/">Rust&lt;/a>, and &lt;a href="https://react.dev/">ReactJS&lt;/a>.&lt;/p></description></item><item><title>New Container: Planka</title><link>https://info.linuxserver.io/issues/2024-09-12-planka/</link><pubDate>Thu, 12 Sep 2024 20:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-09-12-planka/</guid><category/><description>&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-planka/">Planka&lt;/a>!&lt;/p>
 &lt;p>&lt;a href="https://github.com/plankanban/planka/">Planka&lt;/a> is an elegant open source project tracking tool.&lt;/p></description></item><item><title>Limited interactions on the Linuxserver Organization</title><link>https://info.linuxserver.io/issues/2024-08-26-limited-interactions/</link><pubDate>Mon, 26 Aug 2024 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-08-26-limited-interactions/</guid><category/><description>&lt;p>We have disabled limited interactions.&lt;/p>
