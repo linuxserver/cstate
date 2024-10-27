@@ -28,3 +28,6 @@
 <meta name="twitter:title" content="{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}">
 <meta name="twitter:description" content="{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description | markdownify | plainify }}{{ end }}">
 <meta name="twitter:image" content="{{ absURL .Site.Params.logo }}">
+
+<!-- Fediverse Meta Tags -->
+<meta name="fediverse:creator" content="@linuxserver@linuxserver.io" />
