@@ -15,4 +15,4 @@ We'd like to introduce our new API available under:
 
 Read more about it here:
 
-[https://www.linuxserver.io/blog/introducing-modcache-and-modmanager](https://www.linuxserver.io/blog/introducing-linuxserver-api)
+[https://www.linuxserver.io/blog/introducing-linuxserver-api](https://www.linuxserver.io/blog/introducing-linuxserver-api)
