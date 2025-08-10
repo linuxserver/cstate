@@ -4,7 +4,7 @@ date: '2025-08-10 23:25:00Z'
 informational: true
 affected:
   - 'New Containers'
-  - 'ONLYOFFICE'
+  - 'onlyoffice'
 section: 'issue'
 ---
 We have released a new container for [ONLYOFFICE](https://github.com/linuxserver/docker-onlyoffice)!
