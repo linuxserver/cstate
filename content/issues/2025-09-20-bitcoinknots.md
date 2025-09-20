@@ -1,6 +1,6 @@
 ---
 title: 'New Container: Bitcoin Knots'
-date: '2025-09-12 22:25:00Z'
+date: '2025-09-20 22:25:00Z'
 informational: true
 affected:
   - 'New Containers'
