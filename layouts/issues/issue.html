@@ -1,0 +1,167 @@
+{{ $incidents := where .Site.RegularPages "Params.section" "issue" }}
+{{ $active := where $incidents "Params.resolved" "=" false }}
+
+{{ $isNotice := where $active "Params.severity" "=" "notice" }}
+{{ $isDisrupted := where $active "Params.severity" "=" "disrupted" }}
+{{ $isDown := where $active "Params.severity" "=" "down" }}
+
+<div class="article">
+	<h1 class="clean">
+		{{ .Title }}
+	</h1>
+
+	<small class="date">
+		{{ if .Site.Params.dateFormat }}
+		{{ dateFormat .Site.Params.dateFormat .Params.date }}
+		{{ else }}
+		{{ .Date.Format "January 2, 2006 at 3:04 PM" }}
+		{{ end }}
+	</small>
+
+
+	<p><small>
+			{{ range .Params.Affected }}
+			<a href="{{ printf "affected/%s/" (. | urlize) | relURL }}" class="tag no-underline">{{ . }}</a>
+			{{ end }}
+		</small></p>
+
+	{{ if .Params.informational }}
+	{{ else if .Params.Resolved }}
+	{{ $resolvedTime := (time .Params.ResolvedWhen) }}
+	{{ $timeDiff := (sub $resolvedTime.Unix .Date.Unix) }}
+	{{ $diffInMin := (div $timeDiff 60) }}
+	{{ $days := div $timeDiff 86400 }}
+	{{ $remainingSeconds := mod $timeDiff 86400 }}
+	{{ $hours := div $remainingSeconds 3600 }}
+	{{ $minutes := div (mod $remainingSeconds 3600) 60 }}
+
+	<!-- Marker -->
+	<div
+		class="{{ if lt $timeDiff 60 }}faded{{ else if gt $days 0 }}warning{{ else if gt $hours 0 }}warning{{ else }}ok{{ end }}">
+		{{ if lt $timeDiff 60 }}
+		<strong>{{ T "resolved" }} {{ T "inUnderAMinute" }}</strong>
+		{{ else }}
+		<strong>
+			{{ T "resolvedAfter" }}
+			{{ if gt $days 0 }}{{ $days }}d {{ end }}
+			{{ if gt $hours 0 }}{{ $hours }}h {{ end }}
+			{{ $minutes }}m
+			{{ if eq .Params.severity "down" }}
+			{{ T "ofDowntime" }}
+			{{ end }}
+		</strong>
+		<span class="tooltip__text">
+			{{ if .Site.Params.dateFormat }}
+			{{ dateFormat .Site.Params.dateFormat .Params.resolvedWhen }}
+			{{ else }}
+			{{ dateFormat "January 2, 2006 at 3:04 PM" .Params.resolvedWhen }}
+			{{ end }}
+		</span>
+		{{ end }}
+	</div>
+	{{ else }}
+	<strong>
+		{{ if eq .Params.severity "down" }}
+		<span style="color: {{ .Site.Params.down }}">■ {{ T "thisIsDown" }}</span>
+		{{ else if eq .Params.severity "disrupted" }}
+		<span style="color: {{ .Site.Params.disrupted }}">▲ {{ T "thisIsDisrupted" }}</span>
+		{{ else }}
+		<span style="color: {{ .Site.Params.notice }}">◆ {{ T "thisIsNotice" }}</span>
+		{{ end }}
+		<br />
+		{{ T "downtimeOngoing" }}
+	</strong>
+	{{ end }}
+
+	<hr>
+	<div class="markdown">{{ .Content }}</div>
+
+  {{ range .Params.Affected }}{{ if eq . "Deprecations" }}
+  <hr>
+  <div class="markdown">
+    {{ "Once an image has been deprecated you can no longer pull the `latest` or branch (`develop`, `nightly`, etc.) tags and will need to use a specific version tag if you still need access to the image. You can read more about this [here](/issues/2024-08-11-deprecation-changes/)." | markdownify}}
+  </div>
+  {{ end }}{{ end }}
+
+	{{/* Add to Calendar */}}
+	{{ if eq .Params.severity "notice" }}
+
+	<div class="padding"></div>
+	<p><small class="faded"><b>Add this period to your calendar</b></small></p>
+	<button id="addToCalendarBtn" class="tag" style="padding: 8px 12px">
+		Download event (.ics)
+	</button>
+
+	{{ $theTitle := .Title | default "Event" | plainify }}
+	{{ $theDescription := .Content | default "" | plainify | jsonify }}
+
+	<script>
+ 		const eventTitle = {{ $theTitle }};
+		const eventDescription = {{ $theDescription }};
+		const eventStart = "{{ .Date }}";           // from 'date' in front matter
+		const endDateRaw = "{{ .Params.resolvedWhen }}";
+		const eventLocation = "{{ .Site.BaseURL }}";   // or a more specific .Params.location if you have one
+
+		// If no resolvedWhen is defined, add 1 hour to the start date
+		let eventEnd = endDateRaw;
+		if (!endDateRaw || endDateRaw.trim() === "") {
+			const startTimeObj = new Date(eventStart);
+			startTimeObj.setHours(startTimeObj.getHours() + 1);
+			eventEnd = startTimeObj.toISOString();
+		}
+
+		function downloadICS() {
+			// Convert date strings into ICS-friendly format: YYYYMMDDTHHMMSSZ
+			function toICSDate(dString) {
+				const d = new Date(dString);
+				return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+			}
+
+			const dtStart = toICSDate(eventStart);
+			const dtEnd = toICSDate(eventEnd);
+
+			// ICS contents with a 1-hour reminder
+			const icsData = [
+				"BEGIN:VCALENDAR",
+				"VERSION:2.0",
+				"PRODID:-//cState//EN",
+				"BEGIN:VEVENT",
+				`UID:${Date.now()}@cstate`,
+				`DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
+				`DTSTART:${dtStart}`,
+				`DTEND:${dtEnd}`,
+				// eventTitle and eventDescription are already safe strings (via jsonify)
+				`SUMMARY:${eventTitle}`,
+				`LOCATION:${eventLocation}`,
+				`DESCRIPTION:${eventDescription}`,
+				"BEGIN:VALARM",
+				"ACTION:DISPLAY",
+				"DESCRIPTION:Reminder",
+				"TRIGGER:-PT1H", // 1 hour beforehand
+				"END:VALARM",
+				"END:VEVENT",
+				"END:VCALENDAR"
+			].join("\r\n");
+
+			// Download as an .ics file
+			const blob = new Blob([icsData], { type: "text/calendar" });
+			const blobUrl = URL.createObjectURL(blob);
+
+			const link = document.createElement("a");
+			link.href = blobUrl;
+			link.download = eventTitle.replace(/[^\w\s-]/g, "") + ".ics";
+			// remove special chars from filename, or fallback to "event.ics" if empty
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
+
+		document
+			.getElementById("addToCalendarBtn")
+			.addEventListener("click", downloadICS);
+	</script>
+
+	{{ end }}
+
+</div>
+<div class="padding"></div>
