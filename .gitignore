@@ -1,2 +1,4 @@
 .vscode/
+themes/
+public/
 .hugo_build.lock
