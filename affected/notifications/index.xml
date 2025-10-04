@@ -1,462 +1,524 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io"/><title>Notifications on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/notifications/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2025-02-13T22:00:00+00:00</lastBuildDate><updated>2025-02-13T22:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/notifications/index.xml" rel="self" type="application/rss+xml"/><item><title>Notification: Introducing Linuxserver API</title><link>https://info.linuxserver.io/issues/2025-02-13-linuxserver-api/</link><pubDate>Thu, 13 Feb 2025 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2025-02-13-linuxserver-api/</guid><category/><description>We&amp;rsquo;d like to introduce our new API available under:
-https://api.linuxserver.io/ https://docs.linuxserver.io/API/ Read more about it here:
-https://www.linuxserver.io/blog/introducing-linuxserver-api</description><content type="html">&lt;p>We&amp;rsquo;d like to introduce our new API available under:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://api.linuxserver.io/">https://api.linuxserver.io/&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.linuxserver.io/API/">https://docs.linuxserver.io/API/&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>Read more about it here:&lt;/p>
-&lt;p>&lt;a href="https://www.linuxserver.io/blog/introducing-linuxserver-api">https://www.linuxserver.io/blog/introducing-linuxserver-api&lt;/a>&lt;/p></content></item><item><title>Notification: Significant changes to cron</title><link>https://info.linuxserver.io/issues/2023-11-02-cron/</link><pubDate>Thu, 02 Nov 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-11-02-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Previous state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="previous-state-of-cron">Previous state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="going-forward">Going forward&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge today, and begin building into our images over the next few days and weeks.&lt;/p></content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-20-cron/</link><pubDate>Fri, 20 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-20-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Current state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="current-state-of-cron">Current state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="incoming-changes">Incoming changes&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p></content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-01-cron/</link><pubDate>Sun, 01 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-01-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Current state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="current-state-of-cron">Current state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="incoming-changes">Incoming changes&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p></content></item><item><title>Notification: Changes to our Nextcloud image</title><link>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</link><pubDate>Sun, 25 Jun 2023 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</guid><category/><description>We are releasing a new version of our Nextcloud image that is built with the Nextcloud application inside the image, rather than in the user /config volume. This means manually updating Nextcloud via command line will no longer be necessary or supported. The updater.phar command is completely removed. Installations for existing users will be migrated automatically when updating the container image. All future updates to your Nextcloud instance will happen via container image updates.</description><content type="html">&lt;p>We are releasing a new version of our &lt;a href="https://github.com/linuxserver/docker-nextcloud/">Nextcloud image&lt;/a> that is built with the Nextcloud application inside the image, rather than in the user &lt;code>/config&lt;/code> volume. This means manually updating Nextcloud via command line will no longer be necessary or supported. The &lt;code>updater.phar&lt;/code> command is completely removed. Installations for existing users will be migrated automatically when updating the container image. All future updates to your Nextcloud instance will happen via container image updates.&lt;/p>
-&lt;p>&lt;strong>Updating via the admin web UI is no longer supported.&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>Downgrading is not supported.&lt;/strong>&lt;/p>
-&lt;p>An important thing to keep in mind is that systems that automatically update your container will result in irreversible changes to your Nextcloud instance. We recommend pinning a specific tagged version like &lt;code>lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code> and manually changing your image version when you are ready to upgrade.&lt;/p>
-&lt;p>Excerpts from the updated README:&lt;/p>
-&lt;h3 id="updating-nextcloud">Updating Nextcloud&lt;/h3>
-&lt;p>Updating Nextcloud is done by pulling the new image, and recreating the container with it.&lt;/p>
-&lt;p>It is only possible to upgrade one major version at a time. For example, if you want to upgrade from version 14 to 16, you will have to upgrade from version 14 to 15, then from 15 to 16.&lt;/p>
-&lt;p>Since all data is stored in the &lt;code>/config&lt;/code> and &lt;code>/data&lt;/code> volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process.&lt;/p>
-&lt;h3 id="cant-start-nextcloud">Can&amp;rsquo;t start Nextcloud&lt;/h3>
-&lt;p>If after updating your container image you receive a message along these lines:&lt;/p>
-&lt;blockquote>
-&lt;p>Can&amp;rsquo;t start Nextcloud because the version of the data (&lt;code>#.#.#.#&lt;/code>) is more than one major version behind the docker image version (&lt;code>#.#.#.#&lt;/code>) and upgrading more than one major version is not supported. Please run an image tagged for the major version &lt;code>##&lt;/code> first.&amp;quot;&lt;/p>
-&lt;/blockquote>
-&lt;p>The version of Nextcloud that you have installed in your persistent &lt;code>/config&lt;/code> volume will need to be updated using an older image before you can use the new image.&lt;/p>
-&lt;p>Major version images, to be used for upgrading:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Image/Tag&lt;/th>
-&lt;th>PHP&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-26.0.2&lt;/code>&lt;/td>
-&lt;td>8.2&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-25.0.4&lt;/code>&lt;/td>
-&lt;td>8.1&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code>&lt;/td>
-&lt;td>8.1&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-23.0.4&lt;/code>&lt;/td>
-&lt;td>7.4&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-22.2.3&lt;/code>&lt;/td>
-&lt;td>7.4&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-21.0.3&lt;/code>&lt;/td>
-&lt;td>7.4&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:version-20.0.7&lt;/code>&lt;/td>
-&lt;td>7.4&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Package locked tags, listed for LSIO team reference:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Image/Tag&lt;/th>
-&lt;th>PHP&lt;/th>
-&lt;th>Notes&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:26.0.2-ls245&lt;/code>&lt;/td>
-&lt;td>8.1&lt;/td>
-&lt;td>Last tag with PHP 8.1&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>lscr.io/linuxserver/nextcloud:24.0.6-ls204&lt;/code>&lt;/td>
-&lt;td>7.4&lt;/td>
-&lt;td>Last tag with PHP 7.4&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;ul>
-&lt;li>Check your &lt;code>/config/www/nextcloud/config/config.php&lt;/code> file or &lt;code>/config/www/nextcloud/version.php&lt;/code> file to determine the version you have installed&lt;/li>
-&lt;li>Switch your image to the corresponding major version from the table above (ex: your files indicate &lt;code>24.x.x&lt;/code>, use &lt;code>lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code>) and start the container&lt;/li>
-&lt;li>Run &lt;code>docker exec -it nextcloud updater.phar&lt;/code> &lt;strong>&lt;em>repeatedly&lt;/em>&lt;/strong> until you have updated to Nextcloud &lt;code>27.x.x&lt;/code>, or the updater says &lt;code>This version of Nextcloud is not compatible with &amp;gt; PHP x.x&lt;/code>&lt;/li>
-&lt;li>Check your files again to determine the version you have installed
-&lt;ul>
-&lt;li>If your installed version is below 26, repeat the steps above until you get to version 26&lt;/li>
-&lt;li>If your installed version is 26 or 27, continue with the instructions below&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Switch your image to &lt;code>lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code> and start the container. Note the &lt;code>updater.phar&lt;/code> is no longer available, or needed&lt;/li>
-&lt;li>Run &lt;code>docker logs nextcloud&lt;/code> and check for any issues (report &lt;a href="https://github.com/linuxserver/docker-nextcloud/issues">issues on GitHub&lt;/a>)&lt;/li>
-&lt;li>As of posting this information, Nextclouod 27 is the latest current version. If you are reading this after a new major version of Nextcloud beyond 27 is released, check &lt;a href="https://github.com/linuxserver/docker-nextcloud/releases">releases on GitHub&lt;/a> and proceed to switch to the next major version tag one by one until you are current. Updating more than one major version at a time is not supported&lt;/li>
-&lt;li>You should now be able to switch your image to &lt;code>lscr.io/linuxserver/nextcloud&lt;/code> (no tag) if you prefer to run the latest image (although we do recommend pinning a specific version)&lt;/li>
-&lt;li>Run &lt;code>docker exec -it nextcloud mv /config/nginx/site-confs/default.conf /config/nginx/site-confs/default.conf.bak&lt;/code>&lt;/li>
-&lt;li>Run &lt;code>docker exec -it nextcloud mv /config/nginx/nginx.conf /config/nginx/nginx.conf.bak&lt;/code>&lt;/li>
-&lt;li>Run &lt;code>docker restart nextcloud&lt;/code>&lt;/li>
-&lt;li>Nextcloud should now be in a working state&lt;/li>
-&lt;/ul>
-&lt;p>Optional:&lt;/p>
-&lt;ul>
-&lt;li>If you had customized any of the nginx configs that were renamed above, compare the &lt;code>.bak&lt;/code> file to the new live file and apply any customizations you require. Note the &lt;code>root&lt;/code> line in &lt;code>site-confs/default.conf&lt;/code> should be changed from &lt;code>/config/www/nextcloud/&lt;/code> to &lt;code>/app/www/public&lt;/code>&lt;/li>
-&lt;li>Remove the &lt;code>.bak&lt;/code> files&lt;/li>
-&lt;/ul></content></item><item><title>Notification: Changes to Wireguard image tags</title><link>https://info.linuxserver.io/issues/2023-04-27-wireguard/</link><pubDate>Thu, 27 Apr 2023 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-04-27-wireguard/</guid><category/><description>We will shortly be making changes to the tags available for our Wireguard image.
-Currently we offer two tags: latest and alpine. The former uses our Ubuntu base image and contains all of the tools and dependencies required to compile the Wireguard kernel modules from scratch if your host kernel is too old to have it built-in. The latter uses our Alpine base image and does not contain the build tools and dependencies, which means it will only work on hosts that already have the Wireguard kernel modules installed and running.</description><content type="html">&lt;p>We will shortly be making changes to the tags available for our &lt;a href="https://github.com/linuxserver/docker-wireguard">Wireguard&lt;/a> image.&lt;/p>
-&lt;p>Currently we offer two tags: &lt;code>latest&lt;/code> and &lt;code>alpine&lt;/code>. The former uses our Ubuntu base image and contains all of the tools and dependencies required to compile the Wireguard kernel modules from scratch if your host kernel is too old to have it built-in. The latter uses our Alpine base image and does &lt;em>not&lt;/em> contain the build tools and dependencies, which means it will only work on hosts that already have the Wireguard kernel modules installed and running.&lt;/p>
-&lt;p>Almost all kernel builds since 5.6 come with Wireguard included, along with some older ones that have had it backported, which means that shipping an extra 800Mb of image by default to support those running old kernels is increasingly unnecessary.&lt;/p>
-&lt;p>As a result, we&amp;rsquo;re going to switch our tags around to make the Alpine-based image the default.&lt;/p>
-&lt;ul>
-&lt;li>If you&amp;rsquo;re currently using the &lt;code>latest&lt;/code> tag you&amp;rsquo;ll soon automatically get switched to the Alpine-based build.&lt;/li>
-&lt;li>If you&amp;rsquo;re currently using the &lt;code>alpine&lt;/code> tag you&amp;rsquo;ll need to switch to &lt;code>latest&lt;/code> to continue receiving updates.&lt;/li>
-&lt;li>If you&amp;rsquo;re still running an old kernel and need the build support, you&amp;rsquo;ll need to switch to the &lt;code>legacy&lt;/code> tag.&lt;/li>
-&lt;/ul></content></item><item><title>Reminder: Deprecation of Legacy Custom Scripts &amp; Services Locations</title><link>https://info.linuxserver.io/issues/2022-12-22-custom-files/</link><pubDate>Thu, 22 Dec 2022 20:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-12-22-custom-files/</guid><category/><description>As we announced back in August, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of removing support for the old locations from our base images. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the /config mount. Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images.</description><content type="html">&lt;p>As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/">announced back in August&lt;/a>, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of removing support for the old locations from our base images. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code>/config&lt;/code> mount. &lt;strong>Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong>.&lt;/p>
-&lt;h3 id="custom-files">Custom Files&lt;/h3>
-&lt;p>These now reside in &lt;code>/custom-cont-init.d&lt;/code>. The folder and files need to be owned by root, the files need to be chmod &lt;code>+x&lt;/code> and are executed in name order.&lt;/p>
-&lt;h3 id="custom-services">Custom Services&lt;/h3>
-&lt;p>Similar to custom files, these now reside in &lt;code>/custom-services.d&lt;/code>. The folder and files need to be owned by root, and the service files need to be chmod &lt;code>+x&lt;/code>.&lt;/p>
-&lt;h3 id="mounting-paths">Mounting Paths&lt;/h3>
-&lt;p>Because these new locations are outside of &lt;code>/config&lt;/code> you will need to mount them like any other additional volume if you wish to make use of them. e.g. &lt;code>-v /home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/code> if using the Docker CLI or&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">bar&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">volumes&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar:/config&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code>:ro&lt;/code>) so that container processes cannot write to the location.&lt;/p>
-&lt;p>Please note that we &lt;strong>do not support&lt;/strong> mounting folders for custom scripts and services if they sit within the same folder that you are mounting for /config. i.e.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar:/config&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar/custom-stuff:/custom-cont-init.d&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>as this can cause you permissions problems.&lt;/p></content></item><item><title>Notification: Deprecation of Legacy Custom Scripts &amp; Services Locations</title><link>https://info.linuxserver.io/issues/2022-11-29-custom-files/</link><pubDate>Tue, 29 Nov 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-11-29-custom-files/</guid><category/><description>As we announced back in August, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of deprecating the old locations. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the /config mount. Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images.</description><content type="html">&lt;p>As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/">announced back in August&lt;/a>, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of deprecating the old locations. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code>/config&lt;/code> mount. &lt;strong>Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong>.&lt;/p>
-&lt;h3 id="custom-files">Custom Files&lt;/h3>
-&lt;p>These now reside in &lt;code>/custom-cont-init.d&lt;/code>. The folder and files need to be owned by root, the files need to be chmod &lt;code>+x&lt;/code> and are executed in name order.&lt;/p>
-&lt;h3 id="custom-services">Custom Services&lt;/h3>
-&lt;p>Similar to custom files, these now reside in &lt;code>/custom-services.d&lt;/code>. The folder and files need to be owned by root, and the service files need to be chmod &lt;code>+x&lt;/code>.&lt;/p>
-&lt;h3 id="mounting-paths">Mounting Paths&lt;/h3>
-&lt;p>Because these new locations are outside of &lt;code>/config&lt;/code> you will need to mount them like any other additional volume if you wish to make use of them. e.g. &lt;code>-v /home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/code> if using the Docker CLI or&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">bar&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">volumes&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar:/config&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code>:ro&lt;/code>) so that container processes cannot write to the location.&lt;/p>
-&lt;p>Please note that we do not support mounting folders for custom scripts and services if they sit within the same folder that you are mounting for /config. i.e.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar:/config&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar/custom-stuff:/custom-cont-init.d&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>as this can cause you permissions problems.&lt;/p></content></item><item><title>Notification: Community Testing Program</title><link>https://info.linuxserver.io/issues/2022-09-21-community-testing/</link><pubDate>Wed, 21 Sep 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-09-21-community-testing/</guid><category/><description>If you&amp;rsquo;ve been paying attention you may have noticed the addition of a #role-opt-in channel on our Discord server. For now it has one purpose: to allow you to opt in to our Community Testing program, which gives you the opportunity to help us with testing PRs, new images, and other bits &amp;amp; pieces in exchange for our eternal gratitude and getting to play with new stuff before anyone else. See the post in the channel for further information.</description><content type="html">&lt;p>If you&amp;rsquo;ve been paying attention you may have noticed the addition of a &lt;a href="https://discord.com/channels/354974912613449730/1020082397825478816">#role-opt-in&lt;/a> channel on our &lt;a href="https://http://discord.gg/linuxserver">Discord server&lt;/a>. For now it has one purpose: to allow you to opt in to our Community Testing program, which gives you the opportunity to help us with testing PRs, new images, and other bits &amp;amp; pieces in exchange for our eternal gratitude and getting to play with new stuff before anyone else. See the post in the channel for further information.&lt;/p>
-&lt;p>DISCLAIMER: Everything provided to Community Testers is in a pre-release state and may change without notice and/or break all of your stuff. Don&amp;rsquo;t use any of it in a production setup and don&amp;rsquo;t use it with your existing live data unless you have good backups (which you really should have anyway). You may get pinged when new changes are posted for testing.&lt;/p></content></item><item><title>Notification: Changes For Custom Scripts &amp; Services</title><link>https://info.linuxserver.io/issues/2022-08-29-custom-files/</link><pubDate>Mon, 29 Aug 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-29-custom-files/</guid><category/><description>We have long supported customizing our containers via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that mods work, we are also making changes to custom files and services.</description><content type="html">&lt;p>We have long supported &lt;a href="https://www.linuxserver.io/blog/2019-09-14-customizing-our-containers">customizing our containers&lt;/a> via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that &lt;a href="https://info.linuxserver.io/issues/2022-08-27-mods/">mods work&lt;/a>, we are also making changes to custom files and services. &lt;strong>Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong>.&lt;/p>
-&lt;h3 id="custom-files">Custom Files&lt;/h3>
-&lt;p>These now reside in &lt;code>/custom-cont-init.d&lt;/code> instead of under &lt;code>/config/custom-cont-init.d&lt;/code> which allows us to decouple them from our permissions logic, and means we no longer have to create the folders even if people aren&amp;rsquo;t using them. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, the files need to be chmod &lt;code>+x&lt;/code> and are executed in name order.&lt;/p>
-&lt;h3 id="custom-services">Custom Services&lt;/h3>
-&lt;p>Similar to custom files, these now reside in &lt;code>/custom-services.d&lt;/code> instead of under &lt;code>/config/custom-services.d&lt;/code>. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, and the service files need to be chmod &lt;code>+x&lt;/code>.&lt;/p>
-&lt;p>The old custom locations will continue to work for a while to provide time for users to migrate but will generate warnings in the logs, as well as writing files to the old locations to notify users of the changes. We will post another notice before we remove the legacy locations entirely.&lt;/p>
-&lt;h3 id="mounting-paths">Mounting Paths&lt;/h3>
-&lt;p>Because these new locations are outside of &lt;code>/config&lt;/code> you will need to mount them like any other volume if you wish to make use of them. e.g. &lt;code>-v /home/foo/appdata/my-custom-files:/custom-cont-init.d&lt;/code> if using the Docker CLI or&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">bar&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">volumes&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/bar:/config&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">/home/foo/appdata/my-custom-files:/custom-cont-init.d&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code>:ro&lt;/code>) so that container processes cannot write to the location.&lt;/p></content></item><item><title>Notification: Changes For 3rd Party Mod Authors</title><link>https://info.linuxserver.io/issues/2022-08-27-mods/</link><pubDate>Sat, 27 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-27-mods/</guid><category/><description>As part of our programme of work to migrate our base images to s6 v3, we now support &amp;ldquo;hybrid&amp;rdquo; mods, targeting both s6 v2 and v3. All currently supported Linuxserver base images are using s6 v3, however, older pinned images, forked versions, etc. may still be using v2. To support both cases, simply include both sets of files in your mod, the built-in mod logic will pick the appropriate files to run.</description><content type="html">&lt;p>As part of our programme of work to migrate our base images to s6 v3, we now support &amp;ldquo;hybrid&amp;rdquo; mods, targeting both s6 v2 and v3. All currently supported Linuxserver base images are using s6 v3, however, older pinned images, forked versions, etc. may still be using v2. To support both cases, simply include both sets of files in your mod, the built-in mod logic will pick the appropriate files to run.&lt;/p>
-&lt;p>Over the next several months we will begin to migrate our downstream images to using the full v3 init process and at that point your mods will need to have a v3 component to work reliably. v2-only mods will run on v3 images for the forseeable future but we will not provide support for that configuration and you may run into timing issues.&lt;/p>
-&lt;p>Please see the updated &lt;a href="https://github.com/linuxserver/docker-mods/blob/master/README.md">mods README&lt;/a> for details of the new mod structure and how everything fits together. If you have queries regarding how to migrate your mods please ask them on our &lt;a href="https://discord.gg/YWrKVTn">Discord server&lt;/a> in the #dev-talk channel.&lt;/p></content></item><item><title>Notification: Issues Following Plex Data Breach</title><link>https://info.linuxserver.io/issues/2022-08-24-plex/</link><pubDate>Wed, 24 Aug 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-24-plex/</guid><category/><description>If you have a Plex account (not via OIDC provider like Google/Facebook/Apple) you will have recieved an email from them notifying you of a recent data breach and advising you to reset your password and force a logout of all connected devices.
-Many users have found that after following these steps their Plex server no longer displays any of their libraries and may show an error in the container logs:</description><content type="html">&lt;p>If you have a Plex account (not via OIDC provider like Google/Facebook/Apple) you will have recieved an email from them notifying you of a recent data breach and advising you to reset your password and force a logout of all connected devices.&lt;/p>
-&lt;p>Many users have found that after following these steps their Plex server no longer displays any of their libraries and may show an error in the container logs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>#####################################################
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># Login via the webui at http://&amp;lt;ip&amp;gt;:32400/web #
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># and restart the docker, because there was no #
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span># plex token found in the preference file #
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#####################################################
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To resolve this issue, stop the container, edit &lt;code>/config/Library/Application Support/Plex Media Server/Preferences.xml&lt;/code> and delete the following values if they&amp;rsquo;re present:&lt;/p>
-&lt;ul>
-&lt;li>PlexOnlineUserName&lt;/li>
-&lt;li>PlexOnlineToken&lt;/li>
-&lt;li>PlexOnlineEmail&lt;/li>
-&lt;li>PlexOnlineHome&lt;/li>
-&lt;/ul>
-&lt;p>Then follow the &lt;a href="https://github.com/linuxserver/docker-plex#parameters">claim process&lt;/a> to add a claim token env and recreate the container.&lt;/p>
-&lt;p>You will also need to reauthorise any 3rd party applications, such as Tautulli &amp;amp; Plex Meta Manager.&lt;/p></content></item><item><title>Notification: Significant changes to nginx based images</title><link>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</link><pubDate>Sat, 20 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</guid><category/><description>Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.
-Changes you will likely notice:
-Bring our default shipped configs as close as possible to alpine upstream defaults https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable Include worker_processes.conf and init script to generate it in the base Include resolver.conf and init script to generate it in the base Include ssl.conf in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base) include /config/nginx/site-confs/*.</description><content type="html">&lt;p>Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p>
-&lt;p>Changes you will likely notice:&lt;/p>
-&lt;ul>
-&lt;li>Bring our default shipped configs as close as possible to alpine upstream defaults
-&lt;ul>
-&lt;li>&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable">https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Include &lt;code>worker_processes.conf&lt;/code> and init script to generate it in the base&lt;/li>
-&lt;li>Include &lt;code>resolver.conf&lt;/code> and init script to generate it in the base&lt;/li>
-&lt;li>Include &lt;code>ssl.conf&lt;/code> in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li>
-&lt;li>&lt;code>include /config/nginx/site-confs/*.conf;&lt;/code> with &lt;code>*.conf&lt;/code> extension (rename existing user files automatically)&lt;/li>
-&lt;li>Rework &lt;code>default.conf&lt;/code>
-&lt;ul>
-&lt;li>Expect applications inside containers to exist at &lt;code>/app/www/public/&lt;/code>, and if that does not exist, use &lt;code>/config/www&lt;/code>&lt;/li>
-&lt;li>Include ipv6 support&lt;/li>
-&lt;li>deny access to &lt;code>.htaccess&lt;/code>/&lt;code>.htpasswd&lt;/code> files&lt;/li>
-&lt;li>adjust php location and &lt;code>fastcgi_params&lt;/code> to use &lt;code>PATH_INFO&lt;/code> and mitigate &lt;code>HTTP_PROXY&lt;/code> vulnerability&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Restructure nginx configs
-&lt;ul>
-&lt;li>Configs in &lt;code>/defaults/nginx/&lt;/code> are recursively copied to the user&amp;rsquo;s &lt;code>/config/nginx/&lt;/code> (maintaining the structure)&lt;/li>
-&lt;li>All configs are now named &lt;code>*.sample&lt;/code> and all include &lt;code>## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code> used by &lt;code>/etc/cont-init.d/85-version-checks&lt;/code>
-&lt;ul>
-&lt;li>Required configs (&lt;code>/config/nginx/nginx.conf&lt;/code>, &lt;code>/config/nginx/server-confs/ssl.conf&lt;/code> and &lt;code>/config/nginx/site-confs/default.conf&lt;/code>) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code>/config/nginx/location-confs/proxy.conf&lt;/code> and &lt;code>/config/nginx/server-confs/502.conf&lt;/code>)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Folder structure is as follows (in the &lt;code>/config/nginx/&lt;/code> context):
-&lt;ul>
-&lt;li>All nginx based images:
-&lt;ul>
-&lt;li>Includes &lt;code>nginx.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>resolver.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>ssl.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>worker_processes.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>&lt;code>/config/nginx/site-confs/*&lt;/code> included inside the &lt;code>http&lt;/code> context in &lt;code>/config/nginx/nginx.conf&lt;/code>
-&lt;ul>
-&lt;li>Includes &lt;code>default.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>SWAG:
-&lt;ul>
-&lt;li>Includes &lt;code>502.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>authelia-location.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>authelia-server.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>ldap-location.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>ldap-server.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>proxy.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>Under the hood:&lt;/p>
-&lt;ul>
-&lt;li>Split out init scripts
-&lt;ul>
-&lt;li>&lt;code>root/migrations/01-nginx-site-confs-default&lt;/code> migrate existing &lt;code>default&lt;/code> to &lt;code>default.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/11-folders&lt;/code> creates all the folders needed in &lt;code>/config&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/12-samples&lt;/code> removes existing &lt;code>*.sample&lt;/code> files from &lt;code>/config/nginx&lt;/code> and copies any included &lt;code>*.sample&lt;/code> files from the image&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/13-nginx&lt;/code> enable required configs (&lt;code>nginx.conf&lt;/code>, &lt;code>ssl.conf&lt;/code> and &lt;code>default.conf&lt;/code>) if they don&amp;rsquo;t exist, setup &lt;code>dhparams.pem&lt;/code>, setup &lt;code>resolver.conf&lt;/code>, setup &lt;code>worker_processes.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/14-php&lt;/code> configure php&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/15-keygen&lt;/code> create self signed certificates for &lt;code>ssl.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/20-permissions&lt;/code> set &lt;code>/config&lt;/code> permissions&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/85-version-checks&lt;/code> check all enabled &lt;code>*.conf&lt;/code> files against all &lt;code>*.sample&lt;/code> files shipped with the image and alert the user about updates&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>Status of affected images:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Image&lt;/th>
-&lt;th>Branch&lt;/th>
-&lt;th>PR&lt;/th>
-&lt;th>Notes&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>baseimage-alpine-nginx&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84">https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>bookstack&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-bookstack/pull/113">https://github.com/linuxserver/docker-bookstack/pull/113&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>cops&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-cops/pull/34">https://github.com/linuxserver/docker-cops/pull/34&lt;/a>&lt;/td>
-&lt;td>composer downgraded to v1 for compatibility&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>diskover&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-diskover/pull/43">https://github.com/linuxserver/docker-diskover/pull/43&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>dokuwiki&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-dokuwiki/pull/43">https://github.com/linuxserver/docker-dokuwiki/pull/43&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>freshrss&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-freshrss/pull/40">https://github.com/linuxserver/docker-freshrss/pull/40&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>grav&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-grav/pull/9">https://github.com/linuxserver/docker-grav/pull/9&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>grocy&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-grocy/pull/52">https://github.com/linuxserver/docker-grocy/pull/52&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>heimdall&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-heimdall/pull/79">https://github.com/linuxserver/docker-heimdall/pull/79&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>librespeed&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-librespeed/pull/15">https://github.com/linuxserver/docker-librespeed/pull/15&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>lychee&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-lychee/pull/51">https://github.com/linuxserver/docker-lychee/pull/51&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>muximux&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-muximux/pull/26">https://github.com/linuxserver/docker-muximux/pull/26&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>nextcloud&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-nextcloud/pull/219">https://github.com/linuxserver/docker-nextcloud/pull/219&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>nginx&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-nginx/pull/79">https://github.com/linuxserver/docker-nginx/pull/79&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>photoshow&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-photoshow/pull/28">https://github.com/linuxserver/docker-photoshow/pull/28&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-photoshow/">Deprecated&lt;/a>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>phpmyadmin&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-phpmyadmin/pull/12">https://github.com/linuxserver/docker-phpmyadmin/pull/12&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>piwigo&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-piwigo/pull/49">https://github.com/linuxserver/docker-piwigo/pull/49&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>pixapop&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-pixapop/pull/11">https://github.com/linuxserver/docker-pixapop/pull/11&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-pixapop">Deprecated&lt;/a>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>projectsend&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-projectsend/pull/22">https://github.com/linuxserver/docker-projectsend/pull/22&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>snapdrop&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-snapdrop/pull/6">https://github.com/linuxserver/docker-snapdrop/pull/6&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>snipe-it&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-snipe-it/pull/28">https://github.com/linuxserver/docker-snipe-it/pull/28&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>swag&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-swag/pull/169">https://github.com/linuxserver/docker-swag/pull/169&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>xbackbone&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-xbackbone/pull/5">https://github.com/linuxserver/docker-xbackbone/pull/5&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Any images with notes above may not be merged. We will make efforts to update this page if any of the images with notes above are merged at a later date. We may also make individual announcements about status updates regarding these images.&lt;/p></content></item><item><title>Calibre Change Notice</title><link>https://info.linuxserver.io/issues/2022-07-24-calibre/</link><pubDate>Sun, 24 Jul 2022 16:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-07-24-calibre/</guid><category/><description>With the release of Calibre v6.0 the project now provides official binaries for arm64 and has dropped all support for 32-bit platforms.
-As a result our latest tag now supports amd64 and arm64 and we will be deprecating the arch tag in the near future. If you are currently using the arch tag on 64-bit arm please switch to latest. If you are using the arch tag on 32-bit arm you can pin to the arch-version-79d7ec5e tag but there will be no further updates provided.</description><content type="html">&lt;p>With the release of Calibre v6.0 the project now provides official binaries for arm64 and has dropped all support for 32-bit platforms.&lt;/p>
-&lt;p>As a result our &lt;code>latest&lt;/code> tag now supports amd64 and arm64 and we will be deprecating the &lt;code>arch&lt;/code> tag in the near future. If you are currently using the &lt;code>arch&lt;/code> tag on 64-bit arm please switch to &lt;code>latest&lt;/code>. If you are using the &lt;code>arch&lt;/code> tag on 32-bit arm you can pin to the &lt;code>arch-version-79d7ec5e&lt;/code> tag but there will be no further updates provided.&lt;/p></content></item><item><title>Notification: Lidarr Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-06-05-lidarr/</link><pubDate>Sun, 05 Jun 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-06-05-lidarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Lidarr latest tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr">Lidarr&lt;/a> &lt;code>latest&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Radarr Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-06-05-radarr/</link><pubDate>Sun, 05 Jun 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-06-05-radarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Radarr latest tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr">Radarr&lt;/a> &lt;code>latest&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Fleet Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-05-02-fleet/</link><pubDate>Mon, 02 May 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-05-02-fleet/</guid><category/><description>For operational reasons we will shortly be rebasing our Fleet container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be 2.3.2-ls115. If you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-fleet">Fleet&lt;/a> container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code>2.3.2-ls115&lt;/code>. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Booksonic Air Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-booksonic-air/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-booksonic-air/</guid><category/><description>For operational reasons we will shortly be rebasing our Booksonic Air container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-booksonic-air">Booksonic Air&lt;/a> container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Dillinger Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-dillinger/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-dillinger/</guid><category/><description>For operational reasons we will shortly be rebasing our Dillinger container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be v3.39.1-ls117. If you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-dillinger">Dillinger&lt;/a> container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code>v3.39.1-ls117&lt;/code>. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: NZBHydra2 Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-nzbhydra2/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-nzbhydra2/</guid><category/><description>For operational reasons we will shortly be rebasing our NZBHydra2 container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-nzbhydra2">NZBHydra2&lt;/a> container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>New Docker Mod: swag-crowdsec</title><link>https://info.linuxserver.io/issues/2022-03-14-swag-crowdsec/</link><pubDate>Mon, 14 Mar 2022 16:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-03-14-swag-crowdsec/</guid><category/><description>We have released a new docker mod: swag-crowdsec!
-This mod adds the CrowdSec nginx bouncer to swag, to be installed/updated during container start. It can also be used with our nginx container.</description><content type="html">&lt;p>We have released a new docker mod: &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-crowdsec">swag-crowdsec&lt;/a>!&lt;/p>
-&lt;p>This mod adds the &lt;a href="https://crowdsec.net">CrowdSec&lt;/a> &lt;a href="https://github.com/crowdsecurity/cs-nginx-bouncer/">nginx bouncer&lt;/a> to swag, to be installed/updated during container start. It can also be used with our &lt;a href="https://github.com/linuxserver/docker-nginx">nginx&lt;/a> container.&lt;/p></content></item><item><title>Notification: SABnzbd Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-21-sabnzbd/</link><pubDate>Mon, 21 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-21-sabnzbd/</guid><category/><description>For operational reasons we will shortly be rebasing our SABnzbd latest tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd">SABnzbd&lt;/a> &lt;code>latest&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Lidarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-lidarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-lidarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Lidarr develop tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr">Lidarr&lt;/a> &lt;code>develop&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Prowlarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-prowlarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-prowlarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Prowlarr develop tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr">Prowlarr&lt;/a> &lt;code>develop&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Radarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-radarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-radarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Radarr develop tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr">Radarr&lt;/a> &lt;code>develop&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Sonarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-sonarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-sonarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Sonarr develop tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sonarr">Sonarr&lt;/a> &lt;code>develop&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Lidarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-lidarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-lidarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Lidarr nightly tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr">Lidarr&lt;/a> &lt;code>nightly&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Prowlarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-prowlarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-prowlarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Prowlarr nightly tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr">Prowlarr&lt;/a> &lt;code>nightly&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Radarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-radarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-radarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Radarr nightly tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr">Radarr&lt;/a> &lt;code>nightly&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: Readarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-readarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-readarr/</guid><category/><description>For operational reasons we will shortly be rebasing our Readarr nightly tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-readarr">Readarr&lt;/a> &lt;code>nightly&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item><item><title>Notification: SABnzbd Unstable Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-01-26-sabnzbd/</link><pubDate>Wed, 26 Jan 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-01-26-sabnzbd/</guid><category/><description>For operational reasons we will shortly be rebasing our SABnzbd unstable tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the Alpine packages and package manager (apk).</description><content type="html">&lt;p>For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd">SABnzbd&lt;/a> &lt;code>unstable&lt;/code> tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15">Alpine packages&lt;/a> and package manager (&lt;code>apk&lt;/code>).&lt;/p></content></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Notifications on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/notifications/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2025-02-13T22:00:00+00:00</lastBuildDate><updated>2025-02-13T22:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/notifications/index.xml" rel="self" type="application/rss+xml"/><item><title>Notification: Introducing Linuxserver API</title><link>https://info.linuxserver.io/issues/2025-02-13-linuxserver-api/</link><pubDate>Thu, 13 Feb 2025 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2025-02-13-linuxserver-api/</guid><category/><description>&lt;p&gt;We&amp;rsquo;d like to introduce our new API available under:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://api.linuxserver.io/"&gt;https://api.linuxserver.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.linuxserver.io/API/"&gt;https://docs.linuxserver.io/API/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Read more about it here:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linuxserver.io/blog/introducing-linuxserver-api"&gt;https://www.linuxserver.io/blog/introducing-linuxserver-api&lt;/a&gt;&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;d like to introduce our new API available under:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://api.linuxserver.io/"&gt;https://api.linuxserver.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.linuxserver.io/API/"&gt;https://docs.linuxserver.io/API/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Read more about it here:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linuxserver.io/blog/introducing-linuxserver-api"&gt;https://www.linuxserver.io/blog/introducing-linuxserver-api&lt;/a&gt;&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron</title><link>https://info.linuxserver.io/issues/2023-11-02-cron/</link><pubDate>Thu, 02 Nov 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-11-02-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="previous-state-of-cron"&gt;Previous state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="previous-state-of-cron"&gt;Previous state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="going-forward"&gt;Going forward&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge today, and begin building into our images over the next few days and weeks.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-20-cron/</link><pubDate>Fri, 20 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-20-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="incoming-changes"&gt;Incoming changes&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-01-cron/</link><pubDate>Sun, 01 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-01-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="incoming-changes"&gt;Incoming changes&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p&gt;</content></item><item><title>Notification: Changes to our Nextcloud image</title><link>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</link><pubDate>Sun, 25 Jun 2023 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-06-25-nextcloud/</guid><category/><description>&lt;p&gt;We are releasing a new version of our &lt;a href="https://github.com/linuxserver/docker-nextcloud/"&gt;Nextcloud image&lt;/a&gt; that is built with the Nextcloud application inside the image, rather than in the user &lt;code&gt;/config&lt;/code&gt; volume. This means manually updating Nextcloud via command line will no longer be necessary or supported. The &lt;code&gt;updater.phar&lt;/code&gt; command is completely removed. Installations for existing users will be migrated automatically when updating the container image. All future updates to your Nextcloud instance will happen via container image updates.&lt;/p&gt;</description><content type="html">&lt;p&gt;We are releasing a new version of our &lt;a href="https://github.com/linuxserver/docker-nextcloud/"&gt;Nextcloud image&lt;/a&gt; that is built with the Nextcloud application inside the image, rather than in the user &lt;code&gt;/config&lt;/code&gt; volume. This means manually updating Nextcloud via command line will no longer be necessary or supported. The &lt;code&gt;updater.phar&lt;/code&gt; command is completely removed. Installations for existing users will be migrated automatically when updating the container image. All future updates to your Nextcloud instance will happen via container image updates.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Updating via the admin web UI is no longer supported.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Downgrading is not supported.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An important thing to keep in mind is that systems that automatically update your container will result in irreversible changes to your Nextcloud instance. We recommend pinning a specific tagged version like &lt;code&gt;lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code&gt; and manually changing your image version when you are ready to upgrade.&lt;/p&gt;
+&lt;p&gt;Excerpts from the updated README:&lt;/p&gt;
+&lt;h3 id="updating-nextcloud"&gt;Updating Nextcloud&lt;/h3&gt;
+&lt;p&gt;Updating Nextcloud is done by pulling the new image, and recreating the container with it.&lt;/p&gt;
+&lt;p&gt;It is only possible to upgrade one major version at a time. For example, if you want to upgrade from version 14 to 16, you will have to upgrade from version 14 to 15, then from 15 to 16.&lt;/p&gt;
+&lt;p&gt;Since all data is stored in the &lt;code&gt;/config&lt;/code&gt; and &lt;code&gt;/data&lt;/code&gt; volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process.&lt;/p&gt;
+&lt;h3 id="cant-start-nextcloud"&gt;Can&amp;rsquo;t start Nextcloud&lt;/h3&gt;
+&lt;p&gt;If after updating your container image you receive a message along these lines:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Can&amp;rsquo;t start Nextcloud because the version of the data (&lt;code&gt;#.#.#.#&lt;/code&gt;) is more than one major version behind the docker image version (&lt;code&gt;#.#.#.#&lt;/code&gt;) and upgrading more than one major version is not supported. Please run an image tagged for the major version &lt;code&gt;##&lt;/code&gt; first.&amp;quot;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The version of Nextcloud that you have installed in your persistent &lt;code&gt;/config&lt;/code&gt; volume will need to be updated using an older image before you can use the new image.&lt;/p&gt;
+&lt;p&gt;Major version images, to be used for upgrading:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Image/Tag&lt;/th&gt;
+&lt;th&gt;PHP&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-26.0.2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;8.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-25.0.4&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;8.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;8.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-23.0.4&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-22.2.3&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-21.0.3&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:version-20.0.7&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Package locked tags, listed for LSIO team reference:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Image/Tag&lt;/th&gt;
+&lt;th&gt;PHP&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:26.0.2-ls245&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;8.1&lt;/td&gt;
+&lt;td&gt;Last tag with PHP 8.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;lscr.io/linuxserver/nextcloud:24.0.6-ls204&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7.4&lt;/td&gt;
+&lt;td&gt;Last tag with PHP 7.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Check your &lt;code&gt;/config/www/nextcloud/config/config.php&lt;/code&gt; file or &lt;code&gt;/config/www/nextcloud/version.php&lt;/code&gt; file to determine the version you have installed&lt;/li&gt;
+&lt;li&gt;Switch your image to the corresponding major version from the table above (ex: your files indicate &lt;code&gt;24.x.x&lt;/code&gt;, use &lt;code&gt;lscr.io/linuxserver/nextcloud:version-24.0.12&lt;/code&gt;) and start the container&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker exec -it nextcloud updater.phar&lt;/code&gt; &lt;strong&gt;&lt;em&gt;repeatedly&lt;/em&gt;&lt;/strong&gt; until you have updated to Nextcloud &lt;code&gt;27.x.x&lt;/code&gt;, or the updater says &lt;code&gt;This version of Nextcloud is not compatible with &amp;gt; PHP x.x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Check your files again to determine the version you have installed
+&lt;ul&gt;
+&lt;li&gt;If your installed version is below 26, repeat the steps above until you get to version 26&lt;/li&gt;
+&lt;li&gt;If your installed version is 26 or 27, continue with the instructions below&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Switch your image to &lt;code&gt;lscr.io/linuxserver/nextcloud:version-27.0.0&lt;/code&gt; and start the container. Note the &lt;code&gt;updater.phar&lt;/code&gt; is no longer available, or needed&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker logs nextcloud&lt;/code&gt; and check for any issues (report &lt;a href="https://github.com/linuxserver/docker-nextcloud/issues"&gt;issues on GitHub&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;As of posting this information, Nextclouod 27 is the latest current version. If you are reading this after a new major version of Nextcloud beyond 27 is released, check &lt;a href="https://github.com/linuxserver/docker-nextcloud/releases"&gt;releases on GitHub&lt;/a&gt; and proceed to switch to the next major version tag one by one until you are current. Updating more than one major version at a time is not supported&lt;/li&gt;
+&lt;li&gt;You should now be able to switch your image to &lt;code&gt;lscr.io/linuxserver/nextcloud&lt;/code&gt; (no tag) if you prefer to run the latest image (although we do recommend pinning a specific version)&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker exec -it nextcloud mv /config/nginx/site-confs/default.conf /config/nginx/site-confs/default.conf.bak&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker exec -it nextcloud mv /config/nginx/nginx.conf /config/nginx/nginx.conf.bak&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker restart nextcloud&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Nextcloud should now be in a working state&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Optional:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you had customized any of the nginx configs that were renamed above, compare the &lt;code&gt;.bak&lt;/code&gt; file to the new live file and apply any customizations you require. Note the &lt;code&gt;root&lt;/code&gt; line in &lt;code&gt;site-confs/default.conf&lt;/code&gt; should be changed from &lt;code&gt;/config/www/nextcloud/&lt;/code&gt; to &lt;code&gt;/app/www/public&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Remove the &lt;code&gt;.bak&lt;/code&gt; files&lt;/li&gt;
+&lt;/ul&gt;</content></item><item><title>Notification: Changes to Wireguard image tags</title><link>https://info.linuxserver.io/issues/2023-04-27-wireguard/</link><pubDate>Thu, 27 Apr 2023 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-04-27-wireguard/</guid><category/><description>&lt;p&gt;We will shortly be making changes to the tags available for our &lt;a href="https://github.com/linuxserver/docker-wireguard"&gt;Wireguard&lt;/a&gt; image.&lt;/p&gt;
+&lt;p&gt;Currently we offer two tags: &lt;code&gt;latest&lt;/code&gt; and &lt;code&gt;alpine&lt;/code&gt;. The former uses our Ubuntu base image and contains all of the tools and dependencies required to compile the Wireguard kernel modules from scratch if your host kernel is too old to have it built-in. The latter uses our Alpine base image and does &lt;em&gt;not&lt;/em&gt; contain the build tools and dependencies, which means it will only work on hosts that already have the Wireguard kernel modules installed and running.&lt;/p&gt;</description><content type="html">&lt;p&gt;We will shortly be making changes to the tags available for our &lt;a href="https://github.com/linuxserver/docker-wireguard"&gt;Wireguard&lt;/a&gt; image.&lt;/p&gt;
+&lt;p&gt;Currently we offer two tags: &lt;code&gt;latest&lt;/code&gt; and &lt;code&gt;alpine&lt;/code&gt;. The former uses our Ubuntu base image and contains all of the tools and dependencies required to compile the Wireguard kernel modules from scratch if your host kernel is too old to have it built-in. The latter uses our Alpine base image and does &lt;em&gt;not&lt;/em&gt; contain the build tools and dependencies, which means it will only work on hosts that already have the Wireguard kernel modules installed and running.&lt;/p&gt;
+&lt;p&gt;Almost all kernel builds since 5.6 come with Wireguard included, along with some older ones that have had it backported, which means that shipping an extra 800Mb of image by default to support those running old kernels is increasingly unnecessary.&lt;/p&gt;
+&lt;p&gt;As a result, we&amp;rsquo;re going to switch our tags around to make the Alpine-based image the default.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re currently using the &lt;code&gt;latest&lt;/code&gt; tag you&amp;rsquo;ll soon automatically get switched to the Alpine-based build.&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;re currently using the &lt;code&gt;alpine&lt;/code&gt; tag you&amp;rsquo;ll need to switch to &lt;code&gt;latest&lt;/code&gt; to continue receiving updates.&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;re still running an old kernel and need the build support, you&amp;rsquo;ll need to switch to the &lt;code&gt;legacy&lt;/code&gt; tag.&lt;/li&gt;
+&lt;/ul&gt;</content></item><item><title>Reminder: Deprecation of Legacy Custom Scripts &amp; Services Locations</title><link>https://info.linuxserver.io/issues/2022-12-22-custom-files/</link><pubDate>Thu, 22 Dec 2022 20:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-12-22-custom-files/</guid><category/><description>&lt;p&gt;As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/"&gt;announced back in August&lt;/a&gt;, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of removing support for the old locations from our base images. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code&gt;/config&lt;/code&gt; mount. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;</description><content type="html">&lt;p&gt;As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/"&gt;announced back in August&lt;/a&gt;, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of removing support for the old locations from our base images. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code&gt;/config&lt;/code&gt; mount. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id="custom-files"&gt;Custom Files&lt;/h3&gt;
+&lt;p&gt;These now reside in &lt;code&gt;/custom-cont-init.d&lt;/code&gt;. The folder and files need to be owned by root, the files need to be chmod &lt;code&gt;+x&lt;/code&gt; and are executed in name order.&lt;/p&gt;
+&lt;h3 id="custom-services"&gt;Custom Services&lt;/h3&gt;
+&lt;p&gt;Similar to custom files, these now reside in &lt;code&gt;/custom-services.d&lt;/code&gt;. The folder and files need to be owned by root, and the service files need to be chmod &lt;code&gt;+x&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="mounting-paths"&gt;Mounting Paths&lt;/h3&gt;
+&lt;p&gt;Because these new locations are outside of &lt;code&gt;/config&lt;/code&gt; you will need to mount them like any other additional volume if you wish to make use of them. e.g. &lt;code&gt;-v /home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/code&gt; if using the Docker CLI or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;bar&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code&gt;:ro&lt;/code&gt;) so that container processes cannot write to the location.&lt;/p&gt;
+&lt;p&gt;Please note that we &lt;strong&gt;do not support&lt;/strong&gt; mounting folders for custom scripts and services if they sit within the same folder that you are mounting for /config. i.e.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar/custom-stuff:/custom-cont-init.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;as this can cause you permissions problems.&lt;/p&gt;</content></item><item><title>Notification: Deprecation of Legacy Custom Scripts &amp; Services Locations</title><link>https://info.linuxserver.io/issues/2022-11-29-custom-files/</link><pubDate>Tue, 29 Nov 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-11-29-custom-files/</guid><category/><description>&lt;p&gt;As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/"&gt;announced back in August&lt;/a&gt;, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of deprecating the old locations. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code&gt;/config&lt;/code&gt; mount. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;</description><content type="html">&lt;p&gt;As we &lt;a href="https://info.linuxserver.io/issues/2022-08-29-custom-files/"&gt;announced back in August&lt;/a&gt;, we have made changes to the locations that custom scripts and services are imported from. We are now starting the process of deprecating the old locations. This means that after the end of December 2022 we will no longer support running custom scripts and services from the legacy locations within the &lt;code&gt;/config&lt;/code&gt; mount. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id="custom-files"&gt;Custom Files&lt;/h3&gt;
+&lt;p&gt;These now reside in &lt;code&gt;/custom-cont-init.d&lt;/code&gt;. The folder and files need to be owned by root, the files need to be chmod &lt;code&gt;+x&lt;/code&gt; and are executed in name order.&lt;/p&gt;
+&lt;h3 id="custom-services"&gt;Custom Services&lt;/h3&gt;
+&lt;p&gt;Similar to custom files, these now reside in &lt;code&gt;/custom-services.d&lt;/code&gt;. The folder and files need to be owned by root, and the service files need to be chmod &lt;code&gt;+x&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="mounting-paths"&gt;Mounting Paths&lt;/h3&gt;
+&lt;p&gt;Because these new locations are outside of &lt;code&gt;/config&lt;/code&gt; you will need to mount them like any other additional volume if you wish to make use of them. e.g. &lt;code&gt;-v /home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/code&gt; if using the Docker CLI or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;bar&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/my-custom-files/bar:/custom-cont-init.d:ro&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code&gt;:ro&lt;/code&gt;) so that container processes cannot write to the location.&lt;/p&gt;
+&lt;p&gt;Please note that we do not support mounting folders for custom scripts and services if they sit within the same folder that you are mounting for /config. i.e.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar/custom-stuff:/custom-cont-init.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;as this can cause you permissions problems.&lt;/p&gt;</content></item><item><title>Notification: Community Testing Program</title><link>https://info.linuxserver.io/issues/2022-09-21-community-testing/</link><pubDate>Wed, 21 Sep 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-09-21-community-testing/</guid><category/><description>&lt;p&gt;If you&amp;rsquo;ve been paying attention you may have noticed the addition of a &lt;a href="https://discord.com/channels/354974912613449730/1020082397825478816"&gt;#role-opt-in&lt;/a&gt; channel on our &lt;a href="https://http://discord.gg/linuxserver"&gt;Discord server&lt;/a&gt;. For now it has one purpose: to allow you to opt in to our Community Testing program, which gives you the opportunity to help us with testing PRs, new images, and other bits &amp;amp; pieces in exchange for our eternal gratitude and getting to play with new stuff before anyone else. See the post in the channel for further information.&lt;/p&gt;</description><content type="html">&lt;p&gt;If you&amp;rsquo;ve been paying attention you may have noticed the addition of a &lt;a href="https://discord.com/channels/354974912613449730/1020082397825478816"&gt;#role-opt-in&lt;/a&gt; channel on our &lt;a href="https://http://discord.gg/linuxserver"&gt;Discord server&lt;/a&gt;. For now it has one purpose: to allow you to opt in to our Community Testing program, which gives you the opportunity to help us with testing PRs, new images, and other bits &amp;amp; pieces in exchange for our eternal gratitude and getting to play with new stuff before anyone else. See the post in the channel for further information.&lt;/p&gt;
+&lt;p&gt;DISCLAIMER: Everything provided to Community Testers is in a pre-release state and may change without notice and/or break all of your stuff. Don&amp;rsquo;t use any of it in a production setup and don&amp;rsquo;t use it with your existing live data unless you have good backups (which you really should have anyway). You may get pinged when new changes are posted for testing.&lt;/p&gt;</content></item><item><title>Notification: Changes For Custom Scripts &amp; Services</title><link>https://info.linuxserver.io/issues/2022-08-29-custom-files/</link><pubDate>Mon, 29 Aug 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-29-custom-files/</guid><category/><description>&lt;p&gt;We have long supported &lt;a href="https://www.linuxserver.io/blog/2019-09-14-customizing-our-containers"&gt;customizing our containers&lt;/a&gt; via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that &lt;a href="https://info.linuxserver.io/issues/2022-08-27-mods/"&gt;mods work&lt;/a&gt;, we are also making changes to custom files and services. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;</description><content type="html">&lt;p&gt;We have long supported &lt;a href="https://www.linuxserver.io/blog/2019-09-14-customizing-our-containers"&gt;customizing our containers&lt;/a&gt; via scripts and services as a simple way for users to add their own logic and packages to a container without having to modify the Dockerfile and maintain a local build of the image. As part of the broader refresh of our base images, which has already made changes to the way that &lt;a href="https://info.linuxserver.io/issues/2022-08-27-mods/"&gt;mods work&lt;/a&gt;, we are also making changes to custom files and services. &lt;strong&gt;Please note that it may take several days, or even a few weeks in some cases, for this change to propagate to all of our images&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id="custom-files"&gt;Custom Files&lt;/h3&gt;
+&lt;p&gt;These now reside in &lt;code&gt;/custom-cont-init.d&lt;/code&gt; instead of under &lt;code&gt;/config/custom-cont-init.d&lt;/code&gt; which allows us to decouple them from our permissions logic, and means we no longer have to create the folders even if people aren&amp;rsquo;t using them. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, the files need to be chmod &lt;code&gt;+x&lt;/code&gt; and are executed in name order.&lt;/p&gt;
+&lt;h3 id="custom-services"&gt;Custom Services&lt;/h3&gt;
+&lt;p&gt;Similar to custom files, these now reside in &lt;code&gt;/custom-services.d&lt;/code&gt; instead of under &lt;code&gt;/config/custom-services.d&lt;/code&gt;. Beyond the change in location everything else remains the same - the folder and files need to be owned by root, and the service files need to be chmod &lt;code&gt;+x&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The old custom locations will continue to work for a while to provide time for users to migrate but will generate warnings in the logs, as well as writing files to the old locations to notify users of the changes. We will post another notice before we remove the legacy locations entirely.&lt;/p&gt;
+&lt;h3 id="mounting-paths"&gt;Mounting Paths&lt;/h3&gt;
+&lt;p&gt;Because these new locations are outside of &lt;code&gt;/config&lt;/code&gt; you will need to mount them like any other volume if you wish to make use of them. e.g. &lt;code&gt;-v /home/foo/appdata/my-custom-files:/custom-cont-init.d&lt;/code&gt; if using the Docker CLI or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;bar&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/bar:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;/home/foo/appdata/my-custom-files:/custom-cont-init.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;if using compose. Where possible, to improve security, we recommend mounting them read-only (&lt;code&gt;:ro&lt;/code&gt;) so that container processes cannot write to the location.&lt;/p&gt;</content></item><item><title>Notification: Changes For 3rd Party Mod Authors</title><link>https://info.linuxserver.io/issues/2022-08-27-mods/</link><pubDate>Sat, 27 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-27-mods/</guid><category/><description>&lt;p&gt;As part of our programme of work to migrate our base images to s6 v3, we now support &amp;ldquo;hybrid&amp;rdquo; mods, targeting both s6 v2 and v3. All currently supported Linuxserver base images are using s6 v3, however, older pinned images, forked versions, etc. may still be using v2. To support both cases, simply include both sets of files in your mod, the built-in mod logic will pick the appropriate files to run.&lt;/p&gt;</description><content type="html">&lt;p&gt;As part of our programme of work to migrate our base images to s6 v3, we now support &amp;ldquo;hybrid&amp;rdquo; mods, targeting both s6 v2 and v3. All currently supported Linuxserver base images are using s6 v3, however, older pinned images, forked versions, etc. may still be using v2. To support both cases, simply include both sets of files in your mod, the built-in mod logic will pick the appropriate files to run.&lt;/p&gt;
+&lt;p&gt;Over the next several months we will begin to migrate our downstream images to using the full v3 init process and at that point your mods will need to have a v3 component to work reliably. v2-only mods will run on v3 images for the forseeable future but we will not provide support for that configuration and you may run into timing issues.&lt;/p&gt;
+&lt;p&gt;Please see the updated &lt;a href="https://github.com/linuxserver/docker-mods/blob/master/README.md"&gt;mods README&lt;/a&gt; for details of the new mod structure and how everything fits together. If you have queries regarding how to migrate your mods please ask them on our &lt;a href="https://discord.gg/YWrKVTn"&gt;Discord server&lt;/a&gt; in the #dev-talk channel.&lt;/p&gt;</content></item><item><title>Notification: Issues Following Plex Data Breach</title><link>https://info.linuxserver.io/issues/2022-08-24-plex/</link><pubDate>Wed, 24 Aug 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-24-plex/</guid><category/><description>&lt;p&gt;If you have a Plex account (not via OIDC provider like Google/Facebook/Apple) you will have recieved an email from them notifying you of a recent data breach and advising you to reset your password and force a logout of all connected devices.&lt;/p&gt;
+&lt;p&gt;Many users have found that after following these steps their Plex server no longer displays any of their libraries and may show an error in the container logs:&lt;/p&gt;</description><content type="html">&lt;p&gt;If you have a Plex account (not via OIDC provider like Google/Facebook/Apple) you will have recieved an email from them notifying you of a recent data breach and advising you to reset your password and force a logout of all connected devices.&lt;/p&gt;
+&lt;p&gt;Many users have found that after following these steps their Plex server no longer displays any of their libraries and may show an error in the container logs:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#####################################################
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# Login via the webui at http://&amp;lt;ip&amp;gt;:32400/web #
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# and restart the docker, because there was no #
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# plex token found in the preference file #
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#####################################################
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To resolve this issue, stop the container, edit &lt;code&gt;/config/Library/Application Support/Plex Media Server/Preferences.xml&lt;/code&gt; and delete the following values if they&amp;rsquo;re present:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PlexOnlineUserName&lt;/li&gt;
+&lt;li&gt;PlexOnlineToken&lt;/li&gt;
+&lt;li&gt;PlexOnlineEmail&lt;/li&gt;
+&lt;li&gt;PlexOnlineHome&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then follow the &lt;a href="https://github.com/linuxserver/docker-plex#parameters"&gt;claim process&lt;/a&gt; to add a claim token env and recreate the container.&lt;/p&gt;
+&lt;p&gt;You will also need to reauthorise any 3rd party applications, such as Tautulli &amp;amp; Plex Meta Manager.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to nginx based images</title><link>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</link><pubDate>Sat, 20 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</guid><category/><description>&lt;p&gt;Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p&gt;
+&lt;p&gt;Changes you will likely notice:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bring our default shipped configs as close as possible to alpine upstream defaults
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable"&gt;https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;worker_processes.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;resolver.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;ssl.conf&lt;/code&gt; in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include /config/nginx/site-confs/*.conf;&lt;/code&gt; with &lt;code&gt;*.conf&lt;/code&gt; extension (rename existing user files automatically)&lt;/li&gt;
+&lt;li&gt;Rework &lt;code&gt;default.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Expect applications inside containers to exist at &lt;code&gt;/app/www/public/&lt;/code&gt;, and if that does not exist, use &lt;code&gt;/config/www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Include ipv6 support&lt;/li&gt;
+&lt;li&gt;deny access to &lt;code&gt;.htaccess&lt;/code&gt;/&lt;code&gt;.htpasswd&lt;/code&gt; files&lt;/li&gt;
+&lt;li&gt;adjust php location and &lt;code&gt;fastcgi_params&lt;/code&gt; to use &lt;code&gt;PATH_INFO&lt;/code&gt; and mitigate &lt;code&gt;HTTP_PROXY&lt;/code&gt; vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restructure nginx configs
+&lt;ul&gt;
+&lt;li&gt;Configs in &lt;code&gt;/defaults/nginx/&lt;/code&gt; are recursively copied to the user&amp;rsquo;s &lt;code&gt;/config/nginx/&lt;/code&gt; (maintaining the structure)&lt;/li&gt;
+&lt;li&gt;All configs are now named &lt;code&gt;*.sample&lt;/code&gt; and all include &lt;code&gt;## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code&gt; used by &lt;code&gt;/etc/cont-init.d/85-version-checks&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Required configs (&lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;, &lt;code&gt;/config/nginx/server-confs/ssl.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/site-confs/default.conf&lt;/code&gt;) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code&gt;/config/nginx/location-confs/proxy.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/server-confs/502.conf&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Folder structure is as follows (in the &lt;code&gt;/config/nginx/&lt;/code&gt; context):
+&lt;ul&gt;
+&lt;li&gt;All nginx based images:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;nginx.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;resolver.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ssl.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;worker_processes.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/config/nginx/site-confs/*&lt;/code&gt; included inside the &lt;code&gt;http&lt;/code&gt; context in &lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;default.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SWAG:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;502.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;proxy.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Under the hood:&lt;/p&gt;</description><content type="html">&lt;p&gt;Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p&gt;
+&lt;p&gt;Changes you will likely notice:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bring our default shipped configs as close as possible to alpine upstream defaults
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable"&gt;https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;worker_processes.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;resolver.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;ssl.conf&lt;/code&gt; in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include /config/nginx/site-confs/*.conf;&lt;/code&gt; with &lt;code&gt;*.conf&lt;/code&gt; extension (rename existing user files automatically)&lt;/li&gt;
+&lt;li&gt;Rework &lt;code&gt;default.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Expect applications inside containers to exist at &lt;code&gt;/app/www/public/&lt;/code&gt;, and if that does not exist, use &lt;code&gt;/config/www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Include ipv6 support&lt;/li&gt;
+&lt;li&gt;deny access to &lt;code&gt;.htaccess&lt;/code&gt;/&lt;code&gt;.htpasswd&lt;/code&gt; files&lt;/li&gt;
+&lt;li&gt;adjust php location and &lt;code&gt;fastcgi_params&lt;/code&gt; to use &lt;code&gt;PATH_INFO&lt;/code&gt; and mitigate &lt;code&gt;HTTP_PROXY&lt;/code&gt; vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restructure nginx configs
+&lt;ul&gt;
+&lt;li&gt;Configs in &lt;code&gt;/defaults/nginx/&lt;/code&gt; are recursively copied to the user&amp;rsquo;s &lt;code&gt;/config/nginx/&lt;/code&gt; (maintaining the structure)&lt;/li&gt;
+&lt;li&gt;All configs are now named &lt;code&gt;*.sample&lt;/code&gt; and all include &lt;code&gt;## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code&gt; used by &lt;code&gt;/etc/cont-init.d/85-version-checks&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Required configs (&lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;, &lt;code&gt;/config/nginx/server-confs/ssl.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/site-confs/default.conf&lt;/code&gt;) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code&gt;/config/nginx/location-confs/proxy.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/server-confs/502.conf&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Folder structure is as follows (in the &lt;code&gt;/config/nginx/&lt;/code&gt; context):
+&lt;ul&gt;
+&lt;li&gt;All nginx based images:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;nginx.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;resolver.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ssl.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;worker_processes.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/config/nginx/site-confs/*&lt;/code&gt; included inside the &lt;code&gt;http&lt;/code&gt; context in &lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;default.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SWAG:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;502.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;proxy.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Under the hood:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Split out init scripts
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;root/migrations/01-nginx-site-confs-default&lt;/code&gt; migrate existing &lt;code&gt;default&lt;/code&gt; to &lt;code&gt;default.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/11-folders&lt;/code&gt; creates all the folders needed in &lt;code&gt;/config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/12-samples&lt;/code&gt; removes existing &lt;code&gt;*.sample&lt;/code&gt; files from &lt;code&gt;/config/nginx&lt;/code&gt; and copies any included &lt;code&gt;*.sample&lt;/code&gt; files from the image&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/13-nginx&lt;/code&gt; enable required configs (&lt;code&gt;nginx.conf&lt;/code&gt;, &lt;code&gt;ssl.conf&lt;/code&gt; and &lt;code&gt;default.conf&lt;/code&gt;) if they don&amp;rsquo;t exist, setup &lt;code&gt;dhparams.pem&lt;/code&gt;, setup &lt;code&gt;resolver.conf&lt;/code&gt;, setup &lt;code&gt;worker_processes.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/14-php&lt;/code&gt; configure php&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/15-keygen&lt;/code&gt; create self signed certificates for &lt;code&gt;ssl.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/20-permissions&lt;/code&gt; set &lt;code&gt;/config&lt;/code&gt; permissions&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/85-version-checks&lt;/code&gt; check all enabled &lt;code&gt;*.conf&lt;/code&gt; files against all &lt;code&gt;*.sample&lt;/code&gt; files shipped with the image and alert the user about updates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Status of affected images:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Image&lt;/th&gt;
+&lt;th&gt;Branch&lt;/th&gt;
+&lt;th&gt;PR&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;baseimage-alpine-nginx&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84"&gt;https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bookstack&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-bookstack/pull/113"&gt;https://github.com/linuxserver/docker-bookstack/pull/113&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cops&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-cops/pull/34"&gt;https://github.com/linuxserver/docker-cops/pull/34&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;composer downgraded to v1 for compatibility&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;diskover&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-diskover/pull/43"&gt;https://github.com/linuxserver/docker-diskover/pull/43&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dokuwiki&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-dokuwiki/pull/43"&gt;https://github.com/linuxserver/docker-dokuwiki/pull/43&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;freshrss&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-freshrss/pull/40"&gt;https://github.com/linuxserver/docker-freshrss/pull/40&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;grav&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-grav/pull/9"&gt;https://github.com/linuxserver/docker-grav/pull/9&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;grocy&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-grocy/pull/52"&gt;https://github.com/linuxserver/docker-grocy/pull/52&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;heimdall&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-heimdall/pull/79"&gt;https://github.com/linuxserver/docker-heimdall/pull/79&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;librespeed&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-librespeed/pull/15"&gt;https://github.com/linuxserver/docker-librespeed/pull/15&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lychee&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-lychee/pull/51"&gt;https://github.com/linuxserver/docker-lychee/pull/51&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;muximux&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-muximux/pull/26"&gt;https://github.com/linuxserver/docker-muximux/pull/26&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nextcloud&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-nextcloud/pull/219"&gt;https://github.com/linuxserver/docker-nextcloud/pull/219&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nginx&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-nginx/pull/79"&gt;https://github.com/linuxserver/docker-nginx/pull/79&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;photoshow&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-photoshow/pull/28"&gt;https://github.com/linuxserver/docker-photoshow/pull/28&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://info.linuxserver.io/issues/2022-10-14-photoshow/"&gt;Deprecated&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;phpmyadmin&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-phpmyadmin/pull/12"&gt;https://github.com/linuxserver/docker-phpmyadmin/pull/12&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;piwigo&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-piwigo/pull/49"&gt;https://github.com/linuxserver/docker-piwigo/pull/49&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pixapop&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-pixapop/pull/11"&gt;https://github.com/linuxserver/docker-pixapop/pull/11&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://info.linuxserver.io/issues/2022-10-14-pixapop"&gt;Deprecated&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;projectsend&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-projectsend/pull/22"&gt;https://github.com/linuxserver/docker-projectsend/pull/22&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;snapdrop&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-snapdrop/pull/6"&gt;https://github.com/linuxserver/docker-snapdrop/pull/6&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;snipe-it&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-snipe-it/pull/28"&gt;https://github.com/linuxserver/docker-snipe-it/pull/28&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;swag&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-swag/pull/169"&gt;https://github.com/linuxserver/docker-swag/pull/169&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;xbackbone&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-xbackbone/pull/5"&gt;https://github.com/linuxserver/docker-xbackbone/pull/5&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Any images with notes above may not be merged. We will make efforts to update this page if any of the images with notes above are merged at a later date. We may also make individual announcements about status updates regarding these images.&lt;/p&gt;</content></item><item><title>Calibre Change Notice</title><link>https://info.linuxserver.io/issues/2022-07-24-calibre/</link><pubDate>Sun, 24 Jul 2022 16:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-07-24-calibre/</guid><category/><description>&lt;p&gt;With the release of Calibre v6.0 the project now provides official binaries for arm64 and has dropped all support for 32-bit platforms.&lt;/p&gt;
+&lt;p&gt;As a result our &lt;code&gt;latest&lt;/code&gt; tag now supports amd64 and arm64 and we will be deprecating the &lt;code&gt;arch&lt;/code&gt; tag in the near future. If you are currently using the &lt;code&gt;arch&lt;/code&gt; tag on 64-bit arm please switch to &lt;code&gt;latest&lt;/code&gt;. If you are using the &lt;code&gt;arch&lt;/code&gt; tag on 32-bit arm you can pin to the &lt;code&gt;arch-version-79d7ec5e&lt;/code&gt; tag but there will be no further updates provided.&lt;/p&gt;</description><content type="html">&lt;p&gt;With the release of Calibre v6.0 the project now provides official binaries for arm64 and has dropped all support for 32-bit platforms.&lt;/p&gt;
+&lt;p&gt;As a result our &lt;code&gt;latest&lt;/code&gt; tag now supports amd64 and arm64 and we will be deprecating the &lt;code&gt;arch&lt;/code&gt; tag in the near future. If you are currently using the &lt;code&gt;arch&lt;/code&gt; tag on 64-bit arm please switch to &lt;code&gt;latest&lt;/code&gt;. If you are using the &lt;code&gt;arch&lt;/code&gt; tag on 32-bit arm you can pin to the &lt;code&gt;arch-version-79d7ec5e&lt;/code&gt; tag but there will be no further updates provided.&lt;/p&gt;</content></item><item><title>Notification: Lidarr Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-06-05-lidarr/</link><pubDate>Sun, 05 Jun 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-06-05-lidarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Radarr Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-06-05-radarr/</link><pubDate>Sun, 05 Jun 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-06-05-radarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Fleet Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-05-02-fleet/</link><pubDate>Mon, 02 May 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-05-02-fleet/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-fleet"&gt;Fleet&lt;/a&gt; container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code&gt;2.3.2-ls115&lt;/code&gt;. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-fleet"&gt;Fleet&lt;/a&gt; container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code&gt;2.3.2-ls115&lt;/code&gt;. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Booksonic Air Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-booksonic-air/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-booksonic-air/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-booksonic-air"&gt;Booksonic Air&lt;/a&gt; container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-booksonic-air"&gt;Booksonic Air&lt;/a&gt; container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Dillinger Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-dillinger/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-dillinger/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-dillinger"&gt;Dillinger&lt;/a&gt; container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code&gt;v3.39.1-ls117&lt;/code&gt;. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-dillinger"&gt;Dillinger&lt;/a&gt; container to use our Alpine base image. Please note that due to a lack of available OS packages we are no longer able to provide a 32-bit arm image. The last image tag to support 32-bit arm will be &lt;code&gt;v3.39.1-ls117&lt;/code&gt;. If you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: NZBHydra2 Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-04-19-nzbhydra2/</link><pubDate>Tue, 19 Apr 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-04-19-nzbhydra2/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-nzbhydra2"&gt;NZBHydra2&lt;/a&gt; container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-nzbhydra2"&gt;NZBHydra2&lt;/a&gt; container to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>New Docker Mod: swag-crowdsec</title><link>https://info.linuxserver.io/issues/2022-03-14-swag-crowdsec/</link><pubDate>Mon, 14 Mar 2022 16:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-03-14-swag-crowdsec/</guid><category/><description>&lt;p&gt;We have released a new docker mod: &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-crowdsec"&gt;swag-crowdsec&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This mod adds the &lt;a href="https://crowdsec.net"&gt;CrowdSec&lt;/a&gt; &lt;a href="https://github.com/crowdsecurity/cs-nginx-bouncer/"&gt;nginx bouncer&lt;/a&gt; to swag, to be installed/updated during container start. It can also be used with our &lt;a href="https://github.com/linuxserver/docker-nginx"&gt;nginx&lt;/a&gt; container.&lt;/p&gt;</description><content type="html">&lt;p&gt;We have released a new docker mod: &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-crowdsec"&gt;swag-crowdsec&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This mod adds the &lt;a href="https://crowdsec.net"&gt;CrowdSec&lt;/a&gt; &lt;a href="https://github.com/crowdsecurity/cs-nginx-bouncer/"&gt;nginx bouncer&lt;/a&gt; to swag, to be installed/updated during container start. It can also be used with our &lt;a href="https://github.com/linuxserver/docker-nginx"&gt;nginx&lt;/a&gt; container.&lt;/p&gt;</content></item><item><title>Notification: SABnzbd Latest Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-21-sabnzbd/</link><pubDate>Mon, 21 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-21-sabnzbd/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd"&gt;SABnzbd&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd"&gt;SABnzbd&lt;/a&gt; &lt;code&gt;latest&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Lidarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-lidarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-lidarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Prowlarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-prowlarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-prowlarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr"&gt;Prowlarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr"&gt;Prowlarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Radarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-radarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-radarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Sonarr Develop Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-18-sonarr/</link><pubDate>Fri, 18 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-18-sonarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sonarr"&gt;Sonarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sonarr"&gt;Sonarr&lt;/a&gt; &lt;code&gt;develop&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Lidarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-lidarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-lidarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-lidarr"&gt;Lidarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Prowlarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-prowlarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-prowlarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr"&gt;Prowlarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-prowlarr"&gt;Prowlarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Radarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-radarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-radarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-radarr"&gt;Radarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: Readarr Nightly Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-02-03-readarr/</link><pubDate>Thu, 03 Feb 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-02-03-readarr/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-readarr"&gt;Readarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-readarr"&gt;Readarr&lt;/a&gt; &lt;code&gt;nightly&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item><item><title>Notification: SABnzbd Unstable Rebase To Alpine</title><link>https://info.linuxserver.io/issues/2022-01-26-sabnzbd/</link><pubDate>Wed, 26 Jan 2022 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-01-26-sabnzbd/</guid><category/><description>&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd"&gt;SABnzbd&lt;/a&gt; &lt;code&gt;unstable&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</description><content type="html">&lt;p&gt;For operational reasons we will shortly be rebasing our &lt;a href="https://github.com/linuxserver/docker-sabnzbd"&gt;SABnzbd&lt;/a&gt; &lt;code&gt;unstable&lt;/code&gt; tag to use our Alpine base image. If you use the image as-is this will not have any direct impact, however, if you make use of any customization scripts which install additional packages these may need to be updated to use the &lt;a href="https://pkgs.alpinelinux.org/packages?name=&amp;amp;branch=v3.15"&gt;Alpine packages&lt;/a&gt; and package manager (&lt;code&gt;apk&lt;/code&gt;).&lt;/p&gt;</content></item></channel></rss>

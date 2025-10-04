@@ -1,291 +1,350 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io"/><title>swag on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/swag/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2025-01-19T22:00:00+00:00</lastBuildDate><updated>2025-01-19T22:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/swag/index.xml" rel="self" type="application/rss+xml"/><item><title>SWAG Auto Reload Changes</title><link>https://info.linuxserver.io/issues/2025-01-19-swag-auto-reload/</link><pubDate>Sun, 19 Jan 2025 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2025-01-19-swag-auto-reload/</guid><category/><description>Due to the popularity of the SWAG Auto Reload mod we have decided to integrate the functionality into the SWAG image.
-This allows nginx to be reloaded automatically whenever files are added to or changed within /config/nginx (or additional specified paths), including validation of the config to prevent outages.
-From today&amp;rsquo;s SWAG release you can set an environment variable of SWAG_AUTORELOAD=true to automatically reload your nginx config whenever a change is made to a .</description><content type="html">&lt;p>Due to the popularity of the &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-auto-reload">SWAG Auto Reload mod&lt;/a> we have decided to integrate the functionality into the &lt;a href="https://github.com/linuxserver/docker-swag">SWAG image&lt;/a>.&lt;/p>
-&lt;p>This allows nginx to be reloaded automatically whenever files are added to or changed within &lt;code>/config/nginx&lt;/code> (or additional specified paths), including validation of the config to prevent outages.&lt;/p>
-&lt;p>From today&amp;rsquo;s SWAG release you can set an environment variable of &lt;code>SWAG_AUTORELOAD=true&lt;/code> to automatically reload your nginx config whenever a change is made to a .conf file. Please see the README for more information.&lt;/p>
-&lt;p>If you are using the SWAG Auto Reload mod then please consider switching to the built-in functionality as we will no longer be providing support or updates for the mod.&lt;/p></content></item><item><title>PSA: Breaking Changes to Porkbun DNS Plugin for SWAG</title><link>https://info.linuxserver.io/issues/2024-11-25-swag-porkbun/</link><pubDate>Mon, 25 Nov 2024 21:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-11-25-swag-porkbun/</guid><category/><description>If you use the Porkbun certbot plugin with SWAG for DNS validation you need to ensure that you have updated your SWAG container to at least version 3.0.1-ls337 before 2024-12-01, as Porkbun are making changes to their API endpoint that will cause older versions of the plugin to stop working. Specifically, they are updating their API domain root from porkbun.com to api.porkbun.com.
-If you are unsure which version of SWAG you are running, you can use docker inspect -f '{{ index .</description><content type="html">&lt;p>If you use the Porkbun certbot plugin with SWAG for DNS validation you need to ensure that you have updated your SWAG container to at least version &lt;code>3.0.1-ls337&lt;/code> before &lt;em>2024-12-01&lt;/em>, as Porkbun are making changes to their API endpoint that will cause older versions of the plugin to stop working. Specifically, they are updating their API domain root from &lt;code>porkbun.com&lt;/code> to &lt;code>api.porkbun.com&lt;/code>.&lt;/p>
-&lt;p>If you are unsure which version of SWAG you are running, you can use &lt;code>docker inspect -f '{{ index .Config.Labels &amp;quot;build_version&amp;quot; }}' swag&lt;/code> to output the version of the running container. Newer images will also show this information in the container startup logs.&lt;/p></content></item><item><title>Notification: Significant changes to cron</title><link>https://info.linuxserver.io/issues/2023-11-02-cron/</link><pubDate>Thu, 02 Nov 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-11-02-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Previous state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="previous-state-of-cron">Previous state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="going-forward">Going forward&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge today, and begin building into our images over the next few days and weeks.&lt;/p></content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-20-cron/</link><pubDate>Fri, 20 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-20-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Current state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="current-state-of-cron">Current state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="incoming-changes">Incoming changes&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p></content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-01-cron/</link><pubDate>Sun, 01 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-01-cron/</guid><category/><description>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.
-Current state of cron We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for abc or root in /config/crontabs/. This has allowed users to customize crontabs.
-This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations.</description><content type="html">&lt;p>We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p>
-&lt;h2 id="current-state-of-cron">Current state of cron&lt;/h2>
-&lt;p>We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>. This has allowed users to customize crontabs.&lt;/p>
-&lt;p>This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p>
-&lt;p>As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> that can be applied to add the ability to use cron for both &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> in any container.&lt;/p>
-&lt;h2 id="incoming-changes">Incoming changes&lt;/h2>
-&lt;p>When an application requires cron, we will also no longer setup crontabs for &lt;code>abc&lt;/code> or &lt;code>root&lt;/code> in &lt;code>/config/crontabs/&lt;/code>, unless user customizations to the crontab are required.&lt;/p>
-&lt;p>Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p>
-&lt;p>&lt;strong>IMPORTANT:&lt;/strong> We are NOT removing existing crontabs from &lt;code>/config/crontabs/&lt;/code>, they will simply be ignored unless otherwise noted.&lt;/p>
-&lt;p>We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron">universal cron mod&lt;/a> with a new purpose of making crontabs for &lt;code>abc&lt;/code> and &lt;code>root&lt;/code> customizable by setting them up in up &lt;code>/config/crontabs/&lt;/code> and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p>
-&lt;p>As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code>abc&lt;/code> instead of &lt;code>root&lt;/code>. This improves security and consistency in our images.&lt;/p>
-&lt;h3 id="exceptions">Exceptions&lt;/h3>
-&lt;p>Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code>/config/crontabs/abc&lt;/code> instead of &lt;code>/config/crontabs/root&lt;/code>. The &lt;code>/config/crontabs/root&lt;/code> file is NOT being automatically removed, but will be ignored.&lt;/p>
-&lt;p>Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code>/config/crontabs/root&lt;/code>.&lt;/p>
-&lt;h2 id="timing">Timing&lt;/h2>
-&lt;p>You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p></content></item><item><title>Notification: Significant changes to nginx based images</title><link>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</link><pubDate>Sat, 20 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</guid><category/><description>Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.
-Changes you will likely notice:
-Bring our default shipped configs as close as possible to alpine upstream defaults https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable Include worker_processes.conf and init script to generate it in the base Include resolver.conf and init script to generate it in the base Include ssl.conf in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base) include /config/nginx/site-confs/*.</description><content type="html">&lt;p>Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p>
-&lt;p>Changes you will likely notice:&lt;/p>
-&lt;ul>
-&lt;li>Bring our default shipped configs as close as possible to alpine upstream defaults
-&lt;ul>
-&lt;li>&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable">https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Include &lt;code>worker_processes.conf&lt;/code> and init script to generate it in the base&lt;/li>
-&lt;li>Include &lt;code>resolver.conf&lt;/code> and init script to generate it in the base&lt;/li>
-&lt;li>Include &lt;code>ssl.conf&lt;/code> in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li>
-&lt;li>&lt;code>include /config/nginx/site-confs/*.conf;&lt;/code> with &lt;code>*.conf&lt;/code> extension (rename existing user files automatically)&lt;/li>
-&lt;li>Rework &lt;code>default.conf&lt;/code>
-&lt;ul>
-&lt;li>Expect applications inside containers to exist at &lt;code>/app/www/public/&lt;/code>, and if that does not exist, use &lt;code>/config/www&lt;/code>&lt;/li>
-&lt;li>Include ipv6 support&lt;/li>
-&lt;li>deny access to &lt;code>.htaccess&lt;/code>/&lt;code>.htpasswd&lt;/code> files&lt;/li>
-&lt;li>adjust php location and &lt;code>fastcgi_params&lt;/code> to use &lt;code>PATH_INFO&lt;/code> and mitigate &lt;code>HTTP_PROXY&lt;/code> vulnerability&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Restructure nginx configs
-&lt;ul>
-&lt;li>Configs in &lt;code>/defaults/nginx/&lt;/code> are recursively copied to the user&amp;rsquo;s &lt;code>/config/nginx/&lt;/code> (maintaining the structure)&lt;/li>
-&lt;li>All configs are now named &lt;code>*.sample&lt;/code> and all include &lt;code>## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code> used by &lt;code>/etc/cont-init.d/85-version-checks&lt;/code>
-&lt;ul>
-&lt;li>Required configs (&lt;code>/config/nginx/nginx.conf&lt;/code>, &lt;code>/config/nginx/server-confs/ssl.conf&lt;/code> and &lt;code>/config/nginx/site-confs/default.conf&lt;/code>) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code>/config/nginx/location-confs/proxy.conf&lt;/code> and &lt;code>/config/nginx/server-confs/502.conf&lt;/code>)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Folder structure is as follows (in the &lt;code>/config/nginx/&lt;/code> context):
-&lt;ul>
-&lt;li>All nginx based images:
-&lt;ul>
-&lt;li>Includes &lt;code>nginx.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>resolver.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>ssl.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>worker_processes.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>&lt;code>/config/nginx/site-confs/*&lt;/code> included inside the &lt;code>http&lt;/code> context in &lt;code>/config/nginx/nginx.conf&lt;/code>
-&lt;ul>
-&lt;li>Includes &lt;code>default.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>SWAG:
-&lt;ul>
-&lt;li>Includes &lt;code>502.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;li>Includes &lt;code>authelia-location.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>authelia-server.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>ldap-location.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>ldap-server.conf&lt;/code>&lt;/li>
-&lt;li>Includes &lt;code>proxy.conf&lt;/code> (enabled by default)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>Under the hood:&lt;/p>
-&lt;ul>
-&lt;li>Split out init scripts
-&lt;ul>
-&lt;li>&lt;code>root/migrations/01-nginx-site-confs-default&lt;/code> migrate existing &lt;code>default&lt;/code> to &lt;code>default.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/11-folders&lt;/code> creates all the folders needed in &lt;code>/config&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/12-samples&lt;/code> removes existing &lt;code>*.sample&lt;/code> files from &lt;code>/config/nginx&lt;/code> and copies any included &lt;code>*.sample&lt;/code> files from the image&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/13-nginx&lt;/code> enable required configs (&lt;code>nginx.conf&lt;/code>, &lt;code>ssl.conf&lt;/code> and &lt;code>default.conf&lt;/code>) if they don&amp;rsquo;t exist, setup &lt;code>dhparams.pem&lt;/code>, setup &lt;code>resolver.conf&lt;/code>, setup &lt;code>worker_processes.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/14-php&lt;/code> configure php&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/15-keygen&lt;/code> create self signed certificates for &lt;code>ssl.conf&lt;/code>&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/20-permissions&lt;/code> set &lt;code>/config&lt;/code> permissions&lt;/li>
-&lt;li>&lt;code>root/etc/cont-init.d/85-version-checks&lt;/code> check all enabled &lt;code>*.conf&lt;/code> files against all &lt;code>*.sample&lt;/code> files shipped with the image and alert the user about updates&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>Status of affected images:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Image&lt;/th>
-&lt;th>Branch&lt;/th>
-&lt;th>PR&lt;/th>
-&lt;th>Notes&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>baseimage-alpine-nginx&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84">https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>bookstack&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-bookstack/pull/113">https://github.com/linuxserver/docker-bookstack/pull/113&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>cops&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-cops/pull/34">https://github.com/linuxserver/docker-cops/pull/34&lt;/a>&lt;/td>
-&lt;td>composer downgraded to v1 for compatibility&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>diskover&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-diskover/pull/43">https://github.com/linuxserver/docker-diskover/pull/43&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>dokuwiki&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-dokuwiki/pull/43">https://github.com/linuxserver/docker-dokuwiki/pull/43&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>freshrss&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-freshrss/pull/40">https://github.com/linuxserver/docker-freshrss/pull/40&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>grav&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-grav/pull/9">https://github.com/linuxserver/docker-grav/pull/9&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>grocy&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-grocy/pull/52">https://github.com/linuxserver/docker-grocy/pull/52&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>heimdall&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-heimdall/pull/79">https://github.com/linuxserver/docker-heimdall/pull/79&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>librespeed&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-librespeed/pull/15">https://github.com/linuxserver/docker-librespeed/pull/15&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>lychee&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-lychee/pull/51">https://github.com/linuxserver/docker-lychee/pull/51&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>muximux&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-muximux/pull/26">https://github.com/linuxserver/docker-muximux/pull/26&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>nextcloud&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-nextcloud/pull/219">https://github.com/linuxserver/docker-nextcloud/pull/219&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>nginx&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-nginx/pull/79">https://github.com/linuxserver/docker-nginx/pull/79&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>photoshow&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-photoshow/pull/28">https://github.com/linuxserver/docker-photoshow/pull/28&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-photoshow/">Deprecated&lt;/a>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>phpmyadmin&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-phpmyadmin/pull/12">https://github.com/linuxserver/docker-phpmyadmin/pull/12&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>piwigo&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-piwigo/pull/49">https://github.com/linuxserver/docker-piwigo/pull/49&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>pixapop&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-pixapop/pull/11">https://github.com/linuxserver/docker-pixapop/pull/11&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://info.linuxserver.io/issues/2022-10-14-pixapop">Deprecated&lt;/a>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>projectsend&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-projectsend/pull/22">https://github.com/linuxserver/docker-projectsend/pull/22&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>snapdrop&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-snapdrop/pull/6">https://github.com/linuxserver/docker-snapdrop/pull/6&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>snipe-it&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-snipe-it/pull/28">https://github.com/linuxserver/docker-snipe-it/pull/28&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>swag&lt;/td>
-&lt;td>master&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-swag/pull/169">https://github.com/linuxserver/docker-swag/pull/169&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>xbackbone&lt;/td>
-&lt;td>main&lt;/td>
-&lt;td>&lt;a href="https://github.com/linuxserver/docker-xbackbone/pull/5">https://github.com/linuxserver/docker-xbackbone/pull/5&lt;/a>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Any images with notes above may not be merged. We will make efforts to update this page if any of the images with notes above are merged at a later date. We may also make individual announcements about status updates regarding these images.&lt;/p></content></item><item><title>[Resolved] Authelia Vulnerability</title><link>https://info.linuxserver.io/issues/2021-05-30-authelia/</link><pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2021-05-30-authelia/</guid><category>2021-05-30</category><description>A vulnerability has been discovered in Authelia versions prior to 4.29.3 when used with nginx which can result in an authentication bypass. To ensure you are protected please upgrade to at least Authelia version 4.29.3 and/or Swag version 1.15.0-ls63.</description><content type="html">&lt;p>A &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2021-32637">vulnerability&lt;/a> has been discovered in Authelia versions prior to 4.29.3 when used with nginx which can result in an authentication bypass. To ensure you are protected please upgrade to at least Authelia version 4.29.3 and/or Swag version 1.15.0-ls63.&lt;/p></content></item><item><title>[Resolved] Known Issue: Swag 1.15.0</title><link>https://info.linuxserver.io/issues/2021-05-29-swag/</link><pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2021-05-29-swag/</guid><category>2021-06-02</category><description>Version 1.16 has been released to resolve this issue.
-An upstream issue with certbot has broken some of the DNS validation plugins used by swag. If you are affected by this issue, please roll back to version-1.14.0 until 1.16 is released.</description><content type="html">&lt;p>Version 1.16 has been released to resolve this issue.&lt;/p>
-&lt;blockquote>
-&lt;p>An upstream issue with certbot has broken some of the DNS validation plugins used by swag. If you are affected by this issue, please roll back to &lt;code>version-1.14.0&lt;/code> until 1.16 is released.&lt;/p>
-&lt;/blockquote></content></item><item><title>New Container: Swag</title><link>https://info.linuxserver.io/issues/2020-08-03-swag/</link><pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2020-08-03-swag/</guid><category/><description>We have released a new container for Swag!
-SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no relation to Let&amp;rsquo;s Encrypt™) sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let&amp;rsquo;s Encrypt and ZeroSSL). It also contains fail2ban for intrusion prevention.</description><content type="html">&lt;p>We have released a new container for &lt;a href="https://github.com/linuxserver/docker-swag">Swag&lt;/a>!&lt;/p>
-&lt;p>SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no relation to Let&amp;rsquo;s Encrypt™) sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let&amp;rsquo;s Encrypt and ZeroSSL). It also contains fail2ban for intrusion prevention.&lt;/p></content></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Swag on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/swag/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2025-01-19T22:00:00+00:00</lastBuildDate><updated>2025-01-19T22:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/swag/index.xml" rel="self" type="application/rss+xml"/><item><title>SWAG Auto Reload Changes</title><link>https://info.linuxserver.io/issues/2025-01-19-swag-auto-reload/</link><pubDate>Sun, 19 Jan 2025 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2025-01-19-swag-auto-reload/</guid><category/><description>&lt;p&gt;Due to the popularity of the &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-auto-reload"&gt;SWAG Auto Reload mod&lt;/a&gt; we have decided to integrate the functionality into the &lt;a href="https://github.com/linuxserver/docker-swag"&gt;SWAG image&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This allows nginx to be reloaded automatically whenever files are added to or changed within &lt;code&gt;/config/nginx&lt;/code&gt; (or additional specified paths), including validation of the config to prevent outages.&lt;/p&gt;
+&lt;p&gt;From today&amp;rsquo;s SWAG release you can set an environment variable of &lt;code&gt;SWAG_AUTORELOAD=true&lt;/code&gt; to automatically reload your nginx config whenever a change is made to a .conf file. Please see the README for more information.&lt;/p&gt;</description><content type="html">&lt;p&gt;Due to the popularity of the &lt;a href="https://github.com/linuxserver/docker-mods/tree/swag-auto-reload"&gt;SWAG Auto Reload mod&lt;/a&gt; we have decided to integrate the functionality into the &lt;a href="https://github.com/linuxserver/docker-swag"&gt;SWAG image&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This allows nginx to be reloaded automatically whenever files are added to or changed within &lt;code&gt;/config/nginx&lt;/code&gt; (or additional specified paths), including validation of the config to prevent outages.&lt;/p&gt;
+&lt;p&gt;From today&amp;rsquo;s SWAG release you can set an environment variable of &lt;code&gt;SWAG_AUTORELOAD=true&lt;/code&gt; to automatically reload your nginx config whenever a change is made to a .conf file. Please see the README for more information.&lt;/p&gt;
+&lt;p&gt;If you are using the SWAG Auto Reload mod then please consider switching to the built-in functionality as we will no longer be providing support or updates for the mod.&lt;/p&gt;</content></item><item><title>PSA: Breaking Changes to Porkbun DNS Plugin for SWAG</title><link>https://info.linuxserver.io/issues/2024-11-25-swag-porkbun/</link><pubDate>Mon, 25 Nov 2024 21:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-11-25-swag-porkbun/</guid><category/><description>&lt;p&gt;If you use the Porkbun certbot plugin with SWAG for DNS validation you need to ensure that you have updated your SWAG container to at least version &lt;code&gt;3.0.1-ls337&lt;/code&gt; before &lt;em&gt;2024-12-01&lt;/em&gt;, as Porkbun are making changes to their API endpoint that will cause older versions of the plugin to stop working. Specifically, they are updating their API domain root from &lt;code&gt;porkbun.com&lt;/code&gt; to &lt;code&gt;api.porkbun.com&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you are unsure which version of SWAG you are running, you can use &lt;code&gt;docker inspect -f '{{ index .Config.Labels &amp;quot;build_version&amp;quot; }}' swag&lt;/code&gt; to output the version of the running container. Newer images will also show this information in the container startup logs.&lt;/p&gt;</description><content type="html">&lt;p&gt;If you use the Porkbun certbot plugin with SWAG for DNS validation you need to ensure that you have updated your SWAG container to at least version &lt;code&gt;3.0.1-ls337&lt;/code&gt; before &lt;em&gt;2024-12-01&lt;/em&gt;, as Porkbun are making changes to their API endpoint that will cause older versions of the plugin to stop working. Specifically, they are updating their API domain root from &lt;code&gt;porkbun.com&lt;/code&gt; to &lt;code&gt;api.porkbun.com&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you are unsure which version of SWAG you are running, you can use &lt;code&gt;docker inspect -f '{{ index .Config.Labels &amp;quot;build_version&amp;quot; }}' swag&lt;/code&gt; to output the version of the running container. Newer images will also show this information in the container startup logs.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron</title><link>https://info.linuxserver.io/issues/2023-11-02-cron/</link><pubDate>Thu, 02 Nov 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-11-02-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="previous-state-of-cron"&gt;Previous state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="previous-state-of-cron"&gt;Previous state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="going-forward"&gt;Going forward&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge today, and begin building into our images over the next few days and weeks.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-20-cron/</link><pubDate>Fri, 20 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-20-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="incoming-changes"&gt;Incoming changes&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to cron incoming</title><link>https://info.linuxserver.io/issues/2023-10-01-cron/</link><pubDate>Sun, 01 Oct 2023 23:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2023-10-01-cron/</guid><category/><description>&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;</description><content type="html">&lt;p&gt;We&amp;rsquo;ve decided to make some changes to how cron is shipped in our images.&lt;/p&gt;
+&lt;h2 id="current-state-of-cron"&gt;Current state of cron&lt;/h2&gt;
+&lt;p&gt;We have not had a consistent standard. Many of our images do however setup cron the same way. When an application requires cron, we setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;. This has allowed users to customize crontabs.&lt;/p&gt;
+&lt;p&gt;This has required that if we make changes to the image that require changes to crontabs we have had to carefully plan how to make adjustments to existing user files without causing issues with any customizations. It could also mean we are unable to automatically make required changes if user customizations make an automated adjustments impossible. In these cases, users have been required to update crontabs on their own.&lt;/p&gt;
+&lt;p&gt;As a side note, we also offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; that can be applied to add the ability to use cron for both &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; in any container.&lt;/p&gt;
+&lt;h2 id="incoming-changes"&gt;Incoming changes&lt;/h2&gt;
+&lt;p&gt;When an application requires cron, we will also no longer setup crontabs for &lt;code&gt;abc&lt;/code&gt; or &lt;code&gt;root&lt;/code&gt; in &lt;code&gt;/config/crontabs/&lt;/code&gt;, unless user customizations to the crontab are required.&lt;/p&gt;
+&lt;p&gt;Instead, we are internalizing the crontab files. This should make it easier for us to update crontabs when changes to the image require updates to crontabs. It also means users won&amp;rsquo;t have to keep up with changes to crontab requirements that may break their applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; We are NOT removing existing crontabs from &lt;code&gt;/config/crontabs/&lt;/code&gt;, they will simply be ignored unless otherwise noted.&lt;/p&gt;
+&lt;p&gt;We will continue to offer our &lt;a href="https://github.com/linuxserver/docker-mods/tree/universal-cron"&gt;universal cron mod&lt;/a&gt; with a new purpose of making crontabs for &lt;code&gt;abc&lt;/code&gt; and &lt;code&gt;root&lt;/code&gt; customizable by setting them up in up &lt;code&gt;/config/crontabs/&lt;/code&gt; and configuring the cron service to recognize them, essentially restoring the original behavior. This effectively makes the cron mod the only way to customize crontabs.&lt;/p&gt;
+&lt;p&gt;As a side note, we are also adjusting all existing crontabs we ship to run as &lt;code&gt;abc&lt;/code&gt; instead of &lt;code&gt;root&lt;/code&gt;. This improves security and consistency in our images.&lt;/p&gt;
+&lt;h3 id="exceptions"&gt;Exceptions&lt;/h3&gt;
+&lt;p&gt;Diskover requires setting your own crontab schedule. The container will now run cron using &lt;code&gt;/config/crontabs/abc&lt;/code&gt; instead of &lt;code&gt;/config/crontabs/root&lt;/code&gt;. The &lt;code&gt;/config/crontabs/root&lt;/code&gt; file is NOT being automatically removed, but will be ignored.&lt;/p&gt;
+&lt;p&gt;Rsnapshot requires setting your own crontab schedule, and in some cases requires backups to run as root. The container will continue to run cron using &lt;code&gt;/config/crontabs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="timing"&gt;Timing&lt;/h2&gt;
+&lt;p&gt;You can expect to see these changes merge around November 1st, 2023. An additional post will be made with all of the above information and any updates if anything changes between now and then.&lt;/p&gt;</content></item><item><title>Notification: Significant changes to nginx based images</title><link>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</link><pubDate>Sat, 20 Aug 2022 18:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2022-08-20-nginx-base/</guid><category/><description>&lt;p&gt;Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p&gt;
+&lt;p&gt;Changes you will likely notice:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bring our default shipped configs as close as possible to alpine upstream defaults
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable"&gt;https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;worker_processes.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;resolver.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;ssl.conf&lt;/code&gt; in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include /config/nginx/site-confs/*.conf;&lt;/code&gt; with &lt;code&gt;*.conf&lt;/code&gt; extension (rename existing user files automatically)&lt;/li&gt;
+&lt;li&gt;Rework &lt;code&gt;default.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Expect applications inside containers to exist at &lt;code&gt;/app/www/public/&lt;/code&gt;, and if that does not exist, use &lt;code&gt;/config/www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Include ipv6 support&lt;/li&gt;
+&lt;li&gt;deny access to &lt;code&gt;.htaccess&lt;/code&gt;/&lt;code&gt;.htpasswd&lt;/code&gt; files&lt;/li&gt;
+&lt;li&gt;adjust php location and &lt;code&gt;fastcgi_params&lt;/code&gt; to use &lt;code&gt;PATH_INFO&lt;/code&gt; and mitigate &lt;code&gt;HTTP_PROXY&lt;/code&gt; vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restructure nginx configs
+&lt;ul&gt;
+&lt;li&gt;Configs in &lt;code&gt;/defaults/nginx/&lt;/code&gt; are recursively copied to the user&amp;rsquo;s &lt;code&gt;/config/nginx/&lt;/code&gt; (maintaining the structure)&lt;/li&gt;
+&lt;li&gt;All configs are now named &lt;code&gt;*.sample&lt;/code&gt; and all include &lt;code&gt;## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code&gt; used by &lt;code&gt;/etc/cont-init.d/85-version-checks&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Required configs (&lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;, &lt;code&gt;/config/nginx/server-confs/ssl.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/site-confs/default.conf&lt;/code&gt;) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code&gt;/config/nginx/location-confs/proxy.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/server-confs/502.conf&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Folder structure is as follows (in the &lt;code&gt;/config/nginx/&lt;/code&gt; context):
+&lt;ul&gt;
+&lt;li&gt;All nginx based images:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;nginx.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;resolver.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ssl.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;worker_processes.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/config/nginx/site-confs/*&lt;/code&gt; included inside the &lt;code&gt;http&lt;/code&gt; context in &lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;default.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SWAG:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;502.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;proxy.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Under the hood:&lt;/p&gt;</description><content type="html">&lt;p&gt;Most images using our alpine-nginx base image are being updated to alpine 3.15 with php8 and some significant changes to the nginx configs.&lt;/p&gt;
+&lt;p&gt;Changes you will likely notice:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bring our default shipped configs as close as possible to alpine upstream defaults
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable"&gt;https://git.alpinelinux.org/aports/tree/main/nginx/nginx.conf?h=3.15-stable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;worker_processes.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;resolver.conf&lt;/code&gt; and init script to generate it in the base&lt;/li&gt;
+&lt;li&gt;Include &lt;code&gt;ssl.conf&lt;/code&gt; in the base (the same as what is currently shipped in SWAG, but adjusted to use the self-signed certs generated by the base)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include /config/nginx/site-confs/*.conf;&lt;/code&gt; with &lt;code&gt;*.conf&lt;/code&gt; extension (rename existing user files automatically)&lt;/li&gt;
+&lt;li&gt;Rework &lt;code&gt;default.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Expect applications inside containers to exist at &lt;code&gt;/app/www/public/&lt;/code&gt;, and if that does not exist, use &lt;code&gt;/config/www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Include ipv6 support&lt;/li&gt;
+&lt;li&gt;deny access to &lt;code&gt;.htaccess&lt;/code&gt;/&lt;code&gt;.htpasswd&lt;/code&gt; files&lt;/li&gt;
+&lt;li&gt;adjust php location and &lt;code&gt;fastcgi_params&lt;/code&gt; to use &lt;code&gt;PATH_INFO&lt;/code&gt; and mitigate &lt;code&gt;HTTP_PROXY&lt;/code&gt; vulnerability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restructure nginx configs
+&lt;ul&gt;
+&lt;li&gt;Configs in &lt;code&gt;/defaults/nginx/&lt;/code&gt; are recursively copied to the user&amp;rsquo;s &lt;code&gt;/config/nginx/&lt;/code&gt; (maintaining the structure)&lt;/li&gt;
+&lt;li&gt;All configs are now named &lt;code&gt;*.sample&lt;/code&gt; and all include &lt;code&gt;## Version YYYY/MM/DD - Changelog: &amp;lt;url to repo history&amp;gt;&lt;/code&gt; used by &lt;code&gt;/etc/cont-init.d/85-version-checks&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Required configs (&lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;, &lt;code&gt;/config/nginx/server-confs/ssl.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/site-confs/default.conf&lt;/code&gt;) are enabled by default. Downstream images can include and/or enable others as needed (ex: SWAG will enable &lt;code&gt;/config/nginx/location-confs/proxy.conf&lt;/code&gt; and &lt;code&gt;/config/nginx/server-confs/502.conf&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Folder structure is as follows (in the &lt;code&gt;/config/nginx/&lt;/code&gt; context):
+&lt;ul&gt;
+&lt;li&gt;All nginx based images:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;nginx.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;resolver.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ssl.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;worker_processes.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/config/nginx/site-confs/*&lt;/code&gt; included inside the &lt;code&gt;http&lt;/code&gt; context in &lt;code&gt;/config/nginx/nginx.conf&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;default.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SWAG:
+&lt;ul&gt;
+&lt;li&gt;Includes &lt;code&gt;502.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;authelia-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-location.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;ldap-server.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Includes &lt;code&gt;proxy.conf&lt;/code&gt; (enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Under the hood:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Split out init scripts
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;root/migrations/01-nginx-site-confs-default&lt;/code&gt; migrate existing &lt;code&gt;default&lt;/code&gt; to &lt;code&gt;default.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/11-folders&lt;/code&gt; creates all the folders needed in &lt;code&gt;/config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/12-samples&lt;/code&gt; removes existing &lt;code&gt;*.sample&lt;/code&gt; files from &lt;code&gt;/config/nginx&lt;/code&gt; and copies any included &lt;code&gt;*.sample&lt;/code&gt; files from the image&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/13-nginx&lt;/code&gt; enable required configs (&lt;code&gt;nginx.conf&lt;/code&gt;, &lt;code&gt;ssl.conf&lt;/code&gt; and &lt;code&gt;default.conf&lt;/code&gt;) if they don&amp;rsquo;t exist, setup &lt;code&gt;dhparams.pem&lt;/code&gt;, setup &lt;code&gt;resolver.conf&lt;/code&gt;, setup &lt;code&gt;worker_processes.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/14-php&lt;/code&gt; configure php&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/15-keygen&lt;/code&gt; create self signed certificates for &lt;code&gt;ssl.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/20-permissions&lt;/code&gt; set &lt;code&gt;/config&lt;/code&gt; permissions&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;root/etc/cont-init.d/85-version-checks&lt;/code&gt; check all enabled &lt;code&gt;*.conf&lt;/code&gt; files against all &lt;code&gt;*.sample&lt;/code&gt; files shipped with the image and alert the user about updates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Status of affected images:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Image&lt;/th&gt;
+&lt;th&gt;Branch&lt;/th&gt;
+&lt;th&gt;PR&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;baseimage-alpine-nginx&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84"&gt;https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bookstack&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-bookstack/pull/113"&gt;https://github.com/linuxserver/docker-bookstack/pull/113&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cops&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-cops/pull/34"&gt;https://github.com/linuxserver/docker-cops/pull/34&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;composer downgraded to v1 for compatibility&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;diskover&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-diskover/pull/43"&gt;https://github.com/linuxserver/docker-diskover/pull/43&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dokuwiki&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-dokuwiki/pull/43"&gt;https://github.com/linuxserver/docker-dokuwiki/pull/43&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;freshrss&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-freshrss/pull/40"&gt;https://github.com/linuxserver/docker-freshrss/pull/40&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;grav&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-grav/pull/9"&gt;https://github.com/linuxserver/docker-grav/pull/9&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;grocy&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-grocy/pull/52"&gt;https://github.com/linuxserver/docker-grocy/pull/52&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;heimdall&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-heimdall/pull/79"&gt;https://github.com/linuxserver/docker-heimdall/pull/79&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;librespeed&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-librespeed/pull/15"&gt;https://github.com/linuxserver/docker-librespeed/pull/15&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lychee&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-lychee/pull/51"&gt;https://github.com/linuxserver/docker-lychee/pull/51&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;muximux&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-muximux/pull/26"&gt;https://github.com/linuxserver/docker-muximux/pull/26&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nextcloud&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-nextcloud/pull/219"&gt;https://github.com/linuxserver/docker-nextcloud/pull/219&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nginx&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-nginx/pull/79"&gt;https://github.com/linuxserver/docker-nginx/pull/79&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;photoshow&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-photoshow/pull/28"&gt;https://github.com/linuxserver/docker-photoshow/pull/28&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://info.linuxserver.io/issues/2022-10-14-photoshow/"&gt;Deprecated&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;phpmyadmin&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-phpmyadmin/pull/12"&gt;https://github.com/linuxserver/docker-phpmyadmin/pull/12&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;piwigo&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-piwigo/pull/49"&gt;https://github.com/linuxserver/docker-piwigo/pull/49&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pixapop&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-pixapop/pull/11"&gt;https://github.com/linuxserver/docker-pixapop/pull/11&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://info.linuxserver.io/issues/2022-10-14-pixapop"&gt;Deprecated&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;projectsend&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-projectsend/pull/22"&gt;https://github.com/linuxserver/docker-projectsend/pull/22&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;snapdrop&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-snapdrop/pull/6"&gt;https://github.com/linuxserver/docker-snapdrop/pull/6&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;snipe-it&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-snipe-it/pull/28"&gt;https://github.com/linuxserver/docker-snipe-it/pull/28&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;swag&lt;/td&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-swag/pull/169"&gt;https://github.com/linuxserver/docker-swag/pull/169&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;xbackbone&lt;/td&gt;
+&lt;td&gt;main&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/linuxserver/docker-xbackbone/pull/5"&gt;https://github.com/linuxserver/docker-xbackbone/pull/5&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Any images with notes above may not be merged. We will make efforts to update this page if any of the images with notes above are merged at a later date. We may also make individual announcements about status updates regarding these images.&lt;/p&gt;</content></item><item><title>[Resolved] Authelia Vulnerability</title><link>https://info.linuxserver.io/issues/2021-05-30-authelia/</link><pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2021-05-30-authelia/</guid><category>2021-05-30</category><description>&lt;p&gt;A &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2021-32637"&gt;vulnerability&lt;/a&gt; has been discovered in Authelia versions prior to 4.29.3 when used with nginx which can result in an authentication bypass. To ensure you are protected please upgrade to at least Authelia version 4.29.3 and/or Swag version 1.15.0-ls63.&lt;/p&gt;</description><content type="html">&lt;p&gt;A &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2021-32637"&gt;vulnerability&lt;/a&gt; has been discovered in Authelia versions prior to 4.29.3 when used with nginx which can result in an authentication bypass. To ensure you are protected please upgrade to at least Authelia version 4.29.3 and/or Swag version 1.15.0-ls63.&lt;/p&gt;</content></item><item><title>[Resolved] Known Issue: Swag 1.15.0</title><link>https://info.linuxserver.io/issues/2021-05-29-swag/</link><pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2021-05-29-swag/</guid><category>2021-06-02</category><description>&lt;p&gt;Version 1.16 has been released to resolve this issue.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An upstream issue with certbot has broken some of the DNS validation plugins used by swag. If you are affected by this issue, please roll back to &lt;code&gt;version-1.14.0&lt;/code&gt; until 1.16 is released.&lt;/p&gt;&lt;/blockquote&gt;</description><content type="html">&lt;p&gt;Version 1.16 has been released to resolve this issue.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An upstream issue with certbot has broken some of the DNS validation plugins used by swag. If you are affected by this issue, please roll back to &lt;code&gt;version-1.14.0&lt;/code&gt; until 1.16 is released.&lt;/p&gt;&lt;/blockquote&gt;</content></item><item><title>New Container: Swag</title><link>https://info.linuxserver.io/issues/2020-08-03-swag/</link><pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2020-08-03-swag/</guid><category/><description>&lt;p&gt;We have released a new container for &lt;a href="https://github.com/linuxserver/docker-swag"&gt;Swag&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no relation to Let&amp;rsquo;s Encrypt™) sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let&amp;rsquo;s Encrypt and ZeroSSL). It also contains fail2ban for intrusion prevention.&lt;/p&gt;</description><content type="html">&lt;p&gt;We have released a new container for &lt;a href="https://github.com/linuxserver/docker-swag"&gt;Swag&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no relation to Let&amp;rsquo;s Encrypt™) sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let&amp;rsquo;s Encrypt and ZeroSSL). It also contains fail2ban for intrusion prevention.&lt;/p&gt;</content></item></channel></rss>
