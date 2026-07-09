@@ -1,6 +1,6 @@
 ---
 title: 'New Container: doplarr_rs and Deprecation of our original doplarr image'
-date: '2026-07-04 21:00:00Z'
+date: '2026-07-09 21:00:00Z'
 informational: true
 affected:
   - 'New Containers'
