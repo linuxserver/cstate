@@ -1,5 +1,5 @@
 ---
-title: 'New Container: audiosilo'
+title: 'New Container: craft-apps'
 date: '2026-10-15 12:00:00Z'
 informational: true
 affected:
