@@ -1,1 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Security on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/security/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2026-04-30T12:00:00+00:00</lastBuildDate><updated>2026-04-30T12:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Copyfail LSIO Build Operations Have Resumed</title><link>https://info.linuxserver.io/issues/2026-04-30-copyfail2/</link><pubDate>Thu, 30 Apr 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-04-30-copyfail2/</guid><category/><description>&lt;p&gt;We have applied mitigations to our build environment for &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and are watching for distribution level kernel updates when they become available. Build operations have resumed across all platforms.&lt;/p&gt;</description><content type="html">&lt;p&gt;We have applied mitigations to our build environment for &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and are watching for distribution level kernel updates when they become available. Build operations have resumed across all platforms.&lt;/p&gt;</content></item><item><title>Copyfail LSIO Build Environment Pause Notice</title><link>https://info.linuxserver.io/issues/2026-04-29-copyfail/</link><pubDate>Wed, 29 Apr 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-04-29-copyfail/</guid><category/><description>&lt;p&gt;Given the severity of &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and the unknown state of patches on major Linux distributions we are pausing our build environment for the time being. We will post an update when operations have resumed.&lt;/p&gt;</description><content type="html">&lt;p&gt;Given the severity of &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and the unknown state of patches on major Linux distributions we are pausing our build environment for the time being. We will post an update when operations have resumed.&lt;/p&gt;</content></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Security on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/security/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2026-10-22T12:00:00+00:00</lastBuildDate><updated>2026-10-22T12:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/security/index.xml" rel="self" type="application/rss+xml"/><item><title>PHP CVE-2026-109618/109619</title><link>https://info.linuxserver.io/issues/2026-10-22-php-cve-2026-109618/</link><pubDate>Thu, 22 Oct 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-10-22-php-cve-2026-109618/</guid><category/><description>&lt;p&gt;All supported images have now been updated with patched versions of PHP for the recently-disclosed vulnerabilities.&lt;/p&gt;
+&lt;p&gt;If you are using pinned image tags be aware that these patches will &lt;em&gt;not&lt;/em&gt; be backported to older image versions.&lt;/p&gt;
+&lt;p&gt;The full list of affected images is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;babybuddy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bookstack:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cops:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dokuwiki:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;freshrss:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grav:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grocy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:development
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;kimai:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;librespeed:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lychee:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:develop
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:previous
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nginx:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;phpmyadmin:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;piwigo:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;projectsend:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;speedtest-tracker:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;swag:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;xbackbone:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><content type="html">&lt;p&gt;All supported images have now been updated with patched versions of PHP for the recently-disclosed vulnerabilities.&lt;/p&gt;
+&lt;p&gt;If you are using pinned image tags be aware that these patches will &lt;em&gt;not&lt;/em&gt; be backported to older image versions.&lt;/p&gt;
+&lt;p&gt;The full list of affected images is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;babybuddy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bookstack:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cops:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dokuwiki:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;freshrss:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grav:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grocy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:development
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;kimai:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;librespeed:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lychee:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:develop
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:previous
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nginx:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;phpmyadmin:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;piwigo:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;projectsend:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;speedtest-tracker:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;swag:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;xbackbone:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></item><item><title>Copyfail LSIO Build Operations Have Resumed</title><link>https://info.linuxserver.io/issues/2026-04-30-copyfail2/</link><pubDate>Thu, 30 Apr 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-04-30-copyfail2/</guid><category/><description>&lt;p&gt;We have applied mitigations to our build environment for &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and are watching for distribution level kernel updates when they become available. Build operations have resumed across all platforms.&lt;/p&gt;</description><content type="html">&lt;p&gt;We have applied mitigations to our build environment for &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and are watching for distribution level kernel updates when they become available. Build operations have resumed across all platforms.&lt;/p&gt;</content></item><item><title>Copyfail LSIO Build Environment Pause Notice</title><link>https://info.linuxserver.io/issues/2026-04-29-copyfail/</link><pubDate>Wed, 29 Apr 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-04-29-copyfail/</guid><category/><description>&lt;p&gt;Given the severity of &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and the unknown state of patches on major Linux distributions we are pausing our build environment for the time being. We will post an update when operations have resumed.&lt;/p&gt;</description><content type="html">&lt;p&gt;Given the severity of &lt;a href="https://copy.fail/"&gt;CopyFail&lt;/a&gt; and the unknown state of patches on major Linux distributions we are pausing our build environment for the time being. We will post an update when operations have resumed.&lt;/p&gt;</content></item></channel></rss>
