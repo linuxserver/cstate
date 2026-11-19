@@ -1,6 +1,6 @@
 ---
 title: 'nginx HTTP/2 CVEs'
-date: '2026-11-18 23:00:00Z'
+date: '2026-11-19 12:00:00Z'
 informational: true
 affected:
   - Vulnerabilities
