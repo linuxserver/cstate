@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Vulnerabilities on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/vulnerabilities/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2024-03-29T22:00:00+00:00</lastBuildDate><updated>2024-03-29T22:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/vulnerabilities/index.xml" rel="self" type="application/rss+xml"/><item><title>[Resolved] Regarding CVE-2024-3094 - Supply Chain Compromise Affecting XZ Utils</title><link>https://info.linuxserver.io/issues/2024-03-29-cve-2024-3094/</link><pubDate>Fri, 29 Mar 2024 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-03-29-cve-2024-3094/</guid><category>2024-04-10 22:00:00Z</category><description>&lt;h3 id="update---2024-04-10"&gt;Update - 2024-04-10&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><link rel="alternate" type="text/html" href="https://info.linuxserver.io/"/><title>Vulnerabilities on Info :: LinuxServer.io</title><link>https://info.linuxserver.io/affected/vulnerabilities/</link><description>History</description><generator>github.com/cstate</generator><language>en</language><lastBuildDate>2026-11-19T12:00:00+00:00</lastBuildDate><updated>2026-11-19T12:00:00+00:00</updated><atom:link href="https://info.linuxserver.io/affected/vulnerabilities/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx HTTP/2 CVEs</title><link>https://info.linuxserver.io/issues/2026-11-19-nginx-http2-cves/</link><pubDate>Thu, 19 Nov 2026 12:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2026-11-19-nginx-http2-cves/</guid><category/><description>&lt;p&gt;A number of vulnerabilities have recently been disclosed in nginx (&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123007"&gt;CVE-2026-123007&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123633"&gt;CVE-2026-123633&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123634"&gt;CVE-2026-123634&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-121810"&gt;CVE-2026-121810&lt;/a&gt; and &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-113425"&gt;CVE-2026-113425&lt;/a&gt;), fixed upstream in nginx 1.30.7 and 1.31.9. They only affect nginx when HTTP/2 is enabled, and none of our images enable HTTP/2 out of the box, so in practice our default configurations are not exposed. If you have turned on HTTP/2 yourself, for example by adding &lt;code&gt;http2 on;&lt;/code&gt; to a server block in SWAG or nginx, you should update.&lt;/p&gt;</description><content type="html">&lt;p&gt;A number of vulnerabilities have recently been disclosed in nginx (&lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123007"&gt;CVE-2026-123007&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123633"&gt;CVE-2026-123633&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-123634"&gt;CVE-2026-123634&lt;/a&gt;, &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-121810"&gt;CVE-2026-121810&lt;/a&gt; and &lt;a href="https://www.cve.org/CVERecord?id=CVE-2026-113425"&gt;CVE-2026-113425&lt;/a&gt;), fixed upstream in nginx 1.30.7 and 1.31.9. They only affect nginx when HTTP/2 is enabled, and none of our images enable HTTP/2 out of the box, so in practice our default configurations are not exposed. If you have turned on HTTP/2 yourself, for example by adding &lt;code&gt;http2 on;&lt;/code&gt; to a server block in SWAG or nginx, you should update.&lt;/p&gt;
+&lt;p&gt;We have rebuilt every affected image whose distro has shipped a fixed package anyway. At the time of writing only &lt;strong&gt;Alpine 3.24&lt;/strong&gt; (nginx &lt;code&gt;1.30.7-r0&lt;/code&gt;) and &lt;strong&gt;Arch Linux&lt;/strong&gt; (nginx &lt;code&gt;1.30.7-1&lt;/code&gt;) have published updates. Debian, Ubuntu, Fedora and Kali have not shipped a fixed nginx yet. We will rebuild the images based on them once they do, and update this post.&lt;/p&gt;
+&lt;p&gt;The images based on Selkies (webtop and our other GUI desktop apps) only use nginx internally to serve the web interface, and they never enable HTTP/2 unless you edit the nginx configuration yourself. They are not exposed in their default state, whether they have been rebuilt yet or not.&lt;/p&gt;
+&lt;p&gt;If you are using pinned image tags, be aware that these patches will &lt;em&gt;not&lt;/em&gt; be backported to older image versions.&lt;/p&gt;
+&lt;p&gt;The following images have been updated:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ardour:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;azahar:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;babybuddy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bookstack:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cops:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;darktable:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;dokuwiki:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;freshrss:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;gitqlient:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grav:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;grocy:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;handbrake:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:development
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;heimdall:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;inkscape:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;intellij-idea:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;kdenlive:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;keepassxc:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;kicad:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;kimai:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;libreoffice:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;librespeed:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lm-studio:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lollypop:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;lychee:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mastodon:develop
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mastodon:glitch
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mastodon:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mysql-workbench:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:develop
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nextcloud:previous
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nginx:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pelorus:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;phpmyadmin:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pidgin:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;piwigo:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ppsspp:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pycharm:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;signal:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;speedtest-tracker:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sqlitebrowser:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;swag:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;telegram:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vlc:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:alpine-i3
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:alpine-kde
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:alpine-mate
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:arch-i3
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:arch-kde
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:arch-mate
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:arch-xfce
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;webtop:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wireshark:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wps-office:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;xbackbone:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Still waiting on a distro fix: all images based on Debian 13, Ubuntu, Fedora 44 and Kali (most of the Selkies-based images, including the Debian, Ubuntu and Fedora flavours of webtop), and &lt;code&gt;diskover&lt;/code&gt; and &lt;code&gt;projectsend&lt;/code&gt;, which are on older Alpine releases that have no fixed nginx package.&lt;/p&gt;</content></item><item><title>[Resolved] Regarding CVE-2024-3094 - Supply Chain Compromise Affecting XZ Utils</title><link>https://info.linuxserver.io/issues/2024-03-29-cve-2024-3094/</link><pubDate>Fri, 29 Mar 2024 22:00:00 +0000</pubDate><guid>https://info.linuxserver.io/issues/2024-03-29-cve-2024-3094/</guid><category>2024-04-10 22:00:00Z</category><description>&lt;h3 id="update---2024-04-10"&gt;Update - 2024-04-10&lt;/h3&gt;
 &lt;p&gt;At this point we are comfortable that there was and is no risk to any of our images as a result of the XZ backdoor and are considering the issue resolved.&lt;/p&gt;
 &lt;h3 id="update---2024-03-30"&gt;Update - 2024-03-30&lt;/h3&gt;
 &lt;p&gt;Further analysis of the exploit code indicates that it is only functional on amd64 hardware running glibc and a deb or rpm-based Linux distribution. The original CISA alert stated that the exploit could allow remote code execution, however, it remains unclear exactly what the payload was intended to do and so they have changed their description to &amp;ldquo;may allow unauthorized access to affected systems&amp;rdquo;.&lt;/p&gt;</description><content type="html">&lt;h3 id="update---2024-04-10"&gt;Update - 2024-04-10&lt;/h3&gt;
